@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/cvtprop.iml" filepath="$PROJECT_DIR$/cvtprop.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/cvtprop_main.iml" filepath="$PROJECT_DIR$/.idea/modules/cvtprop_main.iml" group="cvtprop" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/cvtprop_test.iml" filepath="$PROJECT_DIR$/.idea/modules/cvtprop_test.iml" group="cvtprop" />
+    </modules>
+  </component>
+</project>
