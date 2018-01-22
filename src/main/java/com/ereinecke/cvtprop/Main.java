@@ -5,9 +5,12 @@ import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.Node;
 import org.dom4j.io.SAXReader;
+import org.dom4j.io.XMLWriter;
 import org.pmw.tinylog.Logger;
 
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 import com.ereinecke.cvtprop.Constants;
@@ -16,13 +19,19 @@ import static com.ereinecke.cvtprop.Constants.*;
 import static com.ereinecke.cvtprop.Main.printItems;
 
 /**
- * Reads and parses property files (export xml format) from the WordPress theme WP Pro Real Estate
- * Writes out export xml file in the formate required by Realty v 3.0.1
+ * Reads and parses property files (export xml format)
+ * <p>
+ * Input is an export xml file from the WordPress theme WP Pro Real Estate
+ * Writes out export xml file in the format required by Realty v 3.0.1
  *
- * @param  inputxml  file name (default location PROJECT_DIR/data)
+ * @author  Erik Reinecke  <erik@ereinecke.com>
+ * @version 0.1
+ * @since   1/21/2018
  *
- *                  Test files:  full sized: resm-listings-modified.wordpress.2017-12-07.xml
- *                               small: 2427-prod.xml
+ * @param  inputxml  file name
+ *
+ *    Test files:  full sized: data/resm-listings-modified.wordpress.2017-12-07.xml
+ *                 small:      data/2427-prod.xml
  *
  * */
 
@@ -62,25 +71,34 @@ public class Main {
         // log list of items
         printItems(nodes);
 
-//        // Conversion
-//        long items = 0;
-//        for (Node node : nodes) {
-//            Element element = (Element)node;
-//            Iterator<Element> iterator = element.elementIterator("item");
-//            while (iterator.hasNext()) {
-//                items++;
-//                Element item = (Element)iterator.next();
-//                Logger.info("Item#: {}; {}", items, item.toString());
-//            }
-//
-//        }
+        // Conversion
+        long items = 0;
+        for (Node node : nodes) {
+            items++;
+            Element element = (Element)node;
+
+            // Change link
+            convertLink(element);
+        }
 
         // output DOM4J tree
-        // printDOM(reader);
+        String outputFileName = (outputFile(inputFile));
+        try {
+            XMLWriter writer =
+                    new XMLWriter(new FileWriter(new File(outputFileName)));
+            writer.write(document);
+            writer.close();
+        } catch (IOException e) {
+            Logger.error(e, "Error writing {}", outputFileName);
+            e.printStackTrace();
+        }
     }
 
     /**
      *  Parses input xml file
+     *
+     *  @param  inputFile  input file specifier
+     *
      *
      */
     public static Document parse(String inputFile) throws DocumentException {
@@ -91,10 +109,39 @@ public class Main {
         return doc;
     }
 
+    /**
+     * Converts input property link to output property link
+     *
+     *  @param  element  xml element containing <link> to convert
+     *
+     */
+    public static void convertLink(Element element) {
+        String linkIn = element.selectSingleNode(LINK).getText();
+        String linkOut = linkIn.replace(INPUT_LINK, OUTPUT_LINK);
+        Logger.info("{} replaced with {}", linkIn, linkOut);
+        element.selectSingleNode(LINK).setText(linkOut);
+    }
+
+    /**
+     * Generates output file name by inserting .cvt before .xml or at end of file
+     *
+     *  @param  inputFileName
+     *  @return outputFileName
+     */
+    public static String outputFile(String inputFileName) {
+
+        String outputFileName = inputFileName.replace(".xml", "-cvt.xml");
+        Logger.info("Output file name: {}", outputFileName);
+        return outputFileName;
+    }
 
     /**
      * Prints out list of items (properties) found
+     *
+     *  @param  node  xml node to display
+     *
      */
+
     public static void printItems(List<Node> nodes) {
         long nodeNum = 0;
 

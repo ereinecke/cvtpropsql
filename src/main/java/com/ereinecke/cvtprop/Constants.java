@@ -2,6 +2,11 @@ package com.ereinecke.cvtprop;
 
 public class Constants {
 
+    // Substitution patterns
+    public static String INPUT_LINK = "http://www.realestateinsanmiguel.com/listings/";
+    public static String OUTPUT_LINK = "http://www.vivirensanmiguel.com/property/";
+
+
     // xPaths
     public static String ITEM = "/rss/channel/item";
     public static String POSTMETA = "wp:postmeta";
@@ -15,6 +20,7 @@ public class Constants {
     public static String EDITLAST_KEY = "_edit_last";
     public static String LATLNG_KEY = "_ct_latlng";
     public static String TITLE = "title";
+    public static String LINK = "link";
 
     // CDATA manipulation
     public static String CDATA_FMT = "<![CDATA[%s]]>";
