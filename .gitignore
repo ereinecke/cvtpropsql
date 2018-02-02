@@ -1,3 +1,5 @@
 build/
 out/
 data/*-cvt.xml
+.gradle/
+.idea/

@@ -1,0 +1,183 @@
+		<category domain="additional_features" nicename="2-jacuzzis"><![CDATA[2 Jacuzzis]]></category>
+		<category domain="additional_features" nicename="2-studiosoffices-with-built-in-bookshelves"><![CDATA[2 Studios/Offices with Built-in Bookshelves]]></category>
+		<category domain="additional_features" nicename="3-1-bedroom-bathroom-bungalows"><![CDATA[3 1-Bedroom/1-Bathroom Bungalows]]></category>
+		<category domain="additional_features" nicename="3-cistern"><![CDATA[3 Cisterns]]></category>
+		<category domain="additional_features" nicename="8-car-garage"><![CDATA[Parking for 8 Cars]]></category>
+		<category domain="additional_features" nicename="appliances-included"><![CDATA[Appliances Included]]></category>
+		<category domain="additional_features" nicename="appliances-negotiable"><![CDATA[Appliances Negotiable]]></category>
+		<category domain="additional_features" nicename="appliances-not-included"><![CDATA[Appliances Not Included]]></category>
+		<category domain="additional_features" nicename="artwork-and-furnishing-negotiable"><![CDATA[Artwork and Furnishing Negotiable]]></category>
+		<category domain="additional_features" nicename="association-fee"><![CDATA[Association Fee]]></category>
+		<category domain="additional_features" nicename="balcony"><![CDATA[Balcony]]></category>
+		<category domain="additional_features" nicename="bar"><![CDATA[Bar]]></category>
+		<category domain="additional_features" nicename="breakfast-area"><![CDATA[Breakfast Area]]></category>
+		<category domain="additional_features" nicename="cable-tv"><![CDATA[Cable TV]]></category>
+		<category domain="additional_features" nicename="chandelier-negotiable"><![CDATA[Chandelier Negotiable]]></category>
+		<category domain="additional_features" nicename="chapel"><![CDATA[Chapel]]></category>
+		<category domain="additional_features" nicename="cistern"><![CDATA[Cistern]]></category>
+		<category domain="additional_features" nicename="city-connection"><![CDATA[City Connection]]></category>
+		<category domain="additional_features" nicename="city-electric"><![CDATA[City Electric]]></category>
+		<category domain="additional_features" nicename="city-sewer"><![CDATA[City Sewer]]></category>
+		<category domain="additional_features" nicename="city-wate"><![CDATA[City Wate]]></category>
+		<category domain="additional_features" nicename="city-water"><![CDATA[City Water]]></category>
+		<category domain="additional_features" nicename="city-water-dining-room"><![CDATA[City Water Dining Room]]></category>
+		<category domain="additional_features" nicename="clubhouse"><![CDATA[Clubhouse]]></category>
+		<category domain="additional_features" nicename="community-features"><![CDATA[Community Features]]></category>
+		<category domain="additional_features" nicename="community-features-association-fee"><![CDATA[Community Features Association Fee]]></category>
+		<category domain="additional_features" nicename="community-features-playgroundpark"><![CDATA[Community Features Playground/Park]]></category>
+		<category domain="additional_features" nicename="connection"><![CDATA[Connection]]></category>
+		<category domain="additional_features" nicename="controlled-access"><![CDATA[Controlled Access]]></category>
+		<category domain="additional_features" nicename="covered-roof-terrace-bar"><![CDATA[Covered Roof Terrace Bar]]></category>
+		<category domain="additional_features" nicename="custom-boveda-ceiling-in-living-room"><![CDATA[Custom Boveda Ceiling in Living Room]]></category>
+		<category domain="additional_features" nicename="custom-wood-door-and-cabinets-throughout-home"><![CDATA[Custom Wood Door and Cabinets throughout Home]]></category>
+		<category domain="additional_features" nicename="den"><![CDATA[Den]]></category>
+		<category domain="additional_features" nicename="dining-room"><![CDATA[Dining Room]]></category>
+		<category domain="additional_features" nicename="extensive-water-capture-and-redistribution-systems"><![CDATA[Extensive water capture and redistribution systems]]></category>
+		<category domain="additional_features" nicename="fireplace"><![CDATA[Fireplace]]></category>
+		<category domain="additional_features" nicename="fish-ponds"><![CDATA[Fish Ponds]]></category>
+		<category domain="additional_features" nicename="fitness-center"><![CDATA[Fitness Center]]></category>
+		<category domain="additional_features" nicename="fountain"><![CDATA[Fountain]]></category>
+		<category domain="additional_features" nicename="franciscan-courtyard"><![CDATA[Franciscan Courtyard]]></category>
+		<category domain="additional_features" nicename="furniture"><![CDATA[Furniture]]></category>
+		<category domain="additional_features" nicename="furniture-included-internet-ready-kitchen-laundry-living-room-storage-telephone-line"><![CDATA[Furniture Included Internet Ready Kitchen Laundry Living Room Storage Telephone Line]]></category>
+		<category domain="additional_features" nicename="furniture-not-included"><![CDATA[Furniture Not Included]]></category>
+		<category domain="additional_features" nicename="game-room-with-bar-and-lounge"><![CDATA[Game Room with Bar and Lounge]]></category>
+		<category domain="additional_features" nicename="garage"><![CDATA[Garage]]></category>
+		<category domain="additional_features" nicename="garden"><![CDATA[Garden]]></category>
+		<category domain="additional_features" nicename="gated-front-and-back-garden"><![CDATA[Gated Front and Back Garden]]></category>
+		<category domain="additional_features" nicename="golf-course"><![CDATA[Golf Course]]></category>
+		<category domain="additional_features" nicename="greenhouses"><![CDATA[Greenhouses]]></category>
+		<category domain="additional_features" nicename="grey-water-system"><![CDATA[Grey Water System]]></category>
+		<category domain="additional_features" nicename="home-features"><![CDATA[Home Features]]></category>
+		<category domain="additional_features" nicename="indoor-and-outdoor-dining"><![CDATA[Indoor and Outdoor Dining]]></category>
+		<category domain="additional_features" nicename="indoors-swimming-pool"><![CDATA[Indoors Swimming Pool]]></category>
+		<category domain="additional_features" nicename="installation-of-solar-panels-for-the-solar-well-pump"><![CDATA[installation of solar panels for the solar well pump]]></category>
+		<category domain="additional_features" nicename="internet-ready"><![CDATA[Internet Ready]]></category>
+		<category domain="additional_features" nicename="jacuzzi"><![CDATA[Jacuzzi]]></category>
+		<category domain="additional_features" nicename="jacuzzi-tub"><![CDATA[jacuzzi tub]]></category>
+		<category domain="additional_features" nicename="kitchen"><![CDATA[Kitchen]]></category>
+		<category domain="additional_features" nicename="laundry"><![CDATA[Laundry]]></category>
+		<category domain="additional_features" nicename="library"><![CDATA[Library]]></category>
+		<category domain="additional_features" nicename="living"><![CDATA[Living]]></category>
+		<category domain="additional_features" nicename="living-roo"><![CDATA[Living Roo]]></category>
+		<category domain="additional_features" nicename="master-bedroom-suite-with-huge-walk-in-closets-and-dressing-room"><![CDATA[Master Bedroom Suite with Huge walk-in Closets and Dressing Room]]></category>
+		<category domain="additional_features" nicename="neighborhood-san-antonio"><![CDATA[Neighborhood: San Antonio]]></category>
+		<category domain="additional_features" nicename="not-included"><![CDATA[Not Included]]></category>
+		<category domain="additional_features" nicename="pantry"><![CDATA[Pantry]]></category>
+		<category domain="additional_features" nicename="park"><![CDATA[Park]]></category>
+		<category domain="additional_features" nicename="partial-excavation-of-the-wetlands"><![CDATA[Partial excavation of the wetlands]]></category>
+		<category domain="additional_features" nicename="patio"><![CDATA[Patio]]></category>
+		<category domain="additional_features" nicename="pool"><![CDATA[Pool]]></category>
+		<category domain="additional_features" nicename="pressurized"><![CDATA[Pressurized]]></category>
+		<category domain="additional_features" nicename="pressurized-water"><![CDATA[Pressurized water]]></category>
+		<category domain="additional_features" nicename="pressurized-water-system"><![CDATA[Pressurized Water System]]></category>
+		<category domain="additional_features" nicename="private-water-well"><![CDATA[Private Water Well]]></category>
+		<category domain="additional_features" nicename="public-transportation"><![CDATA[Public Transportation]]></category>
+		<category domain="additional_features" nicename="room"><![CDATA[Room]]></category>
+		<category domain="additional_features" nicename="satellite-tv"><![CDATA[Satellite TV]]></category>
+		<category domain="additional_features" nicename="septic-tank"><![CDATA[Septic Tank]]></category>
+		<category domain="additional_features" nicename="service-quarters"><![CDATA[Service Quarters]]></category>
+		<category domain="additional_features" nicename="solar"><![CDATA[Solar]]></category>
+		<category domain="additional_features" nicename="solar-hw"><![CDATA[Solar H/W]]></category>
+		<category domain="additional_features" nicename="some-appliances-included"><![CDATA[Some Appliances Included]]></category>
+		<category domain="additional_features" nicename="some-furniture-included"><![CDATA[Some Furniture Included]]></category>
+		<category domain="additional_features" nicename="sound-and-illumination-systems"><![CDATA[Sound and Illumination systems]]></category>
+		<category domain="additional_features" nicename="steam-room"><![CDATA[Steam Room]]></category>
+		<category domain="additional_features" nicename="stone-style-flooring"><![CDATA[Stone Style Flooring]]></category>
+		<category domain="additional_features" nicename="storage"><![CDATA[Storage]]></category>
+		<category domain="additional_features" nicename="studio"><![CDATA[Studio]]></category>
+		<category domain="additional_features" nicename="swimming-pool"><![CDATA[Swimming Pool]]></category>
+		<category domain="additional_features" nicename="telephone-line"><![CDATA[Telephone Line]]></category>
+		<category domain="additional_features" nicename="tennis-courts"><![CDATA[Tennis Courts]]></category>
+		<category domain="additional_features" nicename="terrace"><![CDATA[Terrace]]></category>
+		<category domain="additional_features" nicename="tinaco"><![CDATA[Tinaco]]></category>
+		<category domain="additional_features" nicename="trees"><![CDATA[Trees]]></category>
+		<category domain="additional_features" nicename="tv-bar"><![CDATA[TV Bar]]></category>
+		<category domain="additional_features" nicename="two-kitchens"><![CDATA[Two Kitchens]]></category>
+		<category domain="additional_features" nicename="walk-in-closet"><![CDATA[Walk-in Closet]]></category>
+		<category domain="additional_features" nicename="washer-and-dryer-in-house-and-apartment"><![CDATA[Washer and Dryer in House and Apartment]]></category>
+		<category domain="additional_features" nicename="water"><![CDATA[water]]></category>
+		<category domain="additional_features" nicename="water-purification-system"><![CDATA[Water Purification System]]></category>
+		<category domain="additional_features" nicename="water-well"><![CDATA[Water Well]]></category>
+		<category domain="additional_features" nicename="well-water-from-community-well"><![CDATA[Well Water from Community Well]]></category>
+		<category domain="additional_features" nicename="wind-power"><![CDATA[wind power]]></category>
+		<category domain="additional_features" nicename="wine-cellar"><![CDATA[Wine cellar]]></category>
+		<category domain="baths" nicename="1"><![CDATA[1]]></category>
+		<category domain="baths" nicename="1-12"><![CDATA[1 1/2]]></category>
+		<category domain="baths" nicename="1-12"><![CDATA[1 1/2]]></category>
+		<category domain="baths" nicename="1-13"><![CDATA[1 1/3]]></category>
+		<category domain="baths" nicename="10"><![CDATA[10]]></category>
+		<category domain="baths" nicename="17"><![CDATA[17]]></category>
+		<category domain="baths" nicename="2"><![CDATA[2]]></category>
+		<category domain="baths" nicename="2-12"><![CDATA[2 1/2]]></category>
+		<category domain="baths" nicename="2-5"><![CDATA[2.5]]></category>
+		<category domain="baths" nicename="2-full-1-half"><![CDATA[2 Full 1 Half]]></category>
+		<category domain="baths" nicename="2-half"><![CDATA[2 Half]]></category>
+		<category domain="baths" nicename="2f-2h"><![CDATA[2F 2H]]></category>
+		<category domain="baths" nicename="3"><![CDATA[3]]></category>
+		<category domain="baths" nicename="3-12"><![CDATA[3 1/2]]></category>
+		<category domain="baths" nicename="3-f-2-h"><![CDATA[3 F 2 H]]></category>
+		<category domain="baths" nicename="3-full"><![CDATA[3 Full]]></category>
+		<category domain="baths" nicename="3-full-1-half"><![CDATA[3 Full 1 Half]]></category>
+		<category domain="baths" nicename="3-full-2-half"><![CDATA[3 Full 2 Half]]></category>
+		<category domain="baths" nicename="38"><![CDATA[38]]></category>
+		<category domain="baths" nicename="4"><![CDATA[4]]></category>
+		<category domain="baths" nicename="4-12"><![CDATA[4 1/2]]></category>
+		<category domain="baths" nicename="4-f-1-h"><![CDATA[4 F 1 H]]></category>
+		<category domain="baths" nicename="4-full-1-half"><![CDATA[4 Full 1 Half]]></category>
+		<category domain="baths" nicename="4-full-2-half"><![CDATA[4 Full / 2 Half]]></category>
+		<category domain="baths" nicename="4-full-2-half"><![CDATA[4 Full / 2 Half]]></category>
+		<category domain="baths" nicename="4-full-3-half"><![CDATA[4 Full 3 Half]]></category>
+		<category domain="baths" nicename="5"><![CDATA[5]]></category>
+		<category domain="baths" nicename="5-12"><![CDATA[5 1/2]]></category>
+		<category domain="baths" nicename="6"><![CDATA[6]]></category>
+		<category domain="baths" nicename="6-12"><![CDATA[6 1/2]]></category>
+		<category domain="baths" nicename="7-12"><![CDATA[7 1/2]]></category>
+		<category domain="baths" nicename="7-full-and-5-half"><![CDATA[7 Full and 5 Half]]></category>
+		<category domain="baths" nicename="8"><![CDATA[8]]></category>
+		<category domain="baths" nicename="8-f-2-h"><![CDATA[8 F 2 H]]></category>
+		<category domain="baths" nicename="9-12"><![CDATA[9 1/2]]></category>
+		<category domain="baths" nicename="apartment-1-full-bathroom-and-one-half-bath"><![CDATA[Apartment 1 full bathroom and one half bath]]></category>
+		<category domain="baths" nicename="bathrooms-3-2-in-apartment"><![CDATA[Bathrooms: 3 + 2 in Apartment]]></category>
+		<category domain="baths" nicename="house-1-bathroom"><![CDATA[House 1 bathroom]]></category>
+		<category domain="beds" nicename="1"><![CDATA[1]]></category>
+		<category domain="beds" nicename="10"><![CDATA[10]]></category>
+		<category domain="beds" nicename="12"><![CDATA[12]]></category>
+		<category domain="beds" nicename="2"><![CDATA[2]]></category>
+		<category domain="beds" nicename="3"><![CDATA[3]]></category>
+		<category domain="beds" nicename="3-1-in-apartment"><![CDATA[3 + 1 in Apartment]]></category>
+		<category domain="beds" nicename="38"><![CDATA[38]]></category>
+		<category domain="beds" nicename="4"><![CDATA[4]]></category>
+		<category domain="beds" nicename="5"><![CDATA[5]]></category>
+		<category domain="beds" nicename="6"><![CDATA[6]]></category>
+		<category domain="beds" nicename="7"><![CDATA[7]]></category>
+		<category domain="beds" nicename="8"><![CDATA[8]]></category>
+		<category domain="beds" nicename="9"><![CDATA[9]]></category>
+		<category domain="beds" nicename="apartment-1-bedroom"><![CDATA[Apartment 1 bedroom]]></category>
+		<category domain="beds" nicename="house-1-bedroom"><![CDATA[House 1 bedroom]]></category>
+		<category domain="city" nicename="biznaga"><![CDATA[Biznaga]]></category>
+		<category domain="city" nicename="dolores-hidalgo"><![CDATA[Dolores Hidalgo]]></category>
+		<category domain="city" nicename="san-jose-iturbide"><![CDATA[San José Iturbide]]></category>
+		<category domain="city" nicename="san-miguel-de-allende"><![CDATA[San Miguel de Allende,]]></category>
+		<category domain="ct_status" nicename="featured"><![CDATA[Featured]]></category>
+		<category domain="ct_status" nicename="reduced"><![CDATA[Reduced]]></category>
+		<category domain="ct_status" nicename="sold"><![CDATA[Sold]]></category>
+		<category domain="property_type" nicename="apartments"><![CDATA[Apartments]]></category>
+		<category domain="property_type" nicename="commercial"><![CDATA[Commercial]]></category>
+		<category domain="property_type" nicename="condominiums"><![CDATA[Condominiums]]></category>
+		<category domain="property_type" nicename="country-home"><![CDATA[Country Home]]></category>
+		<category domain="property_type" nicename="home"><![CDATA[Home]]></category>
+		<category domain="property_type" nicename="house"><![CDATA[House]]></category>
+		<category domain="property_type" nicename="land"><![CDATA[Land]]></category>
+		<category domain="property_type" nicename="lot"><![CDATA[Lot]]></category>
+		<category domain="property_type" nicename="ranches"><![CDATA[Ranches]]></category>
+		<category domain="state" nicename="guanajuato"><![CDATA[Guanajuato]]></category>
+		<category domain="state" nicename="san-luis-potosi"><![CDATA[San Luis Potosi]]></category>
+		<category domain="zipcode" nicename="37700"><![CDATA[37700]]></category>
+		<category domain="zipcode" nicename="37720"><![CDATA[37720]]></category>
+		<category domain="zipcode" nicename="37740"><![CDATA[37740]]></category>
+		<category domain="zipcode" nicename="37765"><![CDATA[37765]]></category>
+		<category domain="zipcode" nicename="37770"><![CDATA[37770]]></category>
+		<category domain="zipcode" nicename="37795"><![CDATA[37795]]></category>
+		<category domain="zipcode" nicename="37797"><![CDATA[37797]]></category>
+		<category domain="zipcode" nicename="79960"><![CDATA[79960]]></category>

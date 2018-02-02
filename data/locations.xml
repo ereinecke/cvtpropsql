@@ -1,0 +1,27 @@
+<category domain="property-location" nicename="san-miguel-de-allende"><![CDATA[San Miguel de Allende]]></category>
+	<wp:postmeta>
+		<wp:meta_key><![CDATA[acf-property-location]]></wp:meta_key>
+		<wp:meta_value><![CDATA[a:2:{i:0;i:88;i:1;i:91;}]]></wp:meta_value>
+	</wp:postmeta>
+	<wp:postmeta>
+		<wp:meta_key><![CDATA[_acf-property-location]]></wp:meta_key>
+		<wp:meta_value><![CDATA[field_5562dee6753f7]]></wp:meta_value>
+	</wp:postmeta>
+	
+<category domain="property-location" nicename="centro"><![CDATA[Centro]]></category>
+	<wp:postmeta>
+		<wp:meta_key><![CDATA[acf-property-location]]></wp:meta_key>
+		<wp:meta_value><![CDATA[a:1:{i:0;i:14;}]]></wp:meta_value>
+	</wp:postmeta>
+	<wp:postmeta>
+		<wp:meta_key><![CDATA[_acf-property-location]]></wp:meta_key>
+		<wp:meta_value><![CDATA[field_5562dee6753f7]]></wp:meta_value>
+		
+<category domain="property-location" nicename="independencia"><![CDATA[Independencia]]></category>
+	<wp:postmeta>
+		<wp:meta_key><![CDATA[_acf-property-location]]></wp:meta_key>
+		<wp:meta_value><![CDATA[field_5562dee6753f7]]></wp:meta_value>
+	</wp:postmeta>
+	<wp:postmeta>
+		<wp:meta_key><![CDATA[acf-property-type]]></wp:meta_key>
+		<wp:meta_value><![CDATA[a:1:{i:0;i:13;}]]></wp:meta_value>

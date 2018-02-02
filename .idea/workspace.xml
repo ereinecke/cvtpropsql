@@ -2,10 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5799a618-5ebb-4a2d-9d28-3fc7558aef98" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/data/2427-dev.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/data/categories.txt" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/data/city.txt" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/data/dev-postmeta.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/data/locations.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/data/state.txt" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/data/unique_categories.txt" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/ereinecke/cvtprop/InitPropertyFeatures.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/ereinecke/cvtprop/InitPropertyStatus.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/ereinecke/cvtprop/InitPropertyTypes.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/ereinecke/cvtprop/PropertyFeature.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/ereinecke/cvtprop/PropertyStatus.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/ereinecke/cvtprop/PropertyTypeRealty.java" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.0/fileHashes/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/4.0/fileHashes/fileHashes.bin" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.0/fileHashes/fileHashes.lock" afterPath="$PROJECT_DIR$/.gradle/4.0/fileHashes/fileHashes.lock" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/ereinecke/cvtprop/Constants.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/ereinecke/cvtprop/Main.class" afterPath="" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ereinecke/cvtprop/Constants.java" afterPath="$PROJECT_DIR$/src/main/java/com/ereinecke/cvtprop/Constants.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ereinecke/cvtprop/Main.java" afterPath="$PROJECT_DIR$/src/main/java/com/ereinecke/cvtprop/Main.java" />
     </list>
@@ -25,27 +38,19 @@
     </projectState>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="vertical" split-proportion="0.5">
+    <splitter split-orientation="vertical" split-proportion="0.61104846">
       <split-first>
-        <leaf>
-          <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/com/ereinecke/cvtprop/Main.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-19">
-                  <caret line="83" column="28" lean-forward="true" selection-start-line="83" selection-start-column="28" selection-end-line="83" selection-end-column="28" />
+                <state relative-caret-position="68">
+                  <caret line="53" column="33" lean-forward="false" selection-start-line="53" selection-start-column="33" selection-end-line="53" selection-end-column="33" />
                   <folding>
                     <element signature="imports" expanded="true" />
+                    <element signature="e#7931#7932#0" expanded="true" />
+                    <element signature="e#7989#7990#0" expanded="true" />
                   </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="2427-prod-cvt.xml" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/data/2427-prod-cvt.xml">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-837">
-                  <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-                  <folding />
                 </state>
               </provider>
             </entry>
@@ -53,29 +58,70 @@
           <file leaf-file-name="Constants.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/com/ereinecke/cvtprop/Constants.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="235">
-                  <caret line="22" column="37" lean-forward="false" selection-start-line="22" selection-start-column="37" selection-end-line="22" selection-end-column="37" />
+                <state relative-caret-position="398">
+                  <caret line="63" column="49" lean-forward="true" selection-start-line="63" selection-start-column="49" selection-end-line="63" selection-end-column="49" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="2427-prod.xml" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/data/2427-prod.xml">
+          <file leaf-file-name="2427-prod-cvt.xml" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/data/2427-prod-cvt.xml">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-1303">
-                  <caret line="1" column="7" lean-forward="false" selection-start-line="1" selection-start-column="7" selection-end-line="1" selection-end-column="7" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="resm-listings-modified.wordpress.2017-12-07.xml" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/data/resm-listings-modified.wordpress.2017-12-07.xml">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="469">
-                  <caret line="17830" column="0" lean-forward="false" selection-start-line="17830" selection-start-column="0" selection-end-line="17830" selection-end-column="0" />
-                  <folding />
+                <state relative-caret-position="253">
+                  <caret line="185" column="19" lean-forward="true" selection-start-line="185" selection-start-column="19" selection-end-line="185" selection-end-column="19" />
+                  <folding>
+                    <element signature="e#5154#5159#0" expanded="true" />
+                    <element signature="e#6721#6725#0" expanded="true" />
+                    <element signature="e#6743#6747#0" expanded="true" />
+                    <element signature="e#9721#9725#0" expanded="true" />
+                    <element signature="e#9759#9763#0" expanded="true" />
+                    <element signature="e#9799#9803#0" expanded="true" />
+                    <element signature="e#9814#9818#0" expanded="true" />
+                    <element signature="e#9895#9899#0" expanded="true" />
+                    <element signature="e#9934#9938#0" expanded="true" />
+                    <element signature="e#9974#9978#0" expanded="true" />
+                    <element signature="e#10007#10011#0" expanded="true" />
+                    <element signature="e#10088#10092#0" expanded="true" />
+                    <element signature="e#10127#10131#0" expanded="true" />
+                    <element signature="e#10167#10171#0" expanded="true" />
+                    <element signature="e#10182#10186#0" expanded="true" />
+                    <element signature="e#10263#10267#0" expanded="true" />
+                    <element signature="e#10303#10307#0" expanded="true" />
+                    <element signature="e#10343#10347#0" expanded="true" />
+                    <element signature="e#10376#10380#0" expanded="true" />
+                    <element signature="e#10457#10461#0" expanded="true" />
+                    <element signature="e#10492#10496#0" expanded="true" />
+                    <element signature="e#10532#10536#0" expanded="true" />
+                    <element signature="e#10565#10569#0" expanded="true" />
+                    <element signature="e#10646#10650#0" expanded="true" />
+                    <element signature="e#10864#10868#0" expanded="true" />
+                    <element signature="e#10904#10908#0" expanded="true" />
+                    <element signature="e#10937#10941#0" expanded="true" />
+                    <element signature="e#11018#11022#0" expanded="true" />
+                    <element signature="e#11053#11057#0" expanded="true" />
+                    <element signature="e#11093#11097#0" expanded="true" />
+                    <element signature="e#11113#11117#0" expanded="true" />
+                    <element signature="e#11194#11198#0" expanded="true" />
+                    <element signature="e#11230#11234#0" expanded="true" />
+                    <element signature="e#11270#11274#0" expanded="true" />
+                    <element signature="e#11303#11307#0" expanded="true" />
+                    <element signature="e#11384#11388#0" expanded="true" />
+                    <element signature="e#11426#11430#0" expanded="true" />
+                    <element signature="e#11466#11470#0" expanded="true" />
+                    <element signature="e#11486#11490#0" expanded="true" />
+                    <element signature="e#11567#11571#0" expanded="true" />
+                    <element signature="e#11610#11614#0" expanded="true" />
+                    <element signature="e#11650#11654#0" expanded="true" />
+                    <element signature="e#11683#11687#0" expanded="true" />
+                    <element signature="e#11764#11768#0" expanded="true" />
+                    <element signature="e#11806#11810#0" expanded="true" />
+                    <element signature="e#11846#11850#0" expanded="true" />
+                    <element signature="e#11866#11870#0" expanded="true" />
+                    <element signature="e#11947#11951#0" expanded="true" />
+                    <element signature="e#11990#11994#0" expanded="true" />
+                    <element signature="e#12030#12034#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -87,10 +133,12 @@
           <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/com/ereinecke/cvtprop/Main.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="219">
-                  <caret line="94" column="5" lean-forward="true" selection-start-line="94" selection-start-column="5" selection-end-line="94" selection-end-column="5" />
+                <state relative-caret-position="117">
+                  <caret line="296" column="69" lean-forward="true" selection-start-line="296" selection-start-column="69" selection-end-line="296" selection-end-column="69" />
                   <folding>
                     <element signature="imports" expanded="true" />
+                    <element signature="e#7931#7932#0" expanded="true" />
+                    <element signature="e#7989#7990#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -110,9 +158,34 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>]]&gt;&quot;</find>
+      <find>link</find>
+      <find>STATUS</find>
+      <find>SIDEBAR</find>
+      <find>PROPERTY_FLOOR_PLANS_0_ACF_ESTATE_FLOOR_PLAN_IMAGE</find>
+      <find>bath</find>
+      <find>ESTATE_PROPERTY</find>
+      <find>PropertyType</find>
+      <find>PropertyTypeRealty</find>
+      <find>PREFIX</find>
+      <find>PRICE</find>
+      <find>element,</find>
+      <find>Logger</find>
     </findStrings>
     <replaceStrings>
       <replace>&quot;</replace>
+      <replace>guid</replace>
+      <replace>FEATURES</replace>
+      <replace>ESTATE_PROPERTY_GALLERY</replace>
+      <replace>GOOGLE_MAPS</replace>
+      <replace>FOOTER_WIDGETS</replace>
+      <replace>PropertyFeature</replace>
+      <replace>Property</replace>
+      <replace>PAGE_HIDE_SITE_HEADER</replace>
+      <replace>EP</replace>
+      <replace>PropertyTypeRealty</replace>
+      <replace>PropertyStatus</replace>
+      <replace>SUFFIX</replace>
+      <replace>item,</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -298,7 +371,7 @@
       <map>
         <entry key="$PROJECT_DIR$" value="4549527146000" />
         <entry key="$PROJECT_DIR$/build.gradle" value="1095188293" />
-        <entry key="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" value="975608090" />
+        <entry key="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" value="566444372" />
         <entry key="$PROJECT_DIR$/settings.gradle" value="3763682356" />
       </map>
     </option>
@@ -479,6 +552,18 @@
         <option value="$PROJECT_DIR$/data/resm-listings-modified.wordpress.2017-12-07.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/ereinecke/cvtprop/constants.java" />
         <option value="$PROJECT_DIR$/build.gradle" />
+        <option value="$PROJECT_DIR$/src/main/java/com/ereinecke/cvtprop/PropertyFeatures.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/ereinecke/cvtprop/PropertyType.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/ereinecke/cvtprop/PropertyTypeInit.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/ereinecke/cvtprop/PropertyFeatureInit.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/ereinecke/cvtprop/InitPropertyFeature.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/ereinecke/cvtprop/InitPropertyType.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/ereinecke/cvtprop/PropertyStatus.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/ereinecke/cvtprop/PropertyFeature.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/ereinecke/cvtprop/PropertyTypeRealty.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/ereinecke/cvtprop/InitPropertyTypes.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/ereinecke/cvtprop/InitPropertyStatus.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/ereinecke/cvtprop/InitPropertyFeatures.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/ereinecke/cvtprop/Constants.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/ereinecke/cvtprop/Main.java" />
       </list>
@@ -486,9 +571,9 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="12" />
-    <option name="y" value="26" />
-    <option name="width" value="1268" />
-    <option name="height" value="973" />
+    <option name="y" value="25" />
+    <option name="width" value="1293" />
+    <option name="height" value="1005" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -506,6 +591,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -517,41 +603,6 @@
               <item name="cvtprop" type="b2602c69:ProjectViewProjectNode" />
               <item name="cvtprop" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="data" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="cvtprop" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cvtprop" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="cvtprop" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cvtprop" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-              <item name="production" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="cvtprop" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cvtprop" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-              <item name="production" type="462c0819:PsiDirectoryNode" />
-              <item name="classes" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="cvtprop" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cvtprop" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-              <item name="production" type="462c0819:PsiDirectoryNode" />
-              <item name="classes" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="cvtprop" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cvtprop" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-              <item name="production" type="462c0819:PsiDirectoryNode" />
-              <item name="classes" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="ereinecke" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="cvtprop" type="b2602c69:ProjectViewProjectNode" />
@@ -587,9 +638,8 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
       <pane id="AndroidView" />
+      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -611,7 +661,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Main - full">
+  <component name="RunManager" selected="Application.Main - test file">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="WIDTH" value="400" />
       <option name="HEIGHT" value="300" />
@@ -754,36 +804,66 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="12" y="26" width="1268" height="973" extended-state="0" />
+    <frame x="12" y="25" width="1293" height="1005" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32982457" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32982457" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32982457" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32982457" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23409462" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32982457" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Learn" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32919955" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5016911" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32982457" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32982457" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23581135" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Learn" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2246203" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="1285" y="247" width="1251" height="544" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32982457" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
+    <layout-to-restore>
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32982457" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2246203" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="1285" y="247" width="1251" height="544" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32919955" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.50281847" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32982457" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32982457" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23581135" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Learn" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
+    </layout-to-restore>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -816,7 +896,15 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="8" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/ereinecke/cvtprop/Main.java</url>
+          <line>112</line>
+          <properties />
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="11" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
@@ -825,9 +913,183 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/ereinecke/cvtprop/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#7931#7932#0" expanded="true" />
+            <element signature="e#7989#7990#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/2427-prod-cvt.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1140">
+          <caret line="76" column="49" lean-forward="true" selection-start-line="76" selection-start-column="49" selection-end-line="76" selection-end-column="49" />
+          <folding>
+            <element signature="e#5154#5159#0" expanded="true" />
+            <element signature="e#6721#6725#0" expanded="true" />
+            <element signature="e#6743#6747#0" expanded="true" />
+            <element signature="e#9721#9725#0" expanded="true" />
+            <element signature="e#9759#9763#0" expanded="true" />
+            <element signature="e#9799#9803#0" expanded="true" />
+            <element signature="e#9814#9818#0" expanded="true" />
+            <element signature="e#9895#9899#0" expanded="true" />
+            <element signature="e#9934#9938#0" expanded="true" />
+            <element signature="e#9974#9978#0" expanded="true" />
+            <element signature="e#10007#10011#0" expanded="true" />
+            <element signature="e#10088#10092#0" expanded="true" />
+            <element signature="e#10127#10131#0" expanded="true" />
+            <element signature="e#10167#10171#0" expanded="true" />
+            <element signature="e#10182#10186#0" expanded="true" />
+            <element signature="e#10263#10267#0" expanded="true" />
+            <element signature="e#10303#10307#0" expanded="true" />
+            <element signature="e#10343#10347#0" expanded="true" />
+            <element signature="e#10376#10380#0" expanded="true" />
+            <element signature="e#10457#10461#0" expanded="true" />
+            <element signature="e#10492#10496#0" expanded="true" />
+            <element signature="e#10532#10536#0" expanded="true" />
+            <element signature="e#10565#10569#0" expanded="true" />
+            <element signature="e#10646#10650#0" expanded="true" />
+            <element signature="e#10864#10868#0" expanded="true" />
+            <element signature="e#10904#10908#0" expanded="true" />
+            <element signature="e#10937#10941#0" expanded="true" />
+            <element signature="e#11018#11022#0" expanded="true" />
+            <element signature="e#11053#11057#0" expanded="true" />
+            <element signature="e#11093#11097#0" expanded="true" />
+            <element signature="e#11113#11117#0" expanded="true" />
+            <element signature="e#11194#11198#0" expanded="true" />
+            <element signature="e#11230#11234#0" expanded="true" />
+            <element signature="e#11270#11274#0" expanded="true" />
+            <element signature="e#11303#11307#0" expanded="true" />
+            <element signature="e#11384#11388#0" expanded="true" />
+            <element signature="e#11426#11430#0" expanded="true" />
+            <element signature="e#11466#11470#0" expanded="true" />
+            <element signature="e#11486#11490#0" expanded="true" />
+            <element signature="e#11567#11571#0" expanded="true" />
+            <element signature="e#11610#11614#0" expanded="true" />
+            <element signature="e#11650#11654#0" expanded="true" />
+            <element signature="e#11683#11687#0" expanded="true" />
+            <element signature="e#11764#11768#0" expanded="true" />
+            <element signature="e#11806#11810#0" expanded="true" />
+            <element signature="e#11846#11850#0" expanded="true" />
+            <element signature="e#11866#11870#0" expanded="true" />
+            <element signature="e#11947#11951#0" expanded="true" />
+            <element signature="e#11990#11994#0" expanded="true" />
+            <element signature="e#12030#12034#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/ereinecke/cvtprop/Constants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="32" column="52" lean-forward="true" selection-start-line="32" selection-start-column="52" selection-end-line="32" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/data/resm-listings-modified.wordpress.2017-12-07.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="469">
+        <state relative-caret-position="267450">
+          <caret line="17830" column="0" lean-forward="false" selection-start-line="17830" selection-start-column="0" selection-end-line="17830" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/ereinecke/cvtprop/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#7931#7932#0" expanded="true" />
+            <element signature="e#7989#7990#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/2427-prod-cvt.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#5154#5159#0" expanded="true" />
+            <element signature="e#6721#6725#0" expanded="true" />
+            <element signature="e#6743#6747#0" expanded="true" />
+            <element signature="e#9721#9725#0" expanded="true" />
+            <element signature="e#9759#9763#0" expanded="true" />
+            <element signature="e#9799#9803#0" expanded="true" />
+            <element signature="e#9814#9818#0" expanded="true" />
+            <element signature="e#9895#9899#0" expanded="true" />
+            <element signature="e#9934#9938#0" expanded="true" />
+            <element signature="e#9974#9978#0" expanded="true" />
+            <element signature="e#10007#10011#0" expanded="true" />
+            <element signature="e#10088#10092#0" expanded="true" />
+            <element signature="e#10127#10131#0" expanded="true" />
+            <element signature="e#10167#10171#0" expanded="true" />
+            <element signature="e#10182#10186#0" expanded="true" />
+            <element signature="e#10263#10267#0" expanded="true" />
+            <element signature="e#10303#10307#0" expanded="true" />
+            <element signature="e#10343#10347#0" expanded="true" />
+            <element signature="e#10376#10380#0" expanded="true" />
+            <element signature="e#10457#10461#0" expanded="true" />
+            <element signature="e#10492#10496#0" expanded="true" />
+            <element signature="e#10532#10536#0" expanded="true" />
+            <element signature="e#10565#10569#0" expanded="true" />
+            <element signature="e#10646#10650#0" expanded="true" />
+            <element signature="e#10864#10868#0" expanded="true" />
+            <element signature="e#10904#10908#0" expanded="true" />
+            <element signature="e#10937#10941#0" expanded="true" />
+            <element signature="e#11018#11022#0" expanded="true" />
+            <element signature="e#11053#11057#0" expanded="true" />
+            <element signature="e#11093#11097#0" expanded="true" />
+            <element signature="e#11113#11117#0" expanded="true" />
+            <element signature="e#11194#11198#0" expanded="true" />
+            <element signature="e#11230#11234#0" expanded="true" />
+            <element signature="e#11270#11274#0" expanded="true" />
+            <element signature="e#11303#11307#0" expanded="true" />
+            <element signature="e#11384#11388#0" expanded="true" />
+            <element signature="e#11426#11430#0" expanded="true" />
+            <element signature="e#11466#11470#0" expanded="true" />
+            <element signature="e#11486#11490#0" expanded="true" />
+            <element signature="e#11567#11571#0" expanded="true" />
+            <element signature="e#11610#11614#0" expanded="true" />
+            <element signature="e#11650#11654#0" expanded="true" />
+            <element signature="e#11683#11687#0" expanded="true" />
+            <element signature="e#11764#11768#0" expanded="true" />
+            <element signature="e#11806#11810#0" expanded="true" />
+            <element signature="e#11846#11850#0" expanded="true" />
+            <element signature="e#11866#11870#0" expanded="true" />
+            <element signature="e#11947#11951#0" expanded="true" />
+            <element signature="e#11990#11994#0" expanded="true" />
+            <element signature="e#12030#12034#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/2427-prod.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="7" lean-forward="false" selection-start-line="1" selection-start-column="7" selection-end-line="1" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/resm-listings-modified.wordpress.2017-12-07.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="267450">
+          <caret line="17830" column="0" lean-forward="false" selection-start-line="17830" selection-start-column="0" selection-end-line="17830" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/resm-listings-modified.wordpress.2017-12-07.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="267450">
           <caret line="17830" column="0" lean-forward="false" selection-start-line="17830" selection-start-column="0" selection-end-line="17830" selection-end-column="0" />
           <folding />
         </state>
@@ -841,14 +1103,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/2427-prod.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1303">
-          <caret line="1" column="7" lean-forward="false" selection-start-line="1" selection-start-column="7" selection-end-line="1" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -857,28 +1111,161 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_92.jdk/Contents/Home/src.zip!/java/lang/String.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="157">
+          <caret line="2238" column="0" lean-forward="false" selection-start-line="2238" selection-start-column="0" selection-end-line="2238" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/state.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2953">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/2427-prod.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="7" lean-forward="false" selection-start-line="1" selection-start-column="7" selection-end-line="1" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/allclasses-frame.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="25" lean-forward="false" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/ereinecke/cvtprop/PropertyStatus.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="2" lean-forward="false" selection-start-line="9" selection-start-column="2" selection-end-line="9" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/ereinecke/cvtprop/PropertyTypeRealty.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/ereinecke/cvtprop/InitPropertyTypes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="10" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/ereinecke/cvtprop/InitPropertyStatus.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="45" lean-forward="false" selection-start-line="3" selection-start-column="45" selection-end-line="3" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/ereinecke/cvtprop/InitPropertyFeatures.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/ereinecke/cvtprop/PropertyFeature.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="21" lean-forward="false" selection-start-line="3" selection-start-column="21" selection-end-line="3" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/ereinecke/cvtprop/Constants.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
-          <caret line="22" column="37" lean-forward="false" selection-start-line="22" selection-start-column="37" selection-end-line="22" selection-end-column="37" />
+        <state relative-caret-position="398">
+          <caret line="63" column="49" lean-forward="true" selection-start-line="63" selection-start-column="49" selection-end-line="63" selection-end-column="49" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/data/2427-prod-cvt.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-837">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="253">
+          <caret line="185" column="19" lean-forward="true" selection-start-line="185" selection-start-column="19" selection-end-line="185" selection-end-column="19" />
+          <folding>
+            <element signature="e#5154#5159#0" expanded="true" />
+            <element signature="e#6721#6725#0" expanded="true" />
+            <element signature="e#6743#6747#0" expanded="true" />
+            <element signature="e#9721#9725#0" expanded="true" />
+            <element signature="e#9759#9763#0" expanded="true" />
+            <element signature="e#9799#9803#0" expanded="true" />
+            <element signature="e#9814#9818#0" expanded="true" />
+            <element signature="e#9895#9899#0" expanded="true" />
+            <element signature="e#9934#9938#0" expanded="true" />
+            <element signature="e#9974#9978#0" expanded="true" />
+            <element signature="e#10007#10011#0" expanded="true" />
+            <element signature="e#10088#10092#0" expanded="true" />
+            <element signature="e#10127#10131#0" expanded="true" />
+            <element signature="e#10167#10171#0" expanded="true" />
+            <element signature="e#10182#10186#0" expanded="true" />
+            <element signature="e#10263#10267#0" expanded="true" />
+            <element signature="e#10303#10307#0" expanded="true" />
+            <element signature="e#10343#10347#0" expanded="true" />
+            <element signature="e#10376#10380#0" expanded="true" />
+            <element signature="e#10457#10461#0" expanded="true" />
+            <element signature="e#10492#10496#0" expanded="true" />
+            <element signature="e#10532#10536#0" expanded="true" />
+            <element signature="e#10565#10569#0" expanded="true" />
+            <element signature="e#10646#10650#0" expanded="true" />
+            <element signature="e#10864#10868#0" expanded="true" />
+            <element signature="e#10904#10908#0" expanded="true" />
+            <element signature="e#10937#10941#0" expanded="true" />
+            <element signature="e#11018#11022#0" expanded="true" />
+            <element signature="e#11053#11057#0" expanded="true" />
+            <element signature="e#11093#11097#0" expanded="true" />
+            <element signature="e#11113#11117#0" expanded="true" />
+            <element signature="e#11194#11198#0" expanded="true" />
+            <element signature="e#11230#11234#0" expanded="true" />
+            <element signature="e#11270#11274#0" expanded="true" />
+            <element signature="e#11303#11307#0" expanded="true" />
+            <element signature="e#11384#11388#0" expanded="true" />
+            <element signature="e#11426#11430#0" expanded="true" />
+            <element signature="e#11466#11470#0" expanded="true" />
+            <element signature="e#11486#11490#0" expanded="true" />
+            <element signature="e#11567#11571#0" expanded="true" />
+            <element signature="e#11610#11614#0" expanded="true" />
+            <element signature="e#11650#11654#0" expanded="true" />
+            <element signature="e#11683#11687#0" expanded="true" />
+            <element signature="e#11764#11768#0" expanded="true" />
+            <element signature="e#11806#11810#0" expanded="true" />
+            <element signature="e#11846#11850#0" expanded="true" />
+            <element signature="e#11866#11870#0" expanded="true" />
+            <element signature="e#11947#11951#0" expanded="true" />
+            <element signature="e#11990#11994#0" expanded="true" />
+            <element signature="e#12030#12034#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/ereinecke/cvtprop/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
-          <caret line="94" column="5" lean-forward="true" selection-start-line="94" selection-start-column="5" selection-end-line="94" selection-end-column="5" />
+        <state relative-caret-position="68">
+          <caret line="53" column="33" lean-forward="false" selection-start-line="53" selection-start-column="33" selection-end-line="53" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#7931#7932#0" expanded="true" />
+            <element signature="e#7989#7990#0" expanded="true" />
           </folding>
         </state>
       </provider>
