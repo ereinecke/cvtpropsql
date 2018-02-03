@@ -13,7 +13,7 @@ package com.ereinecke.cvtprop;
 public class InitPropertyTypes {
 
     public static PropertyTypeRealty[] initPropertyTypes() {
-        int arraySize = 9;
+        int arraySize = 10;
 
         PropertyTypeRealty[] propertyTypeRealtyArray = new PropertyTypeRealty[arraySize];
 
@@ -44,6 +44,8 @@ public class InitPropertyTypes {
         propertyTypeRealtyArray[8] = new PropertyTypeRealty("Ranches",
                 "ranches","36",
                 "a:1:{i:0;i:36;}");
+        propertyTypeRealtyArray[9] = new PropertyTypeRealty("Unknown",
+                "unknown", "108", "\"a:1:{i:0;i:108;}\"");
 
         return propertyTypeRealtyArray;
     }

@@ -38,6 +38,7 @@ import static java.lang.System.exit;
 
 public class Main {
 
+    static long nodeNum = 0;
     static String inputFile = "";
     // static String inputFile = FULL_INPUT;
     static Document document;
@@ -51,7 +52,7 @@ public class Main {
 
         // Set log level INFO < ERROR < OFF
         Configurator.defaultConfig()
-                .level(Level.INFO)
+                .level(Level.ERROR)
                 .activate();
 
         propertyStatuses = initPropertyStatus();
@@ -86,14 +87,18 @@ public class Main {
         else {
             Logger.info("Number of nodes found for {}: {}", ITEM, nodes.size());
             // log list of items
-            printItems(nodes);
+            // printItems(nodes);
         }
 
         // Conversion
-        long items = 0;
+        nodeNum = 0;
         for (Node node : nodes) {
-            items++;
+            nodeNum++;
+            System.out.println(">===========================================================================<");
+            itemHeader(node);
             Element item = (Element)node;
+
+
 
             // Change link
             elementSubst(item, LINK, LINK_IN, LINK_OUT, false);
@@ -106,45 +111,47 @@ public class Main {
                     FEATURES_IN, FEATURES_OUT, false);
 
             // Convert beds and baths to wp:metadata entries
+            String numRooms = "";
             Element Rooms = getCategoryNode(item, BEDS);
-            String numRooms = Rooms.getText();
+            if (Rooms != null) numRooms = Rooms.getText();
             wpPostmeta(item, EP_BEDROOMS_KEY, numRooms );
             wpPostmeta(item, _EP_BEDROOMS_KEY,
                     _EP_BEDROOMS_VALUE);
-            Rooms.detach();
+            if (Rooms != null) Rooms.detach();
+            numRooms = "";
             Rooms = getCategoryNode(item, BATHS);
-            numRooms = Rooms.getText();
+            if (Rooms != null) numRooms = Rooms.getText();
+            if (numRooms == null) numRooms = "";
             wpPostmeta(item, EP_BATHROOMS_KEY, numRooms );
             wpPostmeta(item, _EP_BATHROOMS_KEY,
                     _EP_BATHROOMS_VALUE);
-            Rooms.detach();
+            if (Rooms != null) Rooms.detach();
 
             // City
             Element city = getCategoryNode(item, CITY);
             citySubst(item, city);
-            city.detach();
+            if (city != null) city.detach();
             city = getCategoryNode(item, STATE);
-            city.detach();
+            if (city != null) city.detach();
 
             // Property type
-
-            
+            Element propertyType = getCategoryNode(item, PROPERTY_TYPE);
+            if (propertyType != null ) propertyTypeWrite(item, propertyType);
 
             // write __thumbnail_id postmeta (field value)
             wpPostmeta(item, _THUMBNAIL_ID_KEY, _THUMBNAIL_ID_VALUE);
 
             // convert price postmeta and add price prefix & suffix
+            String postmetaString = "";
             Element postmeta = getPostmeta(item, PRICE_KEY);
-            String postmetaString = postmeta.getText();
+            if (postmeta != null) postmetaString = postmeta.getText();
             wpPostmeta(item, EP_PRICE_KEY, postmetaString);
             wpPostmeta(item, _EP_PRICE_KEY, _EP_PRICE_VALUE);
-            postmeta.detach();
+            if (postmeta != null) postmeta.detach();
             wpPostmeta(item, EP_PRICE_PREFIX_KEY, postmetaString);
             wpPostmeta(item, _EP_PRICE_PREFIX_KEY, _EP_PRICE_PREFIX_VALUE);
             wpPostmeta(item, EP_PRICE_SUFFIX_KEY, postmetaString);
             wpPostmeta(item, _EP_PRICE_SUFFIX_KEY, _EP_PRICE_SUFFIX_VALUE);
-            
-
         }
 
         // output DOM4J tree
@@ -266,8 +273,46 @@ public class Main {
      *
      */
 
+    public static void propertyTypeWrite(Element item, Element propertyType) {
+        String propType = null;
+        if (propertyType == null) {
+            propType = "unknown";
+            Logger.error("Property Type not found.", propType);
+        } else {
+            propType = propertyType.attributeValue("nicename");
+        };
+        String propTypeCode = null;
+        int found = 0;
+
+        for (int i = 0; i < propertyTypes.length; i++) {
+            if (propertyTypes[i].slug.equals(propType)) {
+                propTypeCode = propertyTypes[i].propTypeNumSerialized;
+                wpPostmeta(item, AP_TYPE_KEY, propTypeCode);
+                wpPostmeta(item, _AP_TYPE_KEY, _AP_TYPE_VALUE);
+                found++;
+                Logger.info("Set Property Type to {}", propType,
+                        propertyTypes[i].slug);
+                if (found > 1)
+                    Logger.error("Multiple property types found.");
+            }
+        }
+    }
+
+    /**
+     * Convert city element to proper wp:postmeta entry
+     *
+     *  @param  city        xml element needing change
+     *
+     */
+
     public static void citySubst(Element item, Element city) {
-        String cityName = city.attributeValue("nicename");
+        String cityName;
+        if (city != null) {
+            cityName = city.attributeValue("nicename");
+        } else {
+            cityName = "";
+            Logger.error("City not found.", cityName);
+        }
         String locationCode = null;
         switch (cityName) {
             case "san-miguel-de-allende":
@@ -286,19 +331,15 @@ public class Main {
                 locationCode = "96";
                 break;
             default:
-                locationCode = "";
+                locationCode = "109";
         }
-        if (locationCode.length() == 0) {
-            Logger.error("City \'{}\' not found.", cityName);
-        } else {
-            String locationString = "a:1:{i:0;s:" + locationCode.length() +
-                    ":\"" + locationCode + "\";}";
-            wpPostmeta(item, AP_LOCATIONS_KEY,locationString);
-            wpPostmeta(item, _AP_LOCATIONS_KEY, _AP_LOCATIONS_VALUE);
-            Logger.info("Set city {} to {}", cityName, locationString);
-        }
-
+        String locationString = "a:1:{i:0;s:" + locationCode.length() +
+                ":\"" + locationCode + "\";}";
+        wpPostmeta(item, AP_LOCATIONS_KEY,locationString);
+        wpPostmeta(item, _AP_LOCATIONS_KEY, _AP_LOCATIONS_VALUE);
+        Logger.info("Set city {} to {}", cityName, locationString);
     }
+
     /**
      * Simple text substition in specified single element of supplied node
      *
@@ -384,26 +425,27 @@ public class Main {
      */
 
     public static void printItems(List<Node> nodes) {
-        long nodeNum = 0;
+        nodeNum = 0;
 
         for (Node node : nodes) {
             nodeNum++;
-            String propId = "";
-            Element e1 = (Element) node;
-            String title = e1.selectSingleNode(TITLE).getText();
-//            List<Node> postmetas = node.selectNodes(POSTMETA);
-//            // step through wp:postmeta entries to get property ID
-//            for (Node postmeta : postmetas) {
-//                Element e2 = (Element) postmeta.selectSingleNode(METAKEY);
-//                if (e2.getText().equals(PROPID_KEY)) {
-//                    propId = postmeta.selectSingleNode(METAVALUE).getText();
-//                }
-//            }
-            propId = getPostmetaValue(e1, PROPID_KEY);
-            System.out.printf("#%03d: Prop ID: %s; %s\n", nodeNum,
-                    propId, title);
-
+            itemHeader(node);
         }
+    }
+
+    /**
+     * Prints header line for an item
+     *
+     *  @param  node  xml item node
+     *
+     */
+    public static void itemHeader(Node node) {
+        String propId = "";
+        Element e1 = (Element) node;
+        String title = e1.selectSingleNode(TITLE).getText();
+        propId = getPostmetaValue(e1, PROPID_KEY);
+        System.out.printf("#%03d: Prop ID: %s; %s\n", nodeNum,
+                propId, title);
     }
     
     /**
