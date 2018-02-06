@@ -1,0 +1,10 @@
+176			<wp:meta_key><![CDATA[_ct_broker]]></wp:meta_key>
+222			<wp:meta_key><![CDATA[_ct_latlng]]></wp:meta_key>
+233			<wp:meta_key><![CDATA[_ct_lotsize]]></wp:meta_key>
+236			<wp:meta_key><![CDATA[_ct_mls]]></wp:meta_key>
+239			<wp:meta_key><![CDATA[_ct_price]]></wp:meta_key>
+165			<wp:meta_key><![CDATA[_ct_sqft]]></wp:meta_key>
+  1			<wp:meta_key><![CDATA[_ct_video]]></wp:meta_key>
+240			<wp:meta_key><![CDATA[_edit_last]]></wp:meta_key>
+169			<wp:meta_key><![CDATA[_thumbnail_id]]></wp:meta_key>
+  9			<wp:meta_key><![CDATA[_wp_old_slug]]></wp:meta_key>

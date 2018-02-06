@@ -13,14 +13,14 @@ package com.ereinecke.cvtprop;
 public class PropertyStatus {
         String niceName;
         String slug;
-        String propTypeNum;
-        String propTypeNumSerialized;
+        String propStatusNum;
+        String propStatusNumSerialized;
 
-        public PropertyStatus(String niceName, String slug, String propTypeNum,
-                               String propTypeNumSerialized) {
+        public PropertyStatus(String niceName, String slug, String propStatusNum,
+                               String propStatusNumSerialized) {
             this.niceName = niceName;
             this.slug = slug;
-            this.propTypeNum = propTypeNum;
-            this.propTypeNumSerialized = propTypeNumSerialized;
+            this.propStatusNum = propStatusNum;
+            this.propStatusNumSerialized = propStatusNumSerialized;
         }
 }

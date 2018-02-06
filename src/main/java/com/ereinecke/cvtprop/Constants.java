@@ -23,6 +23,7 @@ public class Constants {
     public static String POST_TYPE_OUT   = "property";
     public static String FEATURES_IN     = "additional_features";
     public static String FEATURES_OUT    = "property_features";
+    public static String STATUS_OUT      = "property_status";
 
     // xPaths
     public static String ITEM            = "/rss/channel/item";
@@ -30,34 +31,40 @@ public class Constants {
     public static String POST_TYPE       = "wp:post_type";
     public static String METAKEY         = "wp:meta_key";
     public static String METAVALUE       = "wp:meta_value";
+    public static String WP_STATUS       = "wp:status";
     public static String PROPID_KEY      = "_ct_mls";
-    public static String LOTSIZE_KEY     = "_ct_lotsize";
-    public static String SQFT_KEY        = "_ct_sqft";
+    public static String CONST_SIZE_KEY  = "_ct_sqft";
+    public static String LOT_SIZE_KEY    = "_ct_lotsize";
     public static String PRICE_KEY       = "_ct_price";
     public static String THUMBNAIL_KEY   = "_thumbnail_id";
     public static String EDITLAST_KEY    = "_edit_last";
     public static String LATLNG_KEY      = "_ct_latlng";
+    public static String ZIPCODE_KEY     = "zipcode";
     public static String TITLE           = "title";
     public static String LINK            = "link";
     public static String GUID            = "guid";
     public static String CATEGORY        = "category";
+    public static String NICENAME        = "nicename";
     public static String DOMAIN          = "domain";
     public static String BEDS            = "beds";
     public static String BATHS           = "baths";
     public static String CITY            = "city";
     public static String STATE           = "state";
-    public static String PROPERTY_TYPE   = "property_type";
-    public static String PROPERTY_STATUS = "property_status";
-
+    public static String PROP_TYPE       = "property_type";
+    public static String PROP_STATUS     = "ct_status";
 
     // CDATA manipulation
     public static String CDATA_FMT       = "<![CDATA[%s]]>";
     public static String CDATA_OPEN      = "<![CDATA[";
     public static String CDATA_CLOSE     = "]]>";
 
+    // Post status
+    public static String DRAFT           = "draft";
+    public static String PUBLISH         = "publish";
+
     // Data files
-    public static String SHORT_INPUT = "data/2427-prod.xml";
-    public static String FULL_INPUT  = "data/resm-listings-modified.wordpress.2017-12-07.xml";
+    public static String SHORT_INPUT = "data/resm-listings.small.2018-02-05.xml";
+    public static String FULL_INPUT  = "data/resm-listings.wordpress.2018-02-05.xml";
 
     // wp:postmetas
     public static String _VC_POST_SETTINGS_KEY = "_vc_post_settings";
@@ -90,6 +97,10 @@ public class Constants {
     public static String EP_GOOGLE_MAPS_VALUE = "";
     public static String _EP_GOOGLE_MAPS_KEY = "_estate_property_google_maps";
     public static String _EP_GOOGLE_MAPS_VALUE = "field_55362588bfe26";
+    public static String EP_POSTAL_CODE_KEY = "estate_property_postal_code";
+    public static String EP_POSTAL_CODE_VALUE = "";
+    public static String _EP_POSTAL_CODE_KEY = "_estate_property_postal_code";
+    public static String _EP_POSTAL_CODE_VALUE = "field_5a78c2a609e20";
     public static String EP_ID_KEY = "estate_property_id";
     public static String EP_ID_VALUE = "";
     public static String _EP_ID_KEY = "_estate_property_id";
@@ -130,14 +141,14 @@ public class Constants {
     public static String EP_PRICE_SUFFIX_VALUE = "";
     public static String _EP_PRICE_SUFFIX_KEY = "_estate_property_price_suffix";
     public static String _EP_PRICE_SUFFIX_VALUE = "field_55366afc55cb2";
-    public static String EP_SIZE_KEY = "estate_property_size";
+    public static String EP_LOT_SIZE_KEY = "estate_property_lot_size";
     public static String EP_SIZE_VALUE = "";
-    public static String _EP_SIZE_KEY = "_estate_property_size";
-    public static String _EP_SIZE_VALUE = "field_55366b2555cb3";
-    public static String EP_SIZE_UNIT_KEY = "estate_property_size_unit";
-    public static String EP_SIZE_UNIT_VALUE = "";
-    public static String _EP_SIZE_UNIT_KEY = "_estate_property_size_unit";
-    public static String _EP_SIZE_UNIT_VALUE = "field_55366b3a55cb4";
+    public static String _EP_LOT_SIZE_KEY = "_estate_property_lot_size";
+    public static String _EP_LOT_SIZE_VALUE = "field_55366b2555cb3";
+    public static String EP_CONST_SIZE_KEY = "estate_property_const_size";
+    public static String EP_CONST_SIZE_VALUE = "";
+    public static String _EP_CONST_SIZE_KEY = "_estate_property_const_size";
+    public static String _EP_CONST_SIZE_VALUE = "field_55366b3a55cb4";
     public static String EP_ROOMS_KEY = "estate_property_rooms";
     public static String EP_ROOMS_VALUE = "";
     public static String _EP_ROOMS_KEY = "_estate_property_rooms";

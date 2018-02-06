@@ -23,13 +23,13 @@ public class InitPropertyStatus {
         propertyStatusArray[1] = new PropertyStatus( "For Sale",
                 "sale","9",
                 "a:1:{i:0;i:9;}");
-        propertyStatusArray[0] = new PropertyStatus("Featured",
+        propertyStatusArray[2] = new PropertyStatus("Featured",
                 "featured","8",
                 "a:1:{i:0;i:106;}");
-        propertyStatusArray[1] = new PropertyStatus( "Reduced",
+        propertyStatusArray[3] = new PropertyStatus( "Reduced",
                 "reduced","9",
                 "a:1:{i:0;i:107;}");
-        propertyStatusArray[1] = new PropertyStatus( "For Sale",
+        propertyStatusArray[4] = new PropertyStatus( "Sold",
                 "sold","105",
                 "a:1:{i:0;i:105;}");
 

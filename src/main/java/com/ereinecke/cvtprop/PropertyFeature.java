@@ -14,14 +14,11 @@ public class PropertyFeature {
     String niceName;
     String slug;
     String propTypeNum;
-    String propTypeNumSerialized;
 
-    public PropertyFeature(String niceName, String slug, String propTypeNum,
-                        String propTypeNumSerialized) {
+    public PropertyFeature(String niceName, String slug, String propTypeNum) {
         this.niceName = niceName;
         this.slug = slug;
         this.propTypeNum = propTypeNum;
-        this.propTypeNumSerialized = propTypeNumSerialized;
     }
 
 }
