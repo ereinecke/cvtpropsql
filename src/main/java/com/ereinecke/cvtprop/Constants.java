@@ -13,8 +13,8 @@ package com.ereinecke.cvtprop;
 public class Constants {
 
     // Export and import base site urls (not sure if needed)
-    public static String EXPORT_URL = "http://www.realestateinsanmiguel.com";
-    public static String IMPORT_URL = "http://www.vivirensanmiguel.com";
+    public static String EXPORT_DOMAIN   = "realestateinsanmiguel.com";
+    public static String IMPORT_DOMAIN   = "vivirensanmiguel.com";
 
     // Substitution patterns
     public static String LINK_IN         = "/listings/";
@@ -26,12 +26,20 @@ public class Constants {
     public static String STATUS_OUT      = "property_status";
 
     // xPaths
-    public static String ITEM            = "/rss/channel/item";
+    public static String CHAN_ITEM       = "/rss/channel/item";
+    public static String CHAN_LINK       = "/rss/channel/link";
+    public static String CHAN_SITE       = "/rss/channel/wp:base_site_url";
+    public static String CHAN_BLOG       = "/rss/channel/wp:base_blog_url";
     public static String POSTMETA        = "wp:postmeta";
     public static String POST_TYPE       = "wp:post_type";
+    public static String POST_ID         = "wp:post_id";
+    public static String POST_PARENT     = "wp:post_parent";
+    public static String POST_NAME       = "wp:post_name";
     public static String METAKEY         = "wp:meta_key";
     public static String METAVALUE       = "wp:meta_value";
-    public static String WP_STATUS       = "wp:status";
+    public static String STATUS          = "wp:status";
+    public static String ATTACH_URL      = "wp:attachment_url";
+    public static String ATTACHMENT      = "attachment";
     public static String PROPID_KEY      = "_ct_mls";
     public static String CONST_SIZE_KEY  = "_ct_sqft";
     public static String LOT_SIZE_KEY    = "_ct_lotsize";
@@ -63,8 +71,8 @@ public class Constants {
     public static String PUBLISH         = "publish";
 
     // Data files
-    public static String SHORT_INPUT = "data/resm-listings.small.2018-02-05.xml";
-    public static String FULL_INPUT  = "data/resm-listings.wordpress.2018-02-05.xml";
+    public static String SHORT_LISTINGS = "data/resm-listings.small.2018-02-05.xml";
+    public static String FULL_LISTINGS  = "data/resm-listings.wordpress.2018-02-05.xml";
 
     // wp:postmetas
     public static String _VC_POST_SETTINGS_KEY = "_vc_post_settings";

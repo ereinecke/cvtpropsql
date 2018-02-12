@@ -12,6 +12,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static com.ereinecke.cvtprop.Constants.*;
@@ -39,14 +40,19 @@ import static java.lang.System.exit;
 
 public class Main {
 
-    static long nodeNum = 0;
-    static String inputFile = "";
-    // static String inputFile = FULL_INPUT;
-    static Document document;
-    static List<Node> nodes;
+    static int i = 0;
+    static String listingsFile = "";
+    static String mediaFile = "";
+    // static String listingsFile = FULL_INPUT;
+    static Document propertyDoc;
+    static Document mediaDoc;
     static PropertyStatus[] propertyStatuses;
     static PropertyTypeRealty[] propertyTypes;
     static PropertyFeature[] propertyFeatures;
+    static MediaItem[] mediaItems;
+    static List<Node> mediaNodes;
+
+    static boolean PROCESS_PROPERTIES = false;
 
 
     public static void main(String[] args) {
@@ -61,47 +67,64 @@ public class Main {
         propertyFeatures = initPropertyFeatures();
 
         // input file from command line unless hardcoded above
-        if (inputFile.length() == 0 && args.length == 1) {
-            inputFile = args[0];
+        if (listingsFile.length() == 0 && args.length == 2) {
+            listingsFile = args[0];
+            mediaFile = args[1];
         } else {
-            Logger.error("No input file specified.\n  Usage: cvtprop [xmlInputFilename]");
+            Logger.error("No input files specified.\n  Usage: cvtprop listingXML mediaXML");
             exit(1);
         }
 
-        //  read input xml
+        //  read listing xml
         try {
-            document = parse(inputFile);
+            propertyDoc = parse(listingsFile);
         } catch (DocumentException e) {
-            Logger.error(e, "File {} not found.\n", inputFile);
+            Logger.error(e, "File {} not found.\n", listingsFile);
         }
 
-        // root is rss
-        Element root = document.getRootElement();
+        //  read media xml
+        try {
+            mediaDoc = parse(mediaFile);
+        } catch (DocumentException e) {
+            Logger.error(e, "File {} not found.\n", mediaFile);
+        }
+
+        // Initialize and sort media items array, change links in media XML
+        initMedia(mediaDoc);
+
+
+        // Process property listings
+        Element root = propertyDoc.getRootElement();
         Logger.info("Root element attribute: {}", root.getName());
 
         // select all items
-        List<Node> nodes = document.selectNodes(ITEM);
-        if (nodes == null) {
-            Logger.error("No nodes found for {}", ITEM);
+        List<Node> propertyNodes = propertyDoc.selectNodes(CHAN_ITEM);
+        if (propertyNodes == null) {
+            Logger.error("No property nodes found in {}.", listingsFile);
             exit(1);
         }
         else {
-            Logger.info("Number of nodes found for {}: {}", ITEM, nodes.size());
+            Logger.info("Number of nodes found for {}: {}", CHAN_ITEM, propertyNodes.size());
             // log list of items
             // printItems(nodes);
         }
 
-        // Conversion
-        nodeNum = 0;
-        for (Node node : nodes) {
-            nodeNum++;
+        if (!PROCESS_PROPERTIES) {
+            Logger.error("Not processing properties.");
+            exit(0);
+        }
+
+        // Property Listings Conversion
+        i = 0;
+        for (Node node : propertyNodes) {
+            i++;
             System.out.println(">===========================================================================<");
             itemHeader(node);
             Element item = (Element)node;
             // Change link
             elementSubst(item, LINK, LINK_IN, LINK_OUT, false);
             // Change guid
-            elementSubst(item, GUID, EXPORT_URL, IMPORT_URL, false);
+            elementSubst(item, GUID, EXPORT_DOMAIN, IMPORT_DOMAIN, false);
             // Change post_type
             elementSubst(item, POST_TYPE, POST_TYPE_IN, POST_TYPE_OUT, true);
 
@@ -118,8 +141,7 @@ public class Main {
             if (Rooms != null) numRooms = Rooms.attributeValue(NICENAME);
             if (numRooms == null) numRooms = "";
             wpPostmeta(item, EP_BATHROOMS_KEY, numRooms );
-            wpPostmeta(item, _EP_BATHROOMS_KEY,
-                    _EP_BATHROOMS_VALUE);
+            wpPostmeta(item, _EP_BATHROOMS_KEY, _EP_BATHROOMS_VALUE);
             if (Rooms != null) Rooms.detach();
 
             // Property ID
@@ -213,13 +235,87 @@ public class Main {
             propId.getParent().detach();
         }
 
-        // output DOM4J tree
-        String outputFileName = (outputFile(inputFile));
+        writeDOM(propertyDoc, listingsFile);
+
+    }
+
+    /**
+     * Process media items document, initializing MediaItem array
+     * Sort array by wp:post_parent to speed up processing
+     *
+     *  @param  mediaDoc   Document containing
+     *
+     */
+    public static void initMedia(Document mediaDoc) {
+
+        // modify channel links
+        elementSubst(mediaDoc, CHAN_LINK, EXPORT_DOMAIN, IMPORT_DOMAIN, false);
+        elementSubst(mediaDoc, CHAN_SITE, EXPORT_DOMAIN, IMPORT_DOMAIN, false);
+        elementSubst(mediaDoc, CHAN_BLOG, EXPORT_DOMAIN, IMPORT_DOMAIN, false);
+
+
+        // select all media items
+        mediaNodes = mediaDoc.selectNodes(CHAN_ITEM);
+        if (mediaNodes == null) {
+            Logger.error("No media nodes found in {}.", mediaFile);
+            exit(1);
+        }
+        else {
+            Logger.warn("Number of nodes found for {}: {}", CHAN_ITEM, mediaNodes.size());
+            // log list of items
+            // printMediaItems(mediaNodes);
+        }
+
+        mediaItems = new MediaItem[mediaNodes.size()];
+        i = 0;
+        for (Node node : mediaNodes) {
+             System.out.println(">===========================================================================<");
+             mediaItemHeader(node);
+
+            Element pic = (Element) node;
+            if (!pic.selectSingleNode(POST_TYPE).getText().equals(ATTACHMENT)) {
+                Logger.error("Item #{} not an attachment.", i);
+                break;
+            }
+
+            // Change links
+            elementSubst(pic, LINK, EXPORT_DOMAIN, IMPORT_DOMAIN, false);
+            elementSubst(pic, GUID, EXPORT_DOMAIN, IMPORT_DOMAIN, false);
+            elementSubst(pic, ATTACH_URL, EXPORT_DOMAIN, IMPORT_DOMAIN, false);
+
+            // Generate an array of MediaItem
+            String post_id = pic.selectSingleNode(POST_ID).getText();
+            String post_parent = pic.selectSingleNode(POST_PARENT).getText();
+            String post_name = pic.selectSingleNode(POST_NAME).getText();
+            String link = pic.selectSingleNode(LINK).getText();
+            mediaItems[i] = new MediaItem(Integer.parseInt(post_id),
+                    Integer.parseInt(post_parent), post_name, link);
+
+            i++;
+        }
+        // sort MediaItem array by post_parent
+        Arrays.sort(mediaItems);
+        // printMediaItems(mediaItems);
+
+        // write modified doc to disk
+        writeDOM(mediaDoc, mediaFile );
+    }
+
+    /**
+     * Write modified DOM4J tree to disk
+     *
+     *  @param  doc              DOM4J document
+     *  @param  inputFileName    input XML file
+     *
+     */
+    public static void writeDOM(Document doc, String inputFileName) {
+
+        String outputFileName = (outputFile(inputFileName));
         try {
             XMLWriter writer =
                     new XMLWriter(new FileWriter(new File(outputFileName)),
                             OutputFormat.createPrettyPrint());
-            writer.write(document);
+            writer.write(doc);
             writer.close();
         } catch (IOException e) {
             Logger.error(e, "Error writing {}", outputFileName);
@@ -549,28 +645,42 @@ public class Main {
     }
 
     /**
-     * Simple text substition in specified single element of supplied node
+     * Simple text substition in specified elements of supplied node
      *
-     *  @param  node        xml node containing element to change
+     *  @param  node        xml node containing elements to change
      *  @param  element     xml element needing change
      *  @param  inPattern   text string to change
      *  @param  outPattern  substitution string
      *  @param  cdata       output string as CDATA
      *
      */
+
     public static void elementSubst(Node node, String element,
                                     String inPattern, String outPattern,
                                     Boolean cdata) {
-        String inString = node.selectSingleNode(element).getText();
-        String outString = inString.replace(inPattern, outPattern);
-        if (cdata) {
-            node.selectSingleNode(element).setText(CDATA_OPEN + outString +
-                    CDATA_CLOSE);
-        } else {
-            node.selectSingleNode(element).setText(outString);
+
+        List<Node> elements = node.selectNodes(element);
+        if (elements.size() == 0) Logger.warn("No nodes found for \'{}\'.");
+
+        for (Node el : elements) {
+            String inString = el.getText();
+            String outString = inString.replace(inPattern, outPattern);
+//            Logger.error("{}, {}", inString, outString);
+            if (!inString.equals(outString)) {
+                if (cdata) {
+                    el.setText(CDATA_OPEN + outString +
+                            CDATA_CLOSE);
+                } else {
+                    el.setText(outString);
+                }
+                Logger.info("In {}, \'{}\' replaced with \'{}\'",
+                        element, inString,
+                        node.selectSingleNode(element).getText());
+            } else {
+                Logger.info("In {}, no replacement made for {}.",
+                        element, inString);
+            }
         }
-        Logger.info("\'{}\' replaced with \'{}\'", inString,
-                node.selectSingleNode(element).getText());
     }
 
     /**
@@ -612,6 +722,8 @@ public class Main {
         }
     }
 
+
+
     /**
      * Generates output file name by inserting .cvt before .xml or at end of file
      *
@@ -633,10 +745,10 @@ public class Main {
      */
 
     public static void printItems(List<Node> nodes) {
-        nodeNum = 0;
+        i = 0;
 
         for (Node node : nodes) {
-            nodeNum++;
+            i++;
             itemHeader(node);
         }
     }
@@ -648,12 +760,63 @@ public class Main {
      *
      */
     public static void itemHeader(Node node) {
-        String propId = "";
+        String propId;
         Element e1 = (Element) node;
         String title = e1.selectSingleNode(TITLE).getText();
         propId = getPostmetaValue(e1, PROPID_KEY);
-        System.out.printf("#%03d: Prop ID: %s; %s\n", nodeNum,
+        System.out.printf("#%03d: Prop ID: %s; %s\n", i,
                 propId, title);
+    }
+
+    /**
+     * Prints out array of media items (photos) found
+     *
+     *  @param  mediaItems  array of MediaItem to display
+     *
+     */
+
+    public static void printMediaItems(MediaItem[] mediaItems) {
+
+        for (int i = 0; i < mediaItems.length; i++) {
+            System.out.printf("MediaItem %s: post_id: %s; post_parent: %s; \n" +
+                            "    file name: %s, \n    link: %s.\n", i,
+                    mediaItems[i].getPost_id(),
+                    mediaItems[i].getPost_parent(),
+                    mediaItems[i].getPost_name(),
+                    mediaItems[i].getLink());
+        }
+    }
+    
+    
+    /**
+     * Prints out list of media items (photos) found
+     *
+     *  @param  nodes  List of xml Nodes to display
+     *
+     */
+
+    public static void printMediaItems(List<Node> nodes) {
+        i = 0;
+
+        for (Node node : nodes) {
+            i++;
+            mediaItemHeader(node);
+        }
+    }
+
+    /**
+     * Prints header line for an item
+     *
+     *  @param  node  xml item node
+     *
+     */
+    public static void mediaItemHeader(Node node) {
+        String mediaId = "";
+        Element e1 = (Element) node;
+        String title = e1.selectSingleNode(TITLE).getText();
+        mediaId = e1.selectSingleNode(POST_ID).getText();
+        System.out.printf("#%03d: Picture ID: %s; %s\n", i,
+                mediaId, title);
     }
     
     /**
