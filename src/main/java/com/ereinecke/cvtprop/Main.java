@@ -19,6 +19,7 @@ import static com.ereinecke.cvtprop.Constants.*;
 import static com.ereinecke.cvtprop.InitPropertyFeatures.initPropertyFeatures;
 import static com.ereinecke.cvtprop.InitPropertyStatus.initPropertyStatus;
 import static com.ereinecke.cvtprop.InitPropertyTypes.initPropertyTypes;
+import static com.ereinecke.cvtprop.InitUser.initUser;
 import static java.lang.System.exit;
 
 /**
@@ -40,7 +41,7 @@ import static java.lang.System.exit;
 
 public class Main {
 
-    static int i = 0;
+    static int mediaIx = 0;
     static String listingsFile = "";
     static String mediaFile = "";
     // static String listingsFile = FULL_INPUT;
@@ -49,10 +50,11 @@ public class Main {
     static PropertyStatus[] propertyStatuses;
     static PropertyTypeRealty[] propertyTypes;
     static PropertyFeature[] propertyFeatures;
+    static User[] users;
     static MediaItem[] mediaItems;
     static List<Node> mediaNodes;
 
-    static boolean PROCESS_PROPERTIES = false;
+    static boolean PROCESS_PROPERTIES = true;
 
 
     public static void main(String[] args) {
@@ -65,6 +67,7 @@ public class Main {
         propertyStatuses = initPropertyStatus();
         propertyTypes = initPropertyTypes();
         propertyFeatures = initPropertyFeatures();
+        users = initUser();
 
         // input file from command line unless hardcoded above
         if (listingsFile.length() == 0 && args.length == 2) {
@@ -90,14 +93,37 @@ public class Main {
         }
 
         // Initialize and sort media items array, change links in media XML
-        initMedia(mediaDoc);
+        processMedia(mediaDoc);
 
+        // set PROCESS_PROPERTIES to false to skip this step
+        if (!PROCESS_PROPERTIES) {
+            Logger.error("Not processing properties.");
+            exit(0);
+        } else {
+            // The bulk of the work is done in this function
+            processProperties(propertyDoc);
+        }
 
+        writeDOM(propertyDoc, listingsFile);
+        writeDOM(mediaDoc, mediaFile);
+
+    }
+
+    /**
+     * Process property items document
+     *
+     *  @param  mediaDoc   Document containing
+     *
+     */
+    public static void processProperties(Document mediaDoc) {
         // Process property listings
-        Element root = propertyDoc.getRootElement();
-        Logger.info("Root element attribute: {}", root.getName());
 
-        // select all items
+        // modify channel links
+        elementSubst(mediaDoc, CHAN_LINK, EXPORT_DOMAIN, IMPORT_DOMAIN, false);
+        elementSubst(mediaDoc, CHAN_SITE, EXPORT_DOMAIN, IMPORT_DOMAIN, false);
+        elementSubst(mediaDoc, CHAN_BLOG, EXPORT_DOMAIN, IMPORT_DOMAIN, false);
+
+        // select all items (properties)
         List<Node> propertyNodes = propertyDoc.selectNodes(CHAN_ITEM);
         if (propertyNodes == null) {
             Logger.error("No property nodes found in {}.", listingsFile);
@@ -109,17 +135,12 @@ public class Main {
             // printItems(nodes);
         }
 
-        if (!PROCESS_PROPERTIES) {
-            Logger.error("Not processing properties.");
-            exit(0);
-        }
-
         // Property Listings Conversion
-        i = 0;
+        int i = 0;
         for (Node node : propertyNodes) {
             i++;
             System.out.println(">===========================================================================<");
-            itemHeader(node);
+            itemHeader(node, i);
             Element item = (Element)node;
             // Change link
             elementSubst(item, LINK, LINK_IN, LINK_OUT, false);
@@ -128,6 +149,7 @@ public class Main {
             // Change post_type
             elementSubst(item, POST_TYPE, POST_TYPE_IN, POST_TYPE_OUT, true);
 
+            // Process category nodes
             // Convert beds and baths to wp:metadata entries
             String numRooms = "";
             Element Rooms = getCategoryNode(item, BEDS);
@@ -160,19 +182,23 @@ public class Main {
 
             // Property type
             Element propertyType = getCategoryNode(item, PROP_TYPE);
-            if (propertyType != null ) propertyTypeWrite(item, propertyType);
+            if (propertyType != null ) writePropertyType(item, propertyType);
             // TODO: check to see what happens if domain="property_type" doesn't change
 
             // Property status
             Element propertyStatus = getCategoryNode(item, PROP_STATUS);
-            if (propertyStatus != null ) propertyStatusWrite(item, propertyStatus);
+            if (propertyStatus != null ) writePropertyStatus(item, propertyStatus);
             domainSubst(item, CATEGORY, DOMAIN, PROP_STATUS, STATUS_OUT, false);
 
             // Property features
             // Change features attribute domain first
             domainSubst(item, CATEGORY, DOMAIN,
                     FEATURES_IN, FEATURES_OUT, false);
-            propertyFeaturesWrite(item);
+            writePropertyFeatures(item);
+
+            // Process metadata nodes
+            // Broker
+            writeBrokerNum((Element)node);
 
             // Property and construction size
             Element propSize = getPostmetaElement(item, CONST_SIZE_KEY);
@@ -189,12 +215,12 @@ public class Main {
                 wpPostmeta(item, _EP_LOT_SIZE_KEY, _EP_LOT_SIZE_VALUE);
                 propSize.getParent().detach();
             }
-            
+
             // Latitude and Longitude
             Element latLong = getPostmetaElement(item, LATLNG_KEY);
             if (latLong != null) {
                 String latLongValues = getPostmetaValue(item, LATLNG_KEY);
-                addressWrite(item, latLongValues);
+                writeAddress(item, latLongValues);
                 latLong.getParent().detach();
             }
 
@@ -206,6 +232,10 @@ public class Main {
                 wpPostmeta(item,_EP_POSTAL_CODE_KEY, _EP_POSTAL_CODE_VALUE);
                 postCode.getParent().detach();
             }
+
+            // Process mediaItems to write serialized array of photos for each
+            // property
+            writeMediaGallery(item, propIdString);
 
             // write __thumbnail_id postmeta (field value)
             Element thumbnail = getPostmetaElement(item, THUMBNAIL_KEY);
@@ -229,14 +259,14 @@ public class Main {
             wpPostmeta(item, EP_PRICE_SUFFIX_KEY, EP_PRICE_SUFFIX_VALUE);
             wpPostmeta(item, _EP_PRICE_SUFFIX_KEY, _EP_PRICE_SUFFIX_VALUE);
 
+            // The remaining postmeta items are written with default values
+            wpPostmeta(item, _VC_POST_SETTINGS_KEY, _VC_POST_SETTINGS_VALUE);
+
 
             // Remove original property ID last so that it can be used for logging
             Element propId = getPostmetaElement(item, PROPID_KEY);
             propId.getParent().detach();
         }
-
-        writeDOM(propertyDoc, listingsFile);
-
     }
 
     /**
@@ -246,13 +276,12 @@ public class Main {
      *  @param  mediaDoc   Document containing
      *
      */
-    public static void initMedia(Document mediaDoc) {
+    public static void processMedia(Document mediaDoc) {
 
         // modify channel links
         elementSubst(mediaDoc, CHAN_LINK, EXPORT_DOMAIN, IMPORT_DOMAIN, false);
         elementSubst(mediaDoc, CHAN_SITE, EXPORT_DOMAIN, IMPORT_DOMAIN, false);
         elementSubst(mediaDoc, CHAN_BLOG, EXPORT_DOMAIN, IMPORT_DOMAIN, false);
-
 
         // select all media items
         mediaNodes = mediaDoc.selectNodes(CHAN_ITEM);
@@ -267,10 +296,10 @@ public class Main {
         }
 
         mediaItems = new MediaItem[mediaNodes.size()];
-        i = 0;
+        int i = 0;
         for (Node node : mediaNodes) {
              System.out.println(">===========================================================================<");
-             mediaItemHeader(node);
+             mediaItemHeader(node, i);
 
             Element pic = (Element) node;
             if (!pic.selectSingleNode(POST_TYPE).getText().equals(ATTACHMENT)) {
@@ -297,8 +326,6 @@ public class Main {
         Arrays.sort(mediaItems);
         // printMediaItems(mediaItems);
 
-        // write modified doc to disk
-        writeDOM(mediaDoc, mediaFile );
     }
 
     /**
@@ -460,6 +487,77 @@ public class Main {
     }
 
     /**
+     * Process mediaItems to write serialized array of photos for each
+     * property
+     *
+     *  @param  item            element containing categories
+     *  @param  propID          string containing property ID
+     *
+     */
+
+    public static void writeMediaGallery(Element item, String propIdStr) {
+
+        String mediaItemsTemp = "{";
+        int propId = 0;
+        // Some IDs have L appended; remove L for int comparison
+        try {
+            propId = Integer.parseInt(propIdStr);
+        } catch (NumberFormatException e) {
+            if (propIdStr.contains("L")) {
+                propId = Integer.parseInt(propIdStr.substring(0, propIdStr.length() - 1));
+            } else {
+                e.printStackTrace();
+            }
+        }
+        // get array of mediaItems that cite this property as a parent
+        // mediaIx is a global index to take advantage of the fact that
+        // mediaItems array is sorted.
+        int i = 0;  // counts number of items in gallery
+        int maxMediaItems = mediaItems.length;
+        int postParent;
+
+        // step through mediaItems until finding the propId
+        do {
+            postParent = mediaItems[mediaIx].getPost_parent();
+            mediaIx++;
+        } while (mediaIx < maxMediaItems && postParent < propId);
+
+        if (mediaIx == maxMediaItems) {
+            Logger.error("End of media items at #: {}", mediaIx);
+            return;
+        }
+
+        // TODO: need to make this a for/while propId doesn't change
+        //for (i = mediaIx; i < mediaItems.length; mediaIx++) {
+        do {
+            // get mediaItem post_id
+            int mediaItemId = mediaItems[mediaIx].getPost_id();
+            String mediaItemIdStr = Integer.toString(mediaItemId);
+            mediaItemsTemp += "i:" + i + ";s:" + mediaItemIdStr.length() +
+                    ":\"" + mediaItemId + "\";";
+             Logger.debug("mediaItemsTemp: {}", mediaItemsTemp);
+             mediaIx++;
+             i++;
+        } while (mediaIx < maxMediaItems &&
+                mediaItems[mediaIx].getPost_parent() == postParent);
+        mediaItemsTemp += "}";
+        // prepend array length
+        String numItems = Integer.toString(i);
+        String mediaItemSer = "a:" + numItems + ":" + mediaItemsTemp;
+        Logger.info("MediaItemsSer for propID({}): {}", propId, mediaItemSer);
+
+
+        try {
+            wpPostmeta(item, EP_GALLERY_KEY, mediaItemSer);
+            wpPostmeta(item, _EP_GALLERY_KEY, _EP_GALLERY_VALUE);
+        } catch (Exception e) {
+            Logger.error("Exception writing gallery postmeta for propId {} ", propIdStr);
+            e.printStackTrace();
+        }
+
+    }
+
+    /**
      * Write propertytype to proper wp:postmeta entry
      *
      *  @param  item            element containing categories
@@ -467,7 +565,7 @@ public class Main {
      *
      */
 
-    public static void propertyTypeWrite(Element item, Element propertyType) {
+    public static void writePropertyType(Element item, Element propertyType) {
         String propType = null;
         if (propertyType == null) {
             propType = "unknown";
@@ -502,7 +600,7 @@ public class Main {
      *
      */
 
-    public static void addressWrite(Element item, String latLongString) {
+    public static void writeAddress(Element item, String latLongString) {
         // parse latitude and longitude
         String[] latLong = latLongString.split(",");
         if (latLong == null || latLong.length != 2) {
@@ -520,6 +618,40 @@ public class Main {
         wpPostmeta(item, _EP_GOOGLE_MAPS_KEY, _EP_GOOGLE_MAPS_VALUE);
     }
 
+
+    /**
+     * Write broker assigment to proper wp:postmeta entry
+     *
+     *  @param  item              Node containing listing
+     *
+     */
+
+    public static void writeBrokerNum(Element item) {
+
+        // default is Lane.
+        String brokerNum = "2";
+        Element broker = getPostmetaElement(item, BROKER_KEY);
+        // TODO: this if statement may be removed if Lane is always agent
+        if (broker != null) {
+            String brokerName = getPostmetaValue(item, BROKER_KEY);
+            for (int i = 0; i < users.length; i++) {
+                if (brokerName.contains(users[i].niceName)) {
+                    Logger.error("Broker found: {} ", brokerName);
+                    brokerNum = users[i].userNum;
+                    break;
+                }
+            }
+            broker.getParent().detach();
+        } else {
+            Logger.error("Broker not found.");
+        }
+        wpPostmeta(item, EP_CUSTOM_AGENT_KEY, brokerNum);
+        wpPostmeta(item, _EP_CUSTOM_AGENT_KEY, _EP_CUSTOM_AGENT_VALUE);
+        wpPostmeta(item, EP_CONTACT_INFORMATION_KEY, EP_CONTACT_INFORMATION_VALUE);
+        wpPostmeta(item, _EP_CONTACT_INFORMATION_KEY, _EP_CONTACT_INFORMATION_VALUE);
+    }
+
+
     /**
      * Write property status to proper wp:postmeta entry
      *
@@ -527,7 +659,7 @@ public class Main {
      *
      */
 
-    public static void propertyFeaturesWrite(Element item) {
+    public static void writePropertyFeatures(Element item) {
         List<Element> propFeatures = getCategoryNodes(item, FEATURES_OUT);
         if (propFeatures == null) {
             Logger.error("No property features found for propID: {}",
@@ -558,6 +690,7 @@ public class Main {
                 propFeatureSer, getPostmetaValue(item, PROPID_KEY));
     }
 
+
     /**
      * Write property status to proper wp:postmeta entry
      *
@@ -566,7 +699,7 @@ public class Main {
      *
      */
 
-    public static void propertyStatusWrite(Element item, Element propertyStatus) {
+    public static void writePropertyStatus(Element item, Element propertyStatus) {
         String propStatus = null;
         String propStatusCode = null;
 
@@ -745,11 +878,11 @@ public class Main {
      */
 
     public static void printItems(List<Node> nodes) {
-        i = 0;
+        int i = 0;
 
         for (Node node : nodes) {
             i++;
-            itemHeader(node);
+            itemHeader(node, i);
         }
     }
 
@@ -759,12 +892,12 @@ public class Main {
      *  @param  node  xml item node
      *
      */
-    public static void itemHeader(Node node) {
+    public static void itemHeader(Node node, int nodeNum) {
         String propId;
         Element e1 = (Element) node;
         String title = e1.selectSingleNode(TITLE).getText();
         propId = getPostmetaValue(e1, PROPID_KEY);
-        System.out.printf("#%03d: Prop ID: %s; %s\n", i,
+        System.out.printf("#%03d: Prop ID: %s; %s\n", nodeNum,
                 propId, title);
     }
 
@@ -796,11 +929,11 @@ public class Main {
      */
 
     public static void printMediaItems(List<Node> nodes) {
-        i = 0;
+        int i = 0;
 
         for (Node node : nodes) {
             i++;
-            mediaItemHeader(node);
+            mediaItemHeader(node, i);
         }
     }
 
@@ -810,12 +943,12 @@ public class Main {
      *  @param  node  xml item node
      *
      */
-    public static void mediaItemHeader(Node node) {
+    public static void mediaItemHeader(Node node, int nodeNum) {
         String mediaId = "";
         Element e1 = (Element) node;
         String title = e1.selectSingleNode(TITLE).getText();
         mediaId = e1.selectSingleNode(POST_ID).getText();
-        System.out.printf("#%03d: Picture ID: %s; %s\n", i,
+        System.out.printf("#%03d: Picture ID: %s; %s\n", nodeNum,
                 mediaId, title);
     }
     

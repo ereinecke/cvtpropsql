@@ -37,6 +37,7 @@ public class Constants {
     public static String POST_NAME       = "wp:post_name";
     public static String METAKEY         = "wp:meta_key";
     public static String METAVALUE       = "wp:meta_value";
+    public static String BROKER          = "wp:broker";
     public static String STATUS          = "wp:status";
     public static String ATTACH_URL      = "wp:attachment_url";
     public static String ATTACHMENT      = "attachment";
@@ -44,6 +45,7 @@ public class Constants {
     public static String CONST_SIZE_KEY  = "_ct_sqft";
     public static String LOT_SIZE_KEY    = "_ct_lotsize";
     public static String PRICE_KEY       = "_ct_price";
+    public static String BROKER_KEY      = "_ct_broker";
     public static String THUMBNAIL_KEY   = "_thumbnail_id";
     public static String EDITLAST_KEY    = "_edit_last";
     public static String LATLNG_KEY      = "_ct_latlng";
@@ -240,8 +242,7 @@ public class Constants {
     public static String _EDIT_LAST_KEY = "_edit_last";
     public static String _EDIT_LAST_VALUE = "8";
 
-    
-    
+
     
     
     
