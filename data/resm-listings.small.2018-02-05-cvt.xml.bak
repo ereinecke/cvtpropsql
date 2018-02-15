@@ -19,13 +19,13 @@
 <rss xmlns:excerpt="http://wordpress.org/export/1.2/excerpt/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:wp="http://wordpress.org/export/1.2/" version="2.0">  
   <channel> 
     <title>Real Estate in San Miguel Allende by RE/MAX Colonial</title>  
-    <link>http://www.realestateinsanmiguel.com</link>  
+    <link>http://www.vivirensanmiguel.com</link>  
     <description>Real Estate in San Miguel Allende</description>  
     <pubDate>Mon, 05 Feb 2018 19:54:36 +0000</pubDate>  
     <language>en-US</language>  
     <wp:wxr_version>1.2</wp:wxr_version>  
-    <wp:base_site_url>http://www.realestateinsanmiguel.com</wp:base_site_url>  
-    <wp:base_blog_url>http://www.realestateinsanmiguel.com</wp:base_blog_url>  
+    <wp:base_site_url>http://www.vivirensanmiguel.com</wp:base_site_url>  
+    <wp:base_blog_url>http://www.vivirensanmiguel.com</wp:base_blog_url>  
     <wp:author>
       <wp:author_id>7</wp:author_id>
       <wp:author_login><![CDATA[Co-broker]]></wp:author_login>
@@ -135,7 +135,7 @@ Includes apartment with separate entrance and private terrace.]]></content:encod
       <wp:status><![CDATA[draft]]></wp:status>  
       <wp:post_parent>0</wp:post_parent>  
       <wp:menu_order>0</wp:menu_order>  
-      <wp:post_type>&lt;![CDATA[listings]]&gt;</wp:post_type>  
+      <wp:post_type><![CDATA[listings]]></wp:post_type>  
       <wp:post_password><![CDATA[]]></wp:post_password>  
       <wp:is_sticky>0</wp:is_sticky>  
       <category domain="property_features" nicename="appliances-included"><![CDATA[Appliances Included]]></category>  
@@ -160,10 +160,6 @@ Includes apartment with separate entrance and private terrace.]]></content:encod
       <wp:postmeta> 
         <wp:meta_key><![CDATA[_edit_last]]></wp:meta_key>  
         <wp:meta_value><![CDATA[8]]></wp:meta_value> 
-      </wp:postmeta>  
-      <wp:postmeta> 
-        <wp:meta_key><![CDATA[_ct_broker]]></wp:meta_key>  
-        <wp:meta_value><![CDATA[Lane Simmons]]></wp:meta_value> 
       </wp:postmeta>  
       <wp:postmeta> 
         <wp:meta_key><![CDATA[_ct_video]]></wp:meta_key>  
@@ -236,6 +232,22 @@ Includes apartment with separate entrance and private terrace.]]></content:encod
         <wp:meta_key>&lt;![CDATA[field_55681b1ab9d1a]]&gt;</wp:meta_key>
       </wp:postmeta>
       <wp:postmeta>
+        <wp:meta_key>&lt;![CDATA[estate_property_custom_agent]]&gt;</wp:meta_key>
+        <wp:meta_key>&lt;![CDATA[2]]&gt;</wp:meta_key>
+      </wp:postmeta>
+      <wp:postmeta>
+        <wp:meta_key>&lt;![CDATA[_estate_property_custom_agent]]&gt;</wp:meta_key>
+        <wp:meta_key>&lt;![CDATA[field_55366be755cba]]&gt;</wp:meta_key>
+      </wp:postmeta>
+      <wp:postmeta>
+        <wp:meta_key>&lt;![CDATA[estate_property_contact_information]]&gt;</wp:meta_key>
+        <wp:meta_key>&lt;![CDATA[all]]&gt;</wp:meta_key>
+      </wp:postmeta>
+      <wp:postmeta>
+        <wp:meta_key>&lt;![CDATA[_estate_property_contact_information]]&gt;</wp:meta_key>
+        <wp:meta_key>&lt;![CDATA[field_55366bb455cb9]]&gt;</wp:meta_key>
+      </wp:postmeta>
+      <wp:postmeta>
         <wp:meta_key>&lt;![CDATA[estate_property_const_size]]&gt;</wp:meta_key>
         <wp:meta_key>&lt;![CDATA[Const. Sq. Meters: 316 | Const. 3,401]]&gt;</wp:meta_key>
       </wp:postmeta>
@@ -258,6 +270,14 @@ Includes apartment with separate entrance and private terrace.]]></content:encod
       <wp:postmeta>
         <wp:meta_key>&lt;![CDATA[_estate_property_google_maps]]&gt;</wp:meta_key>
         <wp:meta_key>&lt;![CDATA[field_55362588bfe26]]&gt;</wp:meta_key>
+      </wp:postmeta>
+      <wp:postmeta>
+        <wp:meta_key>&lt;![CDATA[estate_property_gallery]]&gt;</wp:meta_key>
+        <wp:meta_key>&lt;![CDATA[a:8:{i:0;s:4:"2797";i:1;s:4:"2798";i:2;s:4:"2799";i:3;s:4:"2800";i:4;s:4:"2801";i:5;s:4:"2802";i:6;s:4:"2803";i:7;s:4:"2804";}]]&gt;</wp:meta_key>
+      </wp:postmeta>
+      <wp:postmeta>
+        <wp:meta_key>&lt;![CDATA[_estate_property_gallery]]&gt;</wp:meta_key>
+        <wp:meta_key>&lt;![CDATA[field_553624c8bfe23]]&gt;</wp:meta_key>
       </wp:postmeta>
       <wp:postmeta>
         <wp:meta_key>&lt;![CDATA[_thumbnail_id]]&gt;</wp:meta_key>
@@ -291,6 +311,10 @@ Includes apartment with separate entrance and private terrace.]]></content:encod
         <wp:meta_key>&lt;![CDATA[_estate_property_price_suffix]]&gt;</wp:meta_key>
         <wp:meta_key>&lt;![CDATA[field_55366afc55cb2]]&gt;</wp:meta_key>
       </wp:postmeta>
+      <wp:postmeta>
+        <wp:meta_key>&lt;![CDATA[_vc_post_settings]]&gt;</wp:meta_key>
+        <wp:meta_key>&lt;![CDATA[a:1:{s:10:"vc_grid_id";a:0:{}}]]&gt;</wp:meta_key>
+      </wp:postmeta>
     </item>  
     <item> 
       <title>Great Investment Property in San Miguel!</title>  
@@ -322,7 +346,7 @@ Precio en USD a menos que se especifique lo contrario.]]></content:encoded>
       <wp:status><![CDATA[draft]]></wp:status>  
       <wp:post_parent>0</wp:post_parent>  
       <wp:menu_order>0</wp:menu_order>  
-      <wp:post_type>&lt;![CDATA[listings]]&gt;</wp:post_type>  
+      <wp:post_type><![CDATA[listings]]></wp:post_type>  
       <wp:post_password><![CDATA[]]></wp:post_password>  
       <wp:is_sticky>0</wp:is_sticky>  
       <category domain="property_features" nicename="balcony"><![CDATA[Balcony]]></category>  
@@ -334,10 +358,6 @@ Precio en USD a menos que se especifique lo contrario.]]></content:encoded>
       <wp:postmeta> 
         <wp:meta_key><![CDATA[_edit_last]]></wp:meta_key>  
         <wp:meta_value><![CDATA[8]]></wp:meta_value> 
-      </wp:postmeta>  
-      <wp:postmeta> 
-        <wp:meta_key><![CDATA[_ct_broker]]></wp:meta_key>  
-        <wp:meta_value><![CDATA[Lane Simmons ]]></wp:meta_value> 
       </wp:postmeta>  
       <wp:postmeta>
         <wp:meta_key>&lt;![CDATA[estate_property_bedrooms]]&gt;</wp:meta_key>
@@ -388,6 +408,22 @@ Precio en USD a menos que se especifique lo contrario.]]></content:encoded>
         <wp:meta_key>&lt;![CDATA[field_55681b1ab9d1a]]&gt;</wp:meta_key>
       </wp:postmeta>
       <wp:postmeta>
+        <wp:meta_key>&lt;![CDATA[estate_property_custom_agent]]&gt;</wp:meta_key>
+        <wp:meta_key>&lt;![CDATA[2]]&gt;</wp:meta_key>
+      </wp:postmeta>
+      <wp:postmeta>
+        <wp:meta_key>&lt;![CDATA[_estate_property_custom_agent]]&gt;</wp:meta_key>
+        <wp:meta_key>&lt;![CDATA[field_55366be755cba]]&gt;</wp:meta_key>
+      </wp:postmeta>
+      <wp:postmeta>
+        <wp:meta_key>&lt;![CDATA[estate_property_contact_information]]&gt;</wp:meta_key>
+        <wp:meta_key>&lt;![CDATA[all]]&gt;</wp:meta_key>
+      </wp:postmeta>
+      <wp:postmeta>
+        <wp:meta_key>&lt;![CDATA[_estate_property_contact_information]]&gt;</wp:meta_key>
+        <wp:meta_key>&lt;![CDATA[field_55366bb455cb9]]&gt;</wp:meta_key>
+      </wp:postmeta>
+      <wp:postmeta>
         <wp:meta_key>&lt;![CDATA[estate_property_const_size]]&gt;</wp:meta_key>
         <wp:meta_key>&lt;![CDATA[Const. Sq. Meters: 221 | Const: 2,378]]&gt;</wp:meta_key>
       </wp:postmeta>
@@ -410,6 +446,14 @@ Precio en USD a menos que se especifique lo contrario.]]></content:encoded>
       <wp:postmeta>
         <wp:meta_key>&lt;![CDATA[_estate_property_google_maps]]&gt;</wp:meta_key>
         <wp:meta_key>&lt;![CDATA[field_55362588bfe26]]&gt;</wp:meta_key>
+      </wp:postmeta>
+      <wp:postmeta>
+        <wp:meta_key>&lt;![CDATA[estate_property_gallery]]&gt;</wp:meta_key>
+        <wp:meta_key>&lt;![CDATA[a:10:{i:0;s:4:"2808";i:1;s:4:"2809";i:2;s:4:"2811";i:3;s:4:"2812";i:4;s:4:"2813";i:5;s:4:"2814";i:6;s:4:"2815";i:7;s:4:"2816";i:8;s:4:"2817";i:9;s:4:"2818";}]]&gt;</wp:meta_key>
+      </wp:postmeta>
+      <wp:postmeta>
+        <wp:meta_key>&lt;![CDATA[_estate_property_gallery]]&gt;</wp:meta_key>
+        <wp:meta_key>&lt;![CDATA[field_553624c8bfe23]]&gt;</wp:meta_key>
       </wp:postmeta>
       <wp:postmeta>
         <wp:meta_key>&lt;![CDATA[_thumbnail_id]]&gt;</wp:meta_key>
@@ -443,6 +487,10 @@ Precio en USD a menos que se especifique lo contrario.]]></content:encoded>
         <wp:meta_key>&lt;![CDATA[_estate_property_price_suffix]]&gt;</wp:meta_key>
         <wp:meta_key>&lt;![CDATA[field_55366afc55cb2]]&gt;</wp:meta_key>
       </wp:postmeta>
+      <wp:postmeta>
+        <wp:meta_key>&lt;![CDATA[_vc_post_settings]]&gt;</wp:meta_key>
+        <wp:meta_key>&lt;![CDATA[a:1:{s:10:"vc_grid_id";a:0:{}}]]&gt;</wp:meta_key>
+      </wp:postmeta>
     </item>  
     <item> 
       <title>A Rare Find In The Centro!</title>  
@@ -468,7 +516,7 @@ Precio en USD a menos que se especifique lo contrario.]]></content:encoded>
       <wp:status><![CDATA[draft]]></wp:status>  
       <wp:post_parent>0</wp:post_parent>  
       <wp:menu_order>0</wp:menu_order>  
-      <wp:post_type>&lt;![CDATA[listings]]&gt;</wp:post_type>  
+      <wp:post_type><![CDATA[listings]]></wp:post_type>  
       <wp:post_password><![CDATA[]]></wp:post_password>  
       <wp:is_sticky>0</wp:is_sticky>  
       <category domain="property_features" nicename="city-electric"><![CDATA[City Electric]]></category>  
@@ -478,10 +526,6 @@ Precio en USD a menos que se especifique lo contrario.]]></content:encoded>
       <wp:postmeta> 
         <wp:meta_key><![CDATA[_edit_last]]></wp:meta_key>  
         <wp:meta_value><![CDATA[8]]></wp:meta_value> 
-      </wp:postmeta>  
-      <wp:postmeta> 
-        <wp:meta_key><![CDATA[_ct_broker]]></wp:meta_key>  
-        <wp:meta_value><![CDATA[Lane Simmons ]]></wp:meta_value> 
       </wp:postmeta>  
       <wp:postmeta>
         <wp:meta_key>&lt;![CDATA[estate_property_bedrooms]]&gt;</wp:meta_key>
@@ -532,6 +576,22 @@ Precio en USD a menos que se especifique lo contrario.]]></content:encoded>
         <wp:meta_key>&lt;![CDATA[field_55681b1ab9d1a]]&gt;</wp:meta_key>
       </wp:postmeta>
       <wp:postmeta>
+        <wp:meta_key>&lt;![CDATA[estate_property_custom_agent]]&gt;</wp:meta_key>
+        <wp:meta_key>&lt;![CDATA[2]]&gt;</wp:meta_key>
+      </wp:postmeta>
+      <wp:postmeta>
+        <wp:meta_key>&lt;![CDATA[_estate_property_custom_agent]]&gt;</wp:meta_key>
+        <wp:meta_key>&lt;![CDATA[field_55366be755cba]]&gt;</wp:meta_key>
+      </wp:postmeta>
+      <wp:postmeta>
+        <wp:meta_key>&lt;![CDATA[estate_property_contact_information]]&gt;</wp:meta_key>
+        <wp:meta_key>&lt;![CDATA[all]]&gt;</wp:meta_key>
+      </wp:postmeta>
+      <wp:postmeta>
+        <wp:meta_key>&lt;![CDATA[_estate_property_contact_information]]&gt;</wp:meta_key>
+        <wp:meta_key>&lt;![CDATA[field_55366bb455cb9]]&gt;</wp:meta_key>
+      </wp:postmeta>
+      <wp:postmeta>
         <wp:meta_key>&lt;![CDATA[estate_property_lot_size]]&gt;</wp:meta_key>
         <wp:meta_key>&lt;![CDATA[Lot Size Sq. Meters: 340 Lot Size Sq. Feet: 3,660]]&gt;</wp:meta_key>
       </wp:postmeta>
@@ -546,6 +606,14 @@ Precio en USD a menos que se especifique lo contrario.]]></content:encoded>
       <wp:postmeta>
         <wp:meta_key>&lt;![CDATA[_estate_property_google_maps]]&gt;</wp:meta_key>
         <wp:meta_key>&lt;![CDATA[field_55362588bfe26]]&gt;</wp:meta_key>
+      </wp:postmeta>
+      <wp:postmeta>
+        <wp:meta_key>&lt;![CDATA[estate_property_gallery]]&gt;</wp:meta_key>
+        <wp:meta_key>&lt;![CDATA[a:5:{i:0;s:4:"2827";i:1;s:4:"2828";i:2;s:4:"2829";i:3;s:4:"2830";i:4;s:4:"2831";}]]&gt;</wp:meta_key>
+      </wp:postmeta>
+      <wp:postmeta>
+        <wp:meta_key>&lt;![CDATA[_estate_property_gallery]]&gt;</wp:meta_key>
+        <wp:meta_key>&lt;![CDATA[field_553624c8bfe23]]&gt;</wp:meta_key>
       </wp:postmeta>
       <wp:postmeta>
         <wp:meta_key>&lt;![CDATA[_thumbnail_id]]&gt;</wp:meta_key>
@@ -579,6 +647,10 @@ Precio en USD a menos que se especifique lo contrario.]]></content:encoded>
         <wp:meta_key>&lt;![CDATA[_estate_property_price_suffix]]&gt;</wp:meta_key>
         <wp:meta_key>&lt;![CDATA[field_55366afc55cb2]]&gt;</wp:meta_key>
       </wp:postmeta>
+      <wp:postmeta>
+        <wp:meta_key>&lt;![CDATA[_vc_post_settings]]&gt;</wp:meta_key>
+        <wp:meta_key>&lt;![CDATA[a:1:{s:10:"vc_grid_id";a:0:{}}]]&gt;</wp:meta_key>
+      </wp:postmeta>
     </item>  
     <item> 
       <title>Best Colonia, Bring your contractor!</title>  
@@ -600,7 +672,7 @@ Precio en USD a menos que se especifique lo contrario.]]></content:encoded>
       <wp:status><![CDATA[draft]]></wp:status>  
       <wp:post_parent>0</wp:post_parent>  
       <wp:menu_order>0</wp:menu_order>  
-      <wp:post_type>&lt;![CDATA[listings]]&gt;</wp:post_type>  
+      <wp:post_type><![CDATA[listings]]></wp:post_type>  
       <wp:post_password><![CDATA[]]></wp:post_password>  
       <wp:is_sticky>0</wp:is_sticky>  
       <category domain="property_type" nicename="lot"><![CDATA[Lot]]></category>  
@@ -608,10 +680,6 @@ Precio en USD a menos que se especifique lo contrario.]]></content:encoded>
       <wp:postmeta> 
         <wp:meta_key><![CDATA[_edit_last]]></wp:meta_key>  
         <wp:meta_value><![CDATA[8]]></wp:meta_value> 
-      </wp:postmeta>  
-      <wp:postmeta> 
-        <wp:meta_key><![CDATA[_ct_broker]]></wp:meta_key>  
-        <wp:meta_value><![CDATA[Lane Simmons]]></wp:meta_value> 
       </wp:postmeta>  
       <wp:postmeta>
         <wp:meta_key>&lt;![CDATA[estate_property_bedrooms]]&gt;</wp:meta_key>
@@ -662,6 +730,22 @@ Precio en USD a menos que se especifique lo contrario.]]></content:encoded>
         <wp:meta_key>&lt;![CDATA[field_55681b1ab9d1a]]&gt;</wp:meta_key>
       </wp:postmeta>
       <wp:postmeta>
+        <wp:meta_key>&lt;![CDATA[estate_property_custom_agent]]&gt;</wp:meta_key>
+        <wp:meta_key>&lt;![CDATA[2]]&gt;</wp:meta_key>
+      </wp:postmeta>
+      <wp:postmeta>
+        <wp:meta_key>&lt;![CDATA[_estate_property_custom_agent]]&gt;</wp:meta_key>
+        <wp:meta_key>&lt;![CDATA[field_55366be755cba]]&gt;</wp:meta_key>
+      </wp:postmeta>
+      <wp:postmeta>
+        <wp:meta_key>&lt;![CDATA[estate_property_contact_information]]&gt;</wp:meta_key>
+        <wp:meta_key>&lt;![CDATA[all]]&gt;</wp:meta_key>
+      </wp:postmeta>
+      <wp:postmeta>
+        <wp:meta_key>&lt;![CDATA[_estate_property_contact_information]]&gt;</wp:meta_key>
+        <wp:meta_key>&lt;![CDATA[field_55366bb455cb9]]&gt;</wp:meta_key>
+      </wp:postmeta>
+      <wp:postmeta>
         <wp:meta_key>&lt;![CDATA[estate_property_const_size]]&gt;</wp:meta_key>
         <wp:meta_key>&lt;![CDATA[Const. Sq. Meters: 126 Const. Sq. Feet: 1,356]]&gt;</wp:meta_key>
       </wp:postmeta>
@@ -684,6 +768,14 @@ Precio en USD a menos que se especifique lo contrario.]]></content:encoded>
       <wp:postmeta>
         <wp:meta_key>&lt;![CDATA[_estate_property_google_maps]]&gt;</wp:meta_key>
         <wp:meta_key>&lt;![CDATA[field_55362588bfe26]]&gt;</wp:meta_key>
+      </wp:postmeta>
+      <wp:postmeta>
+        <wp:meta_key>&lt;![CDATA[estate_property_gallery]]&gt;</wp:meta_key>
+        <wp:meta_key>&lt;![CDATA[a:7:{i:0;s:4:"2845";i:1;s:4:"2846";i:2;s:4:"2847";i:3;s:4:"2848";i:4;s:4:"2849";i:5;s:4:"2850";i:6;s:4:"2851";}]]&gt;</wp:meta_key>
+      </wp:postmeta>
+      <wp:postmeta>
+        <wp:meta_key>&lt;![CDATA[_estate_property_gallery]]&gt;</wp:meta_key>
+        <wp:meta_key>&lt;![CDATA[field_553624c8bfe23]]&gt;</wp:meta_key>
       </wp:postmeta>
       <wp:postmeta>
         <wp:meta_key>&lt;![CDATA[_thumbnail_id]]&gt;</wp:meta_key>
@@ -717,6 +809,10 @@ Precio en USD a menos que se especifique lo contrario.]]></content:encoded>
         <wp:meta_key>&lt;![CDATA[_estate_property_price_suffix]]&gt;</wp:meta_key>
         <wp:meta_key>&lt;![CDATA[field_55366afc55cb2]]&gt;</wp:meta_key>
       </wp:postmeta>
+      <wp:postmeta>
+        <wp:meta_key>&lt;![CDATA[_vc_post_settings]]&gt;</wp:meta_key>
+        <wp:meta_key>&lt;![CDATA[a:1:{s:10:"vc_grid_id";a:0:{}}]]&gt;</wp:meta_key>
+      </wp:postmeta>
     </item>  
     <item> 
       <title>Beautiful Country Estate Near San Miguel de Allende</title>  
@@ -740,7 +836,7 @@ Precio en USD a menos que se especifique lo contrario.]]></content:encoded>
       <wp:status><![CDATA[draft]]></wp:status>  
       <wp:post_parent>0</wp:post_parent>  
       <wp:menu_order>0</wp:menu_order>  
-      <wp:post_type>&lt;![CDATA[listings]]&gt;</wp:post_type>  
+      <wp:post_type><![CDATA[listings]]></wp:post_type>  
       <wp:post_password><![CDATA[]]></wp:post_password>  
       <wp:is_sticky>0</wp:is_sticky>  
       <category domain="property_features" nicename="breakfast-area"><![CDATA[Breakfast Area]]></category>  
@@ -763,10 +859,6 @@ Precio en USD a menos que se especifique lo contrario.]]></content:encoded>
       <wp:postmeta> 
         <wp:meta_key><![CDATA[_edit_last]]></wp:meta_key>  
         <wp:meta_value><![CDATA[8]]></wp:meta_value> 
-      </wp:postmeta>  
-      <wp:postmeta> 
-        <wp:meta_key><![CDATA[_ct_broker]]></wp:meta_key>  
-        <wp:meta_value><![CDATA[Lane Simmons]]></wp:meta_value> 
       </wp:postmeta>  
       <wp:postmeta>
         <wp:meta_key>&lt;![CDATA[estate_property_bedrooms]]&gt;</wp:meta_key>
@@ -817,6 +909,22 @@ Precio en USD a menos que se especifique lo contrario.]]></content:encoded>
         <wp:meta_key>&lt;![CDATA[field_55681b1ab9d1a]]&gt;</wp:meta_key>
       </wp:postmeta>
       <wp:postmeta>
+        <wp:meta_key>&lt;![CDATA[estate_property_custom_agent]]&gt;</wp:meta_key>
+        <wp:meta_key>&lt;![CDATA[2]]&gt;</wp:meta_key>
+      </wp:postmeta>
+      <wp:postmeta>
+        <wp:meta_key>&lt;![CDATA[_estate_property_custom_agent]]&gt;</wp:meta_key>
+        <wp:meta_key>&lt;![CDATA[field_55366be755cba]]&gt;</wp:meta_key>
+      </wp:postmeta>
+      <wp:postmeta>
+        <wp:meta_key>&lt;![CDATA[estate_property_contact_information]]&gt;</wp:meta_key>
+        <wp:meta_key>&lt;![CDATA[all]]&gt;</wp:meta_key>
+      </wp:postmeta>
+      <wp:postmeta>
+        <wp:meta_key>&lt;![CDATA[_estate_property_contact_information]]&gt;</wp:meta_key>
+        <wp:meta_key>&lt;![CDATA[field_55366bb455cb9]]&gt;</wp:meta_key>
+      </wp:postmeta>
+      <wp:postmeta>
         <wp:meta_key>&lt;![CDATA[estate_property_const_size]]&gt;</wp:meta_key>
         <wp:meta_key>&lt;![CDATA[Const. Sq. Meters: 232 Const. Sq. Feet: 2,497]]&gt;</wp:meta_key>
       </wp:postmeta>
@@ -839,6 +947,14 @@ Precio en USD a menos que se especifique lo contrario.]]></content:encoded>
       <wp:postmeta>
         <wp:meta_key>&lt;![CDATA[_estate_property_google_maps]]&gt;</wp:meta_key>
         <wp:meta_key>&lt;![CDATA[field_55362588bfe26]]&gt;</wp:meta_key>
+      </wp:postmeta>
+      <wp:postmeta>
+        <wp:meta_key>&lt;![CDATA[estate_property_gallery]]&gt;</wp:meta_key>
+        <wp:meta_key>&lt;![CDATA[a:20:{i:0;s:4:"2855";i:1;s:4:"2856";i:2;s:4:"2857";i:3;s:4:"2858";i:4;s:4:"2859";i:5;s:4:"2860";i:6;s:4:"2861";i:7;s:4:"2862";i:8;s:4:"2863";i:9;s:4:"2864";i:10;s:4:"2865";i:11;s:4:"2866";i:12;s:4:"2867";i:13;s:4:"2868";i:14;s:4:"2869";i:15;s:4:"2870";i:16;s:4:"2871";i:17;s:4:"2872";i:18;s:4:"2873";i:19;s:4:"2874";}]]&gt;</wp:meta_key>
+      </wp:postmeta>
+      <wp:postmeta>
+        <wp:meta_key>&lt;![CDATA[_estate_property_gallery]]&gt;</wp:meta_key>
+        <wp:meta_key>&lt;![CDATA[field_553624c8bfe23]]&gt;</wp:meta_key>
       </wp:postmeta>
       <wp:postmeta>
         <wp:meta_key>&lt;![CDATA[_thumbnail_id]]&gt;</wp:meta_key>
@@ -871,6 +987,10 @@ Precio en USD a menos que se especifique lo contrario.]]></content:encoded>
       <wp:postmeta>
         <wp:meta_key>&lt;![CDATA[_estate_property_price_suffix]]&gt;</wp:meta_key>
         <wp:meta_key>&lt;![CDATA[field_55366afc55cb2]]&gt;</wp:meta_key>
+      </wp:postmeta>
+      <wp:postmeta>
+        <wp:meta_key>&lt;![CDATA[_vc_post_settings]]&gt;</wp:meta_key>
+        <wp:meta_key>&lt;![CDATA[a:1:{s:10:"vc_grid_id";a:0:{}}]]&gt;</wp:meta_key>
       </wp:postmeta>
     </item> 
   </channel> 
