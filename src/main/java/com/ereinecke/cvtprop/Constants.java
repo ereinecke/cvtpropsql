@@ -74,7 +74,8 @@ public class Constants {
 
     // Data files
     public static String SHORT_LISTINGS = "data/resm-listings.small.2018-02-05.xml";
-    public static String FULL_LISTINGS  = "data/resm-listings.wordpress.2018-02-05.xml";
+    public static String FULL_LISTINGS  = "data/resm-properties.2018-02-27.xml";
+    public static String FULL_MEDIA  = "data/resm-media.2018-02-27.xml";
 
     // wp:postmetas
     public static String _VC_POST_SETTINGS_KEY = "_vc_post_settings";
@@ -242,8 +243,10 @@ public class Constants {
     public static String _EDIT_LAST_KEY = "_edit_last";
     public static String _EDIT_LAST_VALUE = "8";
 
+    // Logging formats
+    public static String DEF_LOG_FMT = "{date:yyyy-MM-dd HH:mm:ss} [{thread}] {class}.{method}()\n{level}: {message}";
+    public static String MIN_LOG_FMT = "{message}";
 
-    
     
     
 }

@@ -1,5 +1,7 @@
 build/
 out/
 data/*-cvt.xml
+data/*.bak
+data/debug.txt
 .gradle/
 .idea/

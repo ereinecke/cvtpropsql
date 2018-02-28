@@ -7,6 +7,7 @@ import org.dom4j.io.XMLWriter;
 import org.pmw.tinylog.Configurator;
 import org.pmw.tinylog.Level;
 import org.pmw.tinylog.Logger;
+import org.pmw.tinylog.writers.ConsoleWriter;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -34,14 +35,16 @@ import static java.lang.System.exit;
  *
  * @param  inputxml  file name
  *
- *    Test files:  full sized: data/resm-listings-modified.wordpress.2017-12-07.xml
- *                 small:      data/2427-prod.xml
+ *    Test files:  full sized: data/resm-listings.properties.2018-02-27.xml
+ *                             data/resm-listings.media.2018-02-27.xml
+ *
  *
  * */
 
 public class Main {
 
     static int mediaIx = 0;
+    static int prevPropPostId = 0;
     static String listingsFile = "";
     static String mediaFile = "";
     // static String listingsFile = FULL_INPUT;
@@ -53,6 +56,7 @@ public class Main {
     static User[] users;
     static MediaItem[] mediaItems;
     static List<Node> mediaNodes;
+    static Configurator logConfig;
 
     static boolean PROCESS_PROPERTIES = true;
 
@@ -60,8 +64,11 @@ public class Main {
     public static void main(String[] args) {
 
         // Set log level INFO < WARNING < ERROR < OFF
-        Configurator.defaultConfig()
-                .level(Level.INFO)
+        logConfig = Configurator.defaultConfig();
+        logConfig.writer(new ConsoleWriter(), Level.WARNING)
+                .addWriter(new org.pmw.tinylog.writers.FileWriter("data/debug.txt",
+                                true, false),
+                        Level.DEBUG, MIN_LOG_FMT)
                 .activate();
 
         propertyStatuses = initPropertyStatus();
@@ -83,6 +90,7 @@ public class Main {
             propertyDoc = parse(listingsFile);
         } catch (DocumentException e) {
             Logger.error(e, "File {} not found.\n", listingsFile);
+            System.exit(1);
         }
 
         //  read media xml
@@ -90,6 +98,7 @@ public class Main {
             mediaDoc = parse(mediaFile);
         } catch (DocumentException e) {
             Logger.error(e, "File {} not found.\n", mediaFile);
+            System.exit(1);
         }
 
         // Initialize and sort media items array, change links in media XML
@@ -112,16 +121,16 @@ public class Main {
     /**
      * Process property items document
      *
-     *  @param  mediaDoc   Document containing
+     *  @param  doc   Document containing property listings
      *
      */
-    public static void processProperties(Document mediaDoc) {
+    public static void processProperties(Document doc) {
         // Process property listings
 
         // modify channel links
-        elementSubst(mediaDoc, CHAN_LINK, EXPORT_DOMAIN, IMPORT_DOMAIN, false);
-        elementSubst(mediaDoc, CHAN_SITE, EXPORT_DOMAIN, IMPORT_DOMAIN, false);
-        elementSubst(mediaDoc, CHAN_BLOG, EXPORT_DOMAIN, IMPORT_DOMAIN, false);
+        elementSubst(doc, CHAN_LINK, EXPORT_DOMAIN, IMPORT_DOMAIN, false);
+        elementSubst(doc, CHAN_SITE, EXPORT_DOMAIN, IMPORT_DOMAIN, false);
+        elementSubst(doc, CHAN_BLOG, EXPORT_DOMAIN, IMPORT_DOMAIN, false);
 
         // select all items (properties)
         List<Node> propertyNodes = propertyDoc.selectNodes(CHAN_ITEM);
@@ -167,7 +176,7 @@ public class Main {
             if (Rooms != null) Rooms.detach();
 
             // Property ID
-            String propIdString = getPostmetaValue(item, PROPID_KEY);
+            String propIdString = getPropID(item);
             if (propIdString != null) {
                 wpPostmeta(item, EP_ID_KEY, propIdString);
                 wpPostmeta(item, _EP_ID_KEY, _EP_ID_VALUE);
@@ -230,12 +239,28 @@ public class Main {
                 String postCodeString = postCode.attributeValue(NICENAME);
                 wpPostmeta(item, EP_POSTAL_CODE_KEY, postCodeString);
                 wpPostmeta(item,_EP_POSTAL_CODE_KEY, _EP_POSTAL_CODE_VALUE);
-                postCode.getParent().detach();
+                postCode.detach();
             }
 
             // Process mediaItems to write serialized array of photos for each
             // property
-            writeMediaGallery(item, propIdString);
+            Node propPostId = item.selectSingleNode(POST_ID);
+            if (propPostId == null) {
+
+                Logger.error("Post ID not found for PropID {}.",
+                        getPropID(item));
+            } else {
+                // if post_id is lower than previous record, reset mediaIx
+                int postId = Integer.valueOf(propPostId.getText());
+                if (postId < prevPropPostId) {
+                    Logger.error("Resetting mediaIx at propId: {}; " +
+                            "postId: {}, prev postId: {}.", getPropID(item),
+                            postId, prevPropPostId);
+                    mediaIx = 0;
+                }
+                prevPropPostId = postId;
+                writeMediaGallery(item, propPostId.getText());
+            }
 
             // write __thumbnail_id postmeta (field value)
             Element thumbnail = getPostmetaElement(item, THUMBNAIL_KEY);
@@ -265,7 +290,7 @@ public class Main {
 
             // Remove original property ID last so that it can be used for logging
             Element propId = getPostmetaElement(item, PROPID_KEY);
-            propId.getParent().detach();
+            if (propId != null) propId.getParent().detach();
         }
     }
 
@@ -291,14 +316,13 @@ public class Main {
         }
         else {
             Logger.warn("Number of nodes found for {}: {}", CHAN_ITEM, mediaNodes.size());
-            // log list of items
             // printMediaItems(mediaNodes);
         }
 
         mediaItems = new MediaItem[mediaNodes.size()];
         int i = 0;
         for (Node node : mediaNodes) {
-             System.out.println(">===========================================================================<");
+             // System.out.println(">===========================================================================<");
              mediaItemHeader(node, i);
 
             Element pic = (Element) node;
@@ -324,8 +348,14 @@ public class Main {
         }
         // sort MediaItem array by post_parent
         Arrays.sort(mediaItems);
-        // printMediaItems(mediaItems);
 
+        Logger.warn("{} mediaNodes processed.", mediaNodes.size());
+        Logger.warn("mediaItems.length: {}", mediaItems.length);
+        try {
+            dumpMediaItems(mediaItems);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -397,8 +427,8 @@ public class Main {
                 return (Element)postmeta.selectSingleNode(METAVALUE);
             }
         }
-        Logger.warn("{} with {} \'{}\' not found for PropID: {}", POSTMETA,
-                METAKEY, meta_key, getPostmetaValue(item, PROPID_KEY));
+        Logger.warn("{} with {} \'{}\' not found.", POSTMETA,
+                METAKEY, meta_key);
         return null;
     }
 
@@ -419,9 +449,8 @@ public class Main {
             return postmeta.getText();
         }
 
-        // Logger.error(POSTMETA + " with " + METAKEY + "\'" + meta_key + "\' not found.");
-        Logger.warn("{} with {} \'{}\' not found for PropID: {}", POSTMETA,
-                METAKEY, meta_key, getPostmetaValue(item, PROPID_KEY));
+        Logger.warn("{} with {} \'{}\' not found.", POSTMETA,
+                METAKEY, meta_key);
         return null;
     }
 
@@ -456,7 +485,7 @@ public class Main {
             }
         }
         Logger.warn(CATEGORY + "\'" + domain +
-                "\' not found for PropID: " + getPostmetaValue(item, PROPID_KEY));
+                "\' not found for PropID: " + getPropID(item));
 
         return null;
     }
@@ -480,7 +509,7 @@ public class Main {
         if (domainCategories.size() < 1) {
             domainCategories = null;
             Logger.error(CATEGORY + "\'" + domain +
-                    "\' not found for PropID: " + getPostmetaValue(item, PROPID_KEY));
+                    "\' not found for PropID: " + getPropID(item));
         }
 
         return domainCategories;
@@ -491,20 +520,25 @@ public class Main {
      * property
      *
      *  @param  item            element containing categories
-     *  @param  propID          string containing property ID
+     *  @param  postIdStr       string containing property ID
      *
      */
 
-    public static void writeMediaGallery(Element item, String propIdStr) {
+    public static void writeMediaGallery(Element item, String postIdStr) {
+
+        if (mediaIx >= mediaItems.length) {
+            Logger.error("Reached end of mediaItems at propID: {}", getPropID(item));
+            return;
+        }
 
         String mediaItemsTemp = "{";
         int propId = 0;
         // Some IDs have L appended; remove L for int comparison
         try {
-            propId = Integer.parseInt(propIdStr);
+            propId = Integer.parseInt(postIdStr);
         } catch (NumberFormatException e) {
-            if (propIdStr.contains("L")) {
-                propId = Integer.parseInt(propIdStr.substring(0, propIdStr.length() - 1));
+            if (postIdStr.contains("L")) {
+                propId = Integer.parseInt(postIdStr.substring(0, postIdStr.length() - 1));
             } else {
                 e.printStackTrace();
             }
@@ -516,11 +550,12 @@ public class Main {
         int maxMediaItems = mediaItems.length;
         int postParent;
 
+        Logger.error("Writing media gallery for {}, mediaIx = {}", propId, mediaIx);
         // step through mediaItems until finding the propId
         do {
             postParent = mediaItems[mediaIx].getPost_parent();
             mediaIx++;
-        } while (mediaIx < maxMediaItems && postParent < propId);
+        } while (mediaIx < maxMediaItems-1 && postParent < propId);
 
         if (mediaIx == maxMediaItems) {
             Logger.error("End of media items at #: {}", mediaIx);
@@ -551,7 +586,7 @@ public class Main {
             wpPostmeta(item, EP_GALLERY_KEY, mediaItemSer);
             wpPostmeta(item, _EP_GALLERY_KEY, _EP_GALLERY_VALUE);
         } catch (Exception e) {
-            Logger.error("Exception writing gallery postmeta for propId {} ", propIdStr);
+            Logger.error("Exception writing gallery postmeta for propId {} ", postIdStr);
             e.printStackTrace();
         }
 
@@ -636,7 +671,7 @@ public class Main {
             String brokerName = getPostmetaValue(item, BROKER_KEY);
             for (int i = 0; i < users.length; i++) {
                 if (brokerName.contains(users[i].niceName)) {
-                    Logger.error("Broker found: {} ", brokerName);
+                    Logger.warn("Broker found: {} ", brokerName);
                     brokerNum = users[i].userNum;
                     break;
                 }
@@ -663,7 +698,7 @@ public class Main {
         List<Element> propFeatures = getCategoryNodes(item, FEATURES_OUT);
         if (propFeatures == null) {
             Logger.error("No property features found for propID: {}",
-                    getPostmetaValue(item, PROPID_KEY));
+                    getPropID(item));
             return;
         }
         String propFeatureSer = "a:" + propFeatures.size() + ":{";
@@ -687,7 +722,7 @@ public class Main {
         wpPostmeta(item, AP_FEATURES_KEY, propFeatureSer);
         wpPostmeta(item, _AP_FEATURES_KEY, _AP_FEATURES_VALUE);
         Logger.warn("Set Property Features to \'{}\' propID: {}",
-                propFeatureSer, getPostmetaValue(item, PROPID_KEY));
+                propFeatureSer, getPropID(item));
     }
 
 
@@ -707,7 +742,7 @@ public class Main {
         propStatus = propertyStatus.attributeValue("nicename");
         if (propStatus == null) {
             Logger.warn("Property status not found for PropID: {}.",
-                    getPostmetaValue(item, PROPID_KEY));
+                    getPropID(item));
             return;
         }
         int found = 0;
@@ -722,7 +757,7 @@ public class Main {
                         propertyStatuses[i].slug);
                 if (found > 1)
                     Logger.error("Multiple property statuses found for PropID: {}.",
-                            getPostmetaValue(item, PROPID_KEY));
+                            getPropID(item));
             }
         }
 
@@ -793,12 +828,11 @@ public class Main {
                                     Boolean cdata) {
 
         List<Node> elements = node.selectNodes(element);
-        if (elements.size() == 0) Logger.warn("No nodes found for \'{}\'.");
+        if (elements.size() == 0) Logger.warn("No nodes found for \'{}\'.", element);
 
         for (Node el : elements) {
             String inString = el.getText();
             String outString = inString.replace(inPattern, outPattern);
-//            Logger.error("{}, {}", inString, outString);
             if (!inString.equals(outString)) {
                 if (cdata) {
                     el.setText(CDATA_OPEN + outString +
@@ -848,14 +882,24 @@ public class Main {
                 }
                 Logger.info("{} attribute {} \'{}\' replaced with \'{}\'",
                         element, attribute, attValue, att.getValue());
-            } else {
-                Logger.error("{} attribute \'{}\' not found.",
-                        element, attribute);
+                return;
             }
         }
+        Logger.warn("{} domain attribute \'{}\' not found for PropID {}.",
+                element, inPattern, getPropID(node));
     }
 
+    /**
+     * Return Property ID for the specified <item> node
+     *
+     *  @param  propItem
+     *
+     */
 
+    public static String getPropID(Node propItem) {
+        String propId = getPostmetaValue((Element)propItem, PROPID_KEY);
+        return getPostmetaValue((Element)propItem, PROPID_KEY);
+    }
 
     /**
      * Generates output file name by inserting .cvt before .xml or at end of file
@@ -902,6 +946,34 @@ public class Main {
     }
 
     /**
+     * Dumps out array of media items (photos) found to specified file
+     *
+     *  @param  mediaItems  array of MediaItem to display
+     *
+     */
+
+    public static void dumpMediaItems(MediaItem[] mediaItems) throws IOException {
+
+        logConfig.formatPattern(MIN_LOG_FMT)
+                .level(Level.DEBUG)
+                .activate();
+
+        Logger.debug("MediaItem array dump for {}", mediaFile);
+        for (int i = 0; i < mediaItems.length; i++) {
+            Logger.debug("i: {}: post_id: {}, post_parent: {}, " +
+                            "post_name: {}, link: {}", i,
+                    mediaItems[i].getPost_id(),
+                    mediaItems[i].getPost_parent(),
+                    mediaItems[i].getPost_name(),
+                    mediaItems[i].getLink());
+        }
+
+        logConfig.formatPattern(DEF_LOG_FMT)
+                .level(Level.WARNING)
+                .activate();
+    }
+
+    /**
      * Prints out array of media items (photos) found
      *
      *  @param  mediaItems  array of MediaItem to display
@@ -919,8 +991,8 @@ public class Main {
                     mediaItems[i].getLink());
         }
     }
-    
-    
+
+
     /**
      * Prints out list of media items (photos) found
      *
