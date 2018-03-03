@@ -1,5 +1,6 @@
 package com.ereinecke.cvtprop;
 
+import com.sun.istack.internal.NotNull;
 import org.dom4j.*;
 import org.dom4j.io.OutputFormat;
 import org.dom4j.io.SAXReader;
@@ -33,7 +34,10 @@ import static java.lang.System.exit;
  * @version 0.1
  * @since   1/21/2018
  *
- * @param  inputxml  file name
+ * @param  listingsInputXML  file name of listings export file
+ * @param  mediaInputXML     file name of media export file
+ * @param  dumpOnly          if '-d', just print out listing and media headers
+ *
  *
  *    Test files:  full sized: data/resm-listings.properties.2018-02-27.xml
  *                             data/resm-listings.media.2018-02-27.xml
@@ -47,6 +51,7 @@ public class Main {
     static int prevPropPostId = 0;
     static String listingsFile = "";
     static String mediaFile = "";
+    static String[] flags;
     // static String listingsFile = FULL_INPUT;
     static Document propertyDoc;
     static Document mediaDoc;
@@ -77,9 +82,15 @@ public class Main {
         users = initUser();
 
         // input file from command line unless hardcoded above
-        if (listingsFile.length() == 0 && args.length == 2) {
+        if (listingsFile.length() == 0 && args.length >= 2) {
             listingsFile = args[0];
             mediaFile = args[1];
+            // Check for flags - only -d supported
+            if (args.length > 2) {
+                for (int i = 2; i < args.length; i++) {
+
+                }
+            }
         } else {
             Logger.error("No input files specified.\n  Usage: cvtprop listingXML mediaXML");
             exit(1);
@@ -128,9 +139,9 @@ public class Main {
         // Process property listings
 
         // modify channel links
-        elementSubst(doc, CHAN_LINK, EXPORT_DOMAIN, IMPORT_DOMAIN, false);
-        elementSubst(doc, CHAN_SITE, EXPORT_DOMAIN, IMPORT_DOMAIN, false);
-        elementSubst(doc, CHAN_BLOG, EXPORT_DOMAIN, IMPORT_DOMAIN, false);
+        // elementSubst(doc, CHAN_LINK, EXPORT_DOMAIN, IMPORT_DOMAIN, false);
+        // elementSubst(doc, CHAN_SITE, EXPORT_DOMAIN, IMPORT_DOMAIN, false);
+        // elementSubst(doc, CHAN_BLOG, EXPORT_DOMAIN, IMPORT_DOMAIN, false);
 
         // select all items (properties)
         List<Node> propertyNodes = propertyDoc.selectNodes(CHAN_ITEM);
@@ -178,7 +189,8 @@ public class Main {
             // Property ID
             String propIdString = getPropID(item);
             if (propIdString != null) {
-                wpPostmeta(item, EP_ID_KEY, propIdString);
+                String newString = propIdString.trim();
+                wpPostmeta(item, EP_ID_KEY, newString);
                 wpPostmeta(item, _EP_ID_KEY, _EP_ID_VALUE);
             }
 
@@ -191,7 +203,10 @@ public class Main {
 
             // Property type
             Element propertyType = getCategoryNode(item, PROP_TYPE);
-            if (propertyType != null ) writePropertyType(item, propertyType);
+            if (propertyType != null ) {
+                writePropertyType(item, propertyType);
+                domainSubst(item, CATEGORY, DOMAIN, PROP_TYPE, TYPE_OUT, false);
+            }
             // TODO: check to see what happens if domain="property_type" doesn't change
 
             // Property status
@@ -304,9 +319,9 @@ public class Main {
     public static void processMedia(Document mediaDoc) {
 
         // modify channel links
-        elementSubst(mediaDoc, CHAN_LINK, EXPORT_DOMAIN, IMPORT_DOMAIN, false);
-        elementSubst(mediaDoc, CHAN_SITE, EXPORT_DOMAIN, IMPORT_DOMAIN, false);
-        elementSubst(mediaDoc, CHAN_BLOG, EXPORT_DOMAIN, IMPORT_DOMAIN, false);
+        // elementSubst(mediaDoc, CHAN_LINK, EXPORT_DOMAIN, IMPORT_DOMAIN, false);
+        // elementSubst(mediaDoc, CHAN_SITE, EXPORT_DOMAIN, IMPORT_DOMAIN, false);
+        // elementSubst(mediaDoc, CHAN_BLOG, EXPORT_DOMAIN, IMPORT_DOMAIN, false);
 
         // select all media items
         mediaNodes = mediaDoc.selectNodes(CHAN_ITEM);
@@ -332,9 +347,9 @@ public class Main {
             }
 
             // Change links
-            elementSubst(pic, LINK, EXPORT_DOMAIN, IMPORT_DOMAIN, false);
-            elementSubst(pic, GUID, EXPORT_DOMAIN, IMPORT_DOMAIN, false);
-            elementSubst(pic, ATTACH_URL, EXPORT_DOMAIN, IMPORT_DOMAIN, false);
+            // elementSubst(pic, LINK, EXPORT_DOMAIN, IMPORT_DOMAIN, false);
+            // elementSubst(pic, GUID, EXPORT_DOMAIN, IMPORT_DOMAIN, false);
+            // elementSubst(pic, ATTACH_URL, EXPORT_DOMAIN, IMPORT_DOMAIN, false);
 
             // Generate an array of MediaItem
             String post_id = pic.selectSingleNode(POST_ID).getText();
@@ -351,11 +366,8 @@ public class Main {
 
         Logger.warn("{} mediaNodes processed.", mediaNodes.size());
         Logger.warn("mediaItems.length: {}", mediaItems.length);
-        try {
-            dumpMediaItems(mediaItems);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        dumpMediaItems(mediaItems);
+
     }
 
     /**
@@ -805,8 +817,9 @@ public class Main {
             default:
                 locationCode = "109";
         }
-        String locationString = "a:1:{i:0;s:" + locationCode.length() +
-                ":\"" + locationCode + "\";}";
+//        String locationString = "a:1:{i:0;s:" + locationCode.length() +
+//                ":\"" + locationCode + "\";}";
+        String locationString = "a:1:{i:0;i:" + locationCode + ";}";
         wpPostmeta(item, AP_LOCATIONS_KEY,locationString);
         wpPostmeta(item, _AP_LOCATIONS_KEY, _AP_LOCATIONS_VALUE);
         Logger.info("Set city {} to {}", cityName, locationString);
@@ -864,6 +877,7 @@ public class Main {
     public static void domainSubst( Node node, String element,
                                     String attribute, String inPattern,
                                     String outPattern, Boolean cdata) {
+        boolean found = false;
         // get list of elements with specified name
         List<Node> elements = node.selectNodes(element);
         for (Node el : elements) {
@@ -882,10 +896,10 @@ public class Main {
                 }
                 Logger.info("{} attribute {} \'{}\' replaced with \'{}\'",
                         element, attribute, attValue, att.getValue());
-                return;
+                found = true;
             }
         }
-        Logger.warn("{} domain attribute \'{}\' not found for PropID {}.",
+        if (!found) Logger.warn("{} domain attribute \'{}\' not found for PropID {}.",
                 element, inPattern, getPropID(node));
     }
 
@@ -952,7 +966,7 @@ public class Main {
      *
      */
 
-    public static void dumpMediaItems(MediaItem[] mediaItems) throws IOException {
+    public static void dumpMediaItems(@NotNull MediaItem[] mediaItems) {
 
         logConfig.formatPattern(MIN_LOG_FMT)
                 .level(Level.DEBUG)

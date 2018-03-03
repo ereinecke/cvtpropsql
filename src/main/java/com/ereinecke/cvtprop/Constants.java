@@ -19,11 +19,12 @@ public class Constants {
     // Substitution patterns
     public static String LINK_IN         = "/listings/";
     public static String LINK_OUT        = "/property/";
-    public static String POST_TYPE_IN    = "properties";
+    public static String POST_TYPE_IN    = "listings";
     public static String POST_TYPE_OUT   = "property";
     public static String FEATURES_IN     = "additional_features";
-    public static String FEATURES_OUT    = "property_features";
-    public static String STATUS_OUT      = "property_status";
+    public static String FEATURES_OUT    = "property-features";
+    public static String STATUS_OUT      = "property-status";
+    public static String TYPE_OUT        = "property-type";
 
     // xPaths
     public static String CHAN_ITEM       = "/rss/channel/item";
@@ -37,7 +38,6 @@ public class Constants {
     public static String POST_NAME       = "wp:post_name";
     public static String METAKEY         = "wp:meta_key";
     public static String METAVALUE       = "wp:meta_value";
-    public static String BROKER          = "wp:broker";
     public static String STATUS          = "wp:status";
     public static String ATTACH_URL      = "wp:attachment_url";
     public static String ATTACHMENT      = "attachment";
@@ -46,6 +46,7 @@ public class Constants {
     public static String LOT_SIZE_KEY    = "_ct_lotsize";
     public static String PRICE_KEY       = "_ct_price";
     public static String BROKER_KEY      = "_ct_broker";
+    public static String VIDEO_KEY       = "_ct_video";
     public static String THUMBNAIL_KEY   = "_thumbnail_id";
     public static String EDITLAST_KEY    = "_edit_last";
     public static String LATLNG_KEY      = "_ct_latlng";
