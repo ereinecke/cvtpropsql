@@ -1,4 +1,4 @@
-package com.ereinecke.cvtprop;
+package com.ereinecke.cvtpropxml;
 
 import com.sun.istack.internal.NotNull;
 import org.dom4j.*;
@@ -17,30 +17,29 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.ereinecke.cvtprop.Constants.*;
-import static com.ereinecke.cvtprop.InitPropertyFeatures.initPropertyFeatures;
-import static com.ereinecke.cvtprop.InitPropertyStatus.initPropertyStatus;
-import static com.ereinecke.cvtprop.InitPropertyTypes.initPropertyTypes;
-import static com.ereinecke.cvtprop.InitUser.initUser;
+import static com.ereinecke.cvtpropxml.Constants.*;
+import static com.ereinecke.cvtpropxml.InitPropertyFeatures.initPropertyFeatures;
+import static com.ereinecke.cvtpropxml.InitPropertyStatus.initPropertyStatus;
+import static com.ereinecke.cvtpropxml.InitPropertyTypes.initPropertyTypes;
+import static com.ereinecke.cvtpropxml.InitUser.initUser;
 import static java.lang.System.exit;
 
 /**
- * Reads and parses property files (export xml format)
+ * Reads and parses property files (export xml format), generates sql
  * <p>
- * Input is an export xml file from the WordPress theme WP Pro Real Estate.
- * Writes out export xml file in the format required by Realty v 3.0.1
+ * Input are export xml file from the WordPress theme WP Pro Real Estate,
+ *    preprocessed with cvtprop
+ * Writes out sql files for post and post_meta tables
  *
  * @author  Erik Reinecke  <erik@ereinecke.com>
  * @version 0.1
- * @since   1/21/2018
+ * @since   3/4/2018
  *
- * @param  listingsInputXML  file name of listings export file
- * @param  mediaInputXML     file name of media export file
+ * @param  listingsInputXML  file name of preprocessed listings export file
  * @param  dumpOnly          if '-d', just print out listing and media headers
  *
  *
- *    Test files:  full sized: data/resm-listings.properties.2018-02-27.xml
- *                             data/resm-listings.media.2018-02-27.xml
+ *    Test files:  full sized: data/resm-listings.properties.2018-02-27-cvt.xml
  *
  *
  * */
@@ -84,15 +83,14 @@ public class Main {
         // input file from command line unless hardcoded above
         if (listingsFile.length() == 0 && args.length >= 2) {
             listingsFile = args[0];
-            mediaFile = args[1];
             // Check for flags - only -d supported
-            if (args.length > 2) {
-                for (int i = 2; i < args.length; i++) {
+            if (args.length > 1) {
+                for (int i = 1; i < args.length; i++) {
 
                 }
             }
         } else {
-            Logger.error("No input files specified.\n  Usage: cvtprop listingXML mediaXML");
+            Logger.error("No input files specified.\n  Usage: cvtpropxml cvtlistingXML -c");
             exit(1);
         }
 

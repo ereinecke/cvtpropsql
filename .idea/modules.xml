@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/src/main/main.iml" filepath="$PROJECT_DIR$/src/main/main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/cvtpropsql.iml" filepath="$PROJECT_DIR$/.idea/modules/cvtpropsql.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/cvtpropsql_main.iml" filepath="$PROJECT_DIR$/.idea/modules/cvtpropsql_main.iml" group="cvtpropsql" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/cvtpropsql_test.iml" filepath="$PROJECT_DIR$/.idea/modules/cvtpropsql_test.iml" group="cvtpropsql" />
     </modules>
   </component>
 </project>

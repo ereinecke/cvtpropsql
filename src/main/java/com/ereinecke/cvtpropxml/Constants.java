@@ -1,4 +1,4 @@
-package com.ereinecke.cvtprop;
+package com.ereinecke.cvtpropxml;
 
 /**
  * Utility class containing constant definitions for cvtprop

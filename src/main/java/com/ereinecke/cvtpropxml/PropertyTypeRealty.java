@@ -1,4 +1,4 @@
-package com.ereinecke.cvtprop;
+package com.ereinecke.cvtpropxml;
 
 /**
  * Definition and contstructor of PropertyTypeRealty class for cvtprop

@@ -1,4 +1,4 @@
-package com.ereinecke.cvtprop;
+package com.ereinecke.cvtpropxml;
 
 /**
  * Initiates a static array of PropertyStatus for cvtprop
