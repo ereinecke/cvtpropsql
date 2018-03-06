@@ -75,10 +75,9 @@ public class Constants {
 
     // Data files
     public static String SHORT_LISTINGS = "data/resm-listings.small.2018-02-05.xml";
-    public static String FULL_LISTINGS  = "data/resm-properties.2018-02-27.xml";
-    public static String FULL_MEDIA  = "data/resm-media.2018-02-27.xml";
+    public static String DEFAULT_IMPORT = "data/resm-properties.2018-02-27-cvt.xml";
 
-    // wp:postmetas
+        // wp:postmetas
     public static String _VC_POST_SETTINGS_KEY = "_vc_post_settings";
     public static String _VC_POST_SETTINGS_VALUE = "a:1:{s:10:\"vc_grid_id\";a:0:{}}";
     public static String AP_LOCATIONS_KEY = "acf-property-location";
@@ -154,7 +153,7 @@ public class Constants {
     public static String _EP_PRICE_SUFFIX_KEY = "_estate_property_price_suffix";
     public static String _EP_PRICE_SUFFIX_VALUE = "field_55366afc55cb2";
     public static String EP_LOT_SIZE_KEY = "estate_property_lot_size";
-    public static String EP_SIZE_VALUE = "";
+    public static String EP_LOT_SIZE_VALUE = "";
     public static String _EP_LOT_SIZE_KEY = "_estate_property_lot_size";
     public static String _EP_LOT_SIZE_VALUE = "field_55366b2555cb3";
     public static String EP_CONST_SIZE_KEY = "estate_property_const_size";
@@ -242,12 +241,59 @@ public class Constants {
     public static String ESTATE_PAGE_HIDE_SITE_HEADER_KEY = "estate_page_hide_site_header";
     public static String ESTATE_PAGE_HIDE_SITE_HEADER_VALUE = "0";
     public static String _EDIT_LAST_KEY = "_edit_last";
-    public static String _EDIT_LAST_VALUE = "8";
+    public static String _EDIT_LAST_VALUE = "";
 
     // Logging formats
     public static String DEF_LOG_FMT = "{date:yyyy-MM-dd HH:mm:ss} [{thread}] {class}.{method}()\n{level}: {message}";
     public static String MIN_LOG_FMT = "{message}";
 
-    
-    
+    // Command line parameters
+    public static String DUMP = "-d";
+    public static String MAX_RECORDS = "-n";
+
+    // Postmeta SQL file heater
+    public static String POSTMETA_HEADER = "-- phpMyAdmin SQL Dump\n" +
+            "-- version 3.5.2\n" +
+            "-- http://www.phpmyadmin.net\n" +
+            "--\n" +
+            "-- Host: internal-db.s177354.gridserver.com\n" +
+            "-- Generation Time: Mar 04, 2018 at 09:36 AM\n" +
+            "-- Server version: 5.6.32-78.1\n" +
+            "-- PHP Version: 5.3.29\n" +
+            "\n" +
+            "SET SQL_MODE=\"NO_AUTO_VALUE_ON_ZERO\";\n" +
+            "SET time_zone = \"+00:00\";\n" +
+            "\n" +
+            "\n" +
+            "/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;\n" +
+            "/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;\n" +
+            "/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;\n" +
+            "/*!40101 SET NAMES utf8 */;\n" +
+            "\n" +
+            "--\n" +
+            "-- Database: `db177354_realestate2017`\n" +
+            "--\n" +
+            "\n" +
+            "-- --------------------------------------------------------\n" +
+            "\n" +
+            "--\n" +
+            "-- Table structure for table `wp_postmeta`\n" +
+            "--\n" +
+            "\n" +
+            "CREATE TABLE IF NOT EXISTS `wp_postmeta` (\n" +
+            "  `meta_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,\n" +
+            "  `post_id` bigint(20) unsigned NOT NULL DEFAULT '0',\n" +
+            "  `meta_key` varchar(255) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,\n" +
+            "  `meta_value` longtext COLLATE utf8mb4_unicode_520_ci,\n" +
+            "  PRIMARY KEY (`meta_id`),\n" +
+            "  KEY `post_id` (`post_id`),\n" +
+            "  KEY `meta_key` (`meta_key`(191))\n" +
+            ") ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci AUTO_INCREMENT=12530 ;\n" +
+            "\n" +
+            "--\n" +
+            "-- Dumping data for table `wp_postmeta`\n" +
+            "--\n" +
+            "\n" +
+            "INSERT INTO `wp_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALUES";
+
 }

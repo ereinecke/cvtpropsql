@@ -5,7 +5,7 @@ package com.ereinecke.cvtpropxml;
  * <p>
  *
  * @author  Erik Reinecke  <erik@ereinecke.com>
- * @version 0.1
+ * @version 1.0
  * @since   1/21/2018
  *
  * */

@@ -2,74 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7560849a-150d-47f6-9be1-d64207635c1c" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.gradle/4.0/fileContent/fileContent.lock" afterPath="$PROJECT_DIR$/.gradle/4.0/fileContent/fileContent.lock" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.0/fileHashes/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/4.0/fileHashes/fileHashes.bin" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.0/fileHashes/fileHashes.lock" afterPath="$PROJECT_DIR$/.gradle/4.0/fileHashes/fileHashes.lock" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.0/taskHistory/taskHistory.lock" afterPath="$PROJECT_DIR$/.gradle/4.0/taskHistory/taskHistory.lock" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/ereinecke/cvtpropxml/Wp_Post.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/ereinecke/cvtpropxml/Wp_Postmeta.java" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/com/ereinecke/cvtprop/Constants.html" afterPath="$PROJECT_DIR$/com/ereinecke/cvtpropcsv/Constants.html" />
-      <change beforePath="$PROJECT_DIR$/com/ereinecke/cvtprop/InitPropertyFeatures.html" afterPath="$PROJECT_DIR$/com/ereinecke/cvtpropcsv/InitPropertyFeatures.html" />
-      <change beforePath="$PROJECT_DIR$/com/ereinecke/cvtprop/InitPropertyStatus.html" afterPath="$PROJECT_DIR$/com/ereinecke/cvtpropcsv/InitPropertyStatus.html" />
-      <change beforePath="$PROJECT_DIR$/com/ereinecke/cvtprop/InitPropertyTypes.html" afterPath="$PROJECT_DIR$/com/ereinecke/cvtpropcsv/InitPropertyTypes.html" />
-      <change beforePath="$PROJECT_DIR$/com/ereinecke/cvtprop/Main.html" afterPath="$PROJECT_DIR$/com/ereinecke/cvtpropcsv/Main.html" />
-      <change beforePath="$PROJECT_DIR$/com/ereinecke/cvtprop/PropertyFeature.html" afterPath="$PROJECT_DIR$/com/ereinecke/cvtpropcsv/PropertyFeature.html" />
-      <change beforePath="$PROJECT_DIR$/com/ereinecke/cvtprop/PropertyStatus.html" afterPath="$PROJECT_DIR$/com/ereinecke/cvtpropcsv/PropertyStatus.html" />
-      <change beforePath="$PROJECT_DIR$/com/ereinecke/cvtprop/PropertyTypeRealty.html" afterPath="$PROJECT_DIR$/com/ereinecke/cvtpropcsv/PropertyTypeRealty.html" />
-      <change beforePath="$PROJECT_DIR$/com/ereinecke/cvtprop/package-frame.html" afterPath="$PROJECT_DIR$/com/ereinecke/cvtpropcsv/package-frame.html" />
-      <change beforePath="$PROJECT_DIR$/com/ereinecke/cvtprop/package-summary.html" afterPath="$PROJECT_DIR$/com/ereinecke/cvtpropcsv/package-summary.html" />
-      <change beforePath="$PROJECT_DIR$/com/ereinecke/cvtprop/package-tree.html" afterPath="$PROJECT_DIR$/com/ereinecke/cvtpropcsv/package-tree.html" />
-      <change beforePath="$PROJECT_DIR$/javadoc/allclasses-frame.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/javadoc/allclasses-noframe.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/javadoc/com/ereinecke/cvtprop/Constants.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/javadoc/com/ereinecke/cvtprop/InitPropertyFeatures.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/javadoc/com/ereinecke/cvtprop/InitPropertyStatus.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/javadoc/com/ereinecke/cvtprop/InitPropertyTypes.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/javadoc/com/ereinecke/cvtprop/Main.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/javadoc/com/ereinecke/cvtprop/PropertyFeature.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/javadoc/com/ereinecke/cvtprop/PropertyStatus.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/javadoc/com/ereinecke/cvtprop/PropertyTypeRealty.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/javadoc/com/ereinecke/cvtprop/package-frame.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/javadoc/com/ereinecke/cvtprop/package-summary.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/javadoc/com/ereinecke/cvtprop/package-tree.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/javadoc/constant-values.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/javadoc/deprecated-list.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/javadoc/help-doc.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/javadoc/index-files/index-1.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/javadoc/index-files/index-10.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/javadoc/index-files/index-11.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/javadoc/index-files/index-12.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/javadoc/index-files/index-13.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/javadoc/index-files/index-14.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/javadoc/index-files/index-15.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/javadoc/index-files/index-16.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/javadoc/index-files/index-2.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/javadoc/index-files/index-3.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/javadoc/index-files/index-4.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/javadoc/index-files/index-5.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/javadoc/index-files/index-6.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/javadoc/index-files/index-7.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/javadoc/index-files/index-8.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/javadoc/index-files/index-9.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/javadoc/index.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/javadoc/overview-tree.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/javadoc/package-list" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/javadoc/script.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/javadoc/stylesheet.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle" afterPath="$PROJECT_DIR$/settings.gradle" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ereinecke/cvtprop/Constants.java" afterPath="$PROJECT_DIR$/src/main/java/com/ereinecke/cvtpropxml/Constants.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ereinecke/cvtprop/InitPropertyFeatures.java" afterPath="$PROJECT_DIR$/src/main/java/com/ereinecke/cvtpropxml/InitPropertyFeatures.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ereinecke/cvtprop/InitPropertyStatus.java" afterPath="$PROJECT_DIR$/src/main/java/com/ereinecke/cvtpropxml/InitPropertyStatus.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ereinecke/cvtprop/InitPropertyTypes.java" afterPath="$PROJECT_DIR$/src/main/java/com/ereinecke/cvtpropxml/InitPropertyTypes.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ereinecke/cvtprop/InitUser.java" afterPath="$PROJECT_DIR$/src/main/java/com/ereinecke/cvtpropxml/InitUser.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ereinecke/cvtprop/Main.java" afterPath="$PROJECT_DIR$/src/main/java/com/ereinecke/cvtpropxml/Main.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ereinecke/cvtprop/MediaItem.java" afterPath="$PROJECT_DIR$/src/main/java/com/ereinecke/cvtpropxml/MediaItem.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ereinecke/cvtprop/PropertyFeature.java" afterPath="$PROJECT_DIR$/src/main/java/com/ereinecke/cvtpropxml/PropertyFeature.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ereinecke/cvtprop/PropertyStatus.java" afterPath="$PROJECT_DIR$/src/main/java/com/ereinecke/cvtpropxml/PropertyStatus.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ereinecke/cvtprop/PropertyTypeRealty.java" afterPath="$PROJECT_DIR$/src/main/java/com/ereinecke/cvtpropxml/PropertyTypeRealty.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ereinecke/cvtprop/User.java" afterPath="$PROJECT_DIR$/src/main/java/com/ereinecke/cvtpropxml/User.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ereinecke/cvtpropxml/Constants.java" afterPath="$PROJECT_DIR$/src/main/java/com/ereinecke/cvtpropxml/Constants.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ereinecke/cvtpropxml/Main.java" afterPath="$PROJECT_DIR$/src/main/java/com/ereinecke/cvtpropxml/Main.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ereinecke/cvtpropxml/PropertyStatus.java" afterPath="$PROJECT_DIR$/src/main/java/com/ereinecke/cvtpropxml/PropertyStatus.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -104,35 +42,127 @@
     </system>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/ereinecke/cvtpropxml/Main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="115">
-              <caret line="87" column="55" lean-forward="false" selection-start-line="87" selection-start-column="55" selection-end-line="87" selection-end-column="55" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="settings.gradle" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/settings.gradle">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="vertical" split-proportion="0.48229548">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/java/com/ereinecke/cvtpropxml/Main.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="133">
+                  <caret line="307" column="0" lean-forward="true" selection-start-line="307" selection-start-column="0" selection-end-line="307" selection-end-column="0" />
+                  <folding>
+                    <element signature="e#15241#15242#0" expanded="true" />
+                    <element signature="e#15294#15295#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="DefaultElement.java" pinned="false" current-in-tab="false">
+            <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/dom4j/dom4j/1.6.1/a8e7149359255f43e0e5e3b1837948f9ed5861fb/dom4j-1.6.1-sources.jar!/org/dom4j/tree/DefaultElement.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="282">
+                  <caret line="132" column="0" lean-forward="false" selection-start-line="132" selection-start-column="0" selection-end-line="132" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="AbstractNode.java" pinned="false" current-in-tab="true">
+            <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/dom4j/dom4j/1.6.1/a8e7149359255f43e0e5e3b1837948f9ed5861fb/dom4j-1.6.1-sources.jar!/org/dom4j/tree/AbstractNode.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="217">
+                  <caret line="184" column="0" lean-forward="false" selection-start-line="184" selection-start-column="0" selection-end-line="184" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Wp_Post.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/java/com/ereinecke/cvtpropxml/Wp_Post.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="449">
+                  <caret line="123" column="74" lean-forward="false" selection-start-line="123" selection-start-column="74" selection-end-line="123" selection-end-column="74" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Wp_Postmeta.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/java/com/ereinecke/cvtpropxml/Wp_Postmeta.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="585">
+                  <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="PropertyStatus.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/java/com/ereinecke/cvtpropxml/PropertyStatus.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="240">
+                  <caret line="16" column="39" lean-forward="false" selection-start-line="16" selection-start-column="39" selection-end-line="16" selection-end-column="39" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="Wp_Postmeta.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/java/com/ereinecke/cvtpropxml/Wp_Postmeta.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="84">
+                  <caret line="18" column="16" lean-forward="false" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="16" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Constants.java" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/main/java/com/ereinecke/cvtpropxml/Constants.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="2694">
+                  <caret line="243" column="47" lean-forward="true" selection-start-line="243" selection-start-column="47" selection-end-line="243" selection-end-column="47" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
       <find>cvtpropcsv</find>
+      <find>;</find>
+      <find>check</find>
+      <find>postMetaValue</find>
+      <find>PREF</find>
     </findStrings>
     <replaceStrings>
       <replace>cvtpropxml</replace>
+      <replace>= ;</replace>
+      <replace>n</replace>
+      <replace>metaValue</replace>
+      <replace>SUFF</replace>
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$</dir>
@@ -497,8 +527,14 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/ereinecke/cvtpropxml/Main.java" />
         <option value="$PROJECT_DIR$/settings.gradle" />
+        <option value="$PROJECT_DIR$/src/main/java/com/ereinecke/cvtpropxml/wp_posts.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/ereinecke/cvtpropxml/PropertyStatus.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/ereinecke/cvtpropxml/Wp_Posts.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/ereinecke/cvtpropxml/Wp_Postmeta.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/ereinecke/cvtpropxml/Wp_Post.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/ereinecke/cvtpropxml/Constants.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/ereinecke/cvtpropxml/Main.java" />
       </list>
     </option>
   </component>
@@ -509,8 +545,8 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="25" />
-    <option name="y" value="52" />
+    <option name="x" value="9" />
+    <option name="y" value="60" />
     <option name="width" value="1206" />
     <option name="height" value="937" />
   </component>
@@ -536,6 +572,32 @@
               <item name="cvtpropxml" type="b2602c69:ProjectViewProjectNode" />
               <item name="cvtpropsql" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
             </path>
+            <path>
+              <item name="cvtpropxml" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cvtpropsql" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cvtpropxml" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cvtpropsql" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+            <path>
+              <item name="cvtpropxml" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cvtpropsql" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cvtpropxml" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cvtpropsql" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="cvtpropxml" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -552,6 +614,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///Users/ereinecke/IdeaProjects/cvtpropsql/src/main/java/com/ereinecke/cvtpropxml/Wp_Postmeta.java&#10;String &#9;PSI&#9;JAVA://java.lang.String" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -565,12 +628,26 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Main - 5">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="WIDTH" value="400" />
       <option name="HEIGHT" value="300" />
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <module />
+    </configuration>
+    <configuration name="Main - 5" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" value="com.ereinecke.cvtpropxml.Main" />
+      <option name="VM_PARAMETERS" value="" />
+      <option name="PROGRAM_PARAMETERS" value="data/resm-listings.2018-02-27-cvt.xml -n5" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="cvtpropsql_main" />
+      <envs />
     </configuration>
     <configuration name="Main - full" type="Application" factoryName="Application">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
@@ -672,6 +749,10 @@
       <option name="PROGRAM_PARAMETERS" />
       <predefined_log_file id="idea.log" enabled="true" />
     </configuration>
+    <list size="2">
+      <item index="0" class="java.lang.String" itemvalue="Application.Main - full" />
+      <item index="1" class="java.lang.String" itemvalue="Application.Main - 5" />
+    </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
@@ -687,42 +768,100 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="25" y="52" width="1206" height="937" extended-state="0" />
+    <frame x="9" y="60" width="1206" height="937" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32967034" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32967034" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.3298969" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32967034" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" show_stripe_button="true" weight="0.32967034" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="1258" y="268" width="1164" height="682" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25429553" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32967034" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Learn" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3298969" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25429553" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32967034" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32967034" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Learn" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298969" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.3992674" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="1280" y="254" width="1164" height="719" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
+    <layout-to-restore>
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32967034" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.3298969" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32967034" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" show_stripe_button="true" weight="0.3992674" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="1280" y="254" width="1164" height="719" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32967034" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" show_stripe_button="true" weight="0.32967034" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="1209" y="308" width="1164" height="682" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25429553" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32967034" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Learn" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298969" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
+    </layout-to-restore>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/ereinecke/cvtpropxml/Main.java</url>
+          <line>159</line>
+          <properties />
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/ereinecke/cvtpropxml/Main.java</url>
+          <line>402</line>
+          <properties />
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/ereinecke/cvtpropxml/Main.java</url>
+          <line>360</line>
+          <properties />
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/ereinecke/cvtpropxml/Main.java</url>
+          <line>503</line>
+          <properties />
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="12" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="antWorkspaceConfiguration">
@@ -734,15 +873,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/ereinecke/cvtpropxml/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="87" column="55" lean-forward="false" selection-start-line="87" selection-start-column="55" selection-end-line="87" selection-end-column="55" />
-          <folding />
+          <folding>
+            <element signature="e#15241#15242#0" expanded="true" />
+            <element signature="e#15294#15295#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -750,6 +884,85 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_92.jdk/Contents/Home/src.zip!/java/lang/String.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="110" column="19" lean-forward="false" selection-start-line="110" selection-start-column="19" selection-end-line="110" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/ereinecke/cvtpropxml/PropertyStatus.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="39" lean-forward="false" selection-start-line="16" selection-start-column="39" selection-end-line="16" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Volumes/SSD_1TB/Google Drive/Sites/ReMax Colonial dev/sql/dev-postmeta.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1735">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/ereinecke/cvtpropxml/Wp_Post.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="449">
+          <caret line="123" column="74" lean-forward="false" selection-start-line="123" selection-start-column="74" selection-end-line="123" selection-end-column="74" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/ereinecke/cvtpropxml/Wp_Postmeta.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="585">
+          <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/ereinecke/cvtpropxml/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="307" column="0" lean-forward="true" selection-start-line="307" selection-start-column="0" selection-end-line="307" selection-end-column="0" />
+          <folding>
+            <element signature="e#15241#15242#0" expanded="true" />
+            <element signature="e#15294#15295#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/ereinecke/cvtpropxml/Constants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2694">
+          <caret line="243" column="47" lean-forward="true" selection-start-line="243" selection-start-column="47" selection-end-line="243" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/dom4j/dom4j/1.6.1/a8e7149359255f43e0e5e3b1837948f9ed5861fb/dom4j-1.6.1-sources.jar!/org/dom4j/tree/DefaultElement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="282">
+          <caret line="132" column="0" lean-forward="false" selection-start-line="132" selection-start-column="0" selection-end-line="132" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/dom4j/dom4j/1.6.1/a8e7149359255f43e0e5e3b1837948f9ed5861fb/dom4j-1.6.1-sources.jar!/org/dom4j/tree/AbstractNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="217">
+          <caret line="184" column="0" lean-forward="false" selection-start-line="184" selection-start-column="0" selection-end-line="184" selection-end-column="0" />
           <folding />
         </state>
       </provider>

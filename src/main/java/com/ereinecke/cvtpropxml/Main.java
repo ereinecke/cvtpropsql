@@ -14,7 +14,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static com.ereinecke.cvtpropxml.Constants.*;
@@ -32,38 +31,29 @@ import static java.lang.System.exit;
  * Writes out sql files for post and post_meta tables
  *
  * @author  Erik Reinecke  <erik@ereinecke.com>
- * @version 0.1
+ * @version 0.5
  * @since   3/4/2018
  *
  * @param  listingsInputXML  file name of preprocessed listings export file
- * @param  dumpOnly          if '-d', just print out listing and media headers
+ * @param  dumpOnly          if '-d', just print out listing headers
+ * @param  numRecords        if '-nX', stop after X records
  *
  *
  *    Test files:  full sized: data/resm-listings.properties.2018-02-27-cvt.xml
- *
  *
  * */
 
 public class Main {
 
-    static int mediaIx = 0;
-    static int prevPropPostId = 0;
+    static int maxRecords = Integer.MAX_VALUE;
+    static boolean dumpOnly = false;
     static String listingsFile = "";
-    static String mediaFile = "";
-    static String[] flags;
-    // static String listingsFile = FULL_INPUT;
     static Document propertyDoc;
-    static Document mediaDoc;
-    static PropertyStatus[] propertyStatuses;
-    static PropertyTypeRealty[] propertyTypes;
-    static PropertyFeature[] propertyFeatures;
-    static User[] users;
-    static MediaItem[] mediaItems;
-    static List<Node> mediaNodes;
+    static FileWriter postmetaSQL;
+    static ArrayList<Wp_Post> wp_Posts;
+    static ArrayList<Wp_Postmeta> wp_Postmetas;
+
     static Configurator logConfig;
-
-    static boolean PROCESS_PROPERTIES = true;
-
 
     public static void main(String[] args) {
 
@@ -75,22 +65,32 @@ public class Main {
                         Level.DEBUG, MIN_LOG_FMT)
                 .activate();
 
-        propertyStatuses = initPropertyStatus();
-        propertyTypes = initPropertyTypes();
-        propertyFeatures = initPropertyFeatures();
-        users = initUser();
-
         // input file from command line unless hardcoded above
-        if (listingsFile.length() == 0 && args.length >= 2) {
+        if (args.length > 0) {
             listingsFile = args[0];
-            // Check for flags - only -d supported
+            // Check for flags - only -d and -nX supported
             if (args.length > 1) {
-                for (int i = 1; i < args.length; i++) {
+                for (int i = 1; i < args.length && i < 3; i++) {
+                    String flag = args[i].substring(0,2);
+                    // dumpOnly means dump certain data structures only
+                    if (flag.equals(DUMP))
+                        dumpOnly = true;
+                    if (flag.equals(MAX_RECORDS)) {
+                        try {
+                            String maxRecordsStr = args[i].substring(2);
+                            maxRecords = Integer.parseInt(maxRecordsStr);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            Logger.error("Error parsing flag {}", args[i]);
+                        }
 
+                        Logger.info("Will only process {} records", maxRecords);
+                    }
                 }
             }
         } else {
-            Logger.error("No input files specified.\n  Usage: cvtpropxml cvtlistingXML -c");
+            listingsFile = DEFAULT_IMPORT;
+            Logger.error("No input files specified.\n  Importing {}", DEFAULT_IMPORT);
             exit(1);
         }
 
@@ -102,28 +102,19 @@ public class Main {
             System.exit(1);
         }
 
-        //  read media xml
+        postmetaSQL = openOutputFile(listingsFile);
+        sqlWrite(postmetaSQL, POSTMETA_HEADER);
+        processProperties(propertyDoc);
+
+        // Close SQL output file
+        sqlWrite(postmetaSQL,";");
         try {
-            mediaDoc = parse(mediaFile);
-        } catch (DocumentException e) {
-            Logger.error(e, "File {} not found.\n", mediaFile);
-            System.exit(1);
+            postmetaSQL.flush();
+            postmetaSQL.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+            Logger.error("Error closing output file");
         }
-
-        // Initialize and sort media items array, change links in media XML
-        processMedia(mediaDoc);
-
-        // set PROCESS_PROPERTIES to false to skip this step
-        if (!PROCESS_PROPERTIES) {
-            Logger.error("Not processing properties.");
-            exit(0);
-        } else {
-            // The bulk of the work is done in this function
-            processProperties(propertyDoc);
-        }
-
-        writeDOM(propertyDoc, listingsFile);
-        writeDOM(mediaDoc, mediaFile);
 
     }
 
@@ -134,13 +125,8 @@ public class Main {
      *
      */
     public static void processProperties(Document doc) {
-        // Process property listings
 
-        // modify channel links
-        // elementSubst(doc, CHAN_LINK, EXPORT_DOMAIN, IMPORT_DOMAIN, false);
-        // elementSubst(doc, CHAN_SITE, EXPORT_DOMAIN, IMPORT_DOMAIN, false);
-        // elementSubst(doc, CHAN_BLOG, EXPORT_DOMAIN, IMPORT_DOMAIN, false);
-
+        
         // select all items (properties)
         List<Node> propertyNodes = propertyDoc.selectNodes(CHAN_ITEM);
         if (propertyNodes == null) {
@@ -148,297 +134,236 @@ public class Main {
             exit(1);
         }
         else {
+            wp_Posts = new ArrayList<>(propertyNodes.size());
             Logger.info("Number of nodes found for {}: {}", CHAN_ITEM, propertyNodes.size());
             // log list of items
-            // printItems(nodes);
+            if (dumpOnly) {
+                printItems(propertyNodes);
+                System.exit(0);
+            }
         }
 
-        // Property Listings Conversion
-        int i = 0;
+        // Convert wp:postmeta xml to wp_postmeta sql
+        int i = 0;  // property counter
+        int j = 0;  // postmeta counter
         for (Node node : propertyNodes) {
             i++;
+            j++;
+
+            if (i > maxRecords) {
+                Logger.warn("Processed {} properties and {} postmetas", i-1, j-1);
+                return;
+            }
+
             System.out.println(">===========================================================================<");
             itemHeader(node, i);
             Element item = (Element)node;
-            // Change link
-            elementSubst(item, LINK, LINK_IN, LINK_OUT, false);
-            // Change guid
-            elementSubst(item, GUID, EXPORT_DOMAIN, IMPORT_DOMAIN, false);
-            // Change post_type
-            elementSubst(item, POST_TYPE, POST_TYPE_IN, POST_TYPE_OUT, true);
 
-            // Process category nodes
-            // Convert beds and baths to wp:metadata entries
-            String numRooms = "";
-            Element Rooms = getCategoryNode(item, BEDS);
-            if (Rooms != null) numRooms = Rooms.attributeValue(NICENAME);
-            wpPostmeta(item, EP_BEDROOMS_KEY, numRooms );
-            wpPostmeta(item, _EP_BEDROOMS_KEY,
-                    _EP_BEDROOMS_VALUE);
-            if (Rooms != null) Rooms.detach();
-            numRooms = "";
-            Rooms = getCategoryNode(item, BATHS);
-            if (Rooms != null) numRooms = Rooms.attributeValue(NICENAME);
-            if (numRooms == null) numRooms = "";
-            wpPostmeta(item, EP_BATHROOMS_KEY, numRooms );
-            wpPostmeta(item, _EP_BATHROOMS_KEY, _EP_BATHROOMS_VALUE);
-            if (Rooms != null) Rooms.detach();
+            writePostMetaSql(node, AP_LOCATIONS_KEY, AP_LOCATIONS_VALUE);
+            writePostMetaSql(node, _AP_LOCATIONS_KEY, _AP_LOCATIONS_VALUE);
+            
+            writePostMetaSql(node, AP_TYPE_KEY, AP_TYPE_VALUE);
+            writePostMetaSql(node, _AP_TYPE_KEY, _AP_TYPE_VALUE);
+            
+            writePostMetaSql(node, AP_STATUS_KEY, AP_STATUS_VALUE);
+            writePostMetaSql(node, _AP_STATUS_KEY, _AP_STATUS_VALUE);
+            
+            writePostMetaSql(node, AP_FEATURES_KEY, AP_FEATURES_VALUE);
+            writePostMetaSql(node, _AP_FEATURES_KEY,_AP_FEATURES_VALUE);
+            
+            writePostMetaSql(node, THUMBNAIL_ID_KEY, THUMBNAIL_ID_VALUE);
+            writePostMetaSql(node, _THUMBNAIL_ID_KEY, _THUMBNAIL_ID_VALUE);
+            
+            writePostMetaSql(node, EP_GALLERY_KEY, EP_GALLERY_VALUE);
+            writePostMetaSql(node, _EP_GALLERY_KEY, _EP_GALLERY_VALUE);
+            
+            writePostMetaSql(node, EP_GOOGLE_MAPS_KEY, EP_GOOGLE_MAPS_VALUE);
+            writePostMetaSql(node, _EP_GOOGLE_MAPS_KEY, _EP_GOOGLE_MAPS_VALUE);
+            
+            writePostMetaSql(node, EP_POSTAL_CODE_KEY, EP_POSTAL_CODE_VALUE);
+            writePostMetaSql(node, _EP_POSTAL_CODE_KEY, _EP_POSTAL_CODE_VALUE);
+            
+            writePostMetaSql(node, EP_ID_KEY, EP_ID_VALUE);
+            writePostMetaSql(node, _EP_ID_KEY, _EP_ID_VALUE);
+            
+            writePostMetaSql(node, EP_FEATURED_KEY, EP_FEATURED_VALUE);
+            writePostMetaSql(node, _EP_FEATURED_KEY, _EP_FEATURED_VALUE);
+            
+            writePostMetaSql(node, EP_LAYOUT_KEY, EP_LAYOUT_VALUE);
+            writePostMetaSql(node, _EP_LAYOUT_KEY, _EP_LAYOUT_VALUE);
+            
+            writePostMetaSql(node, EP_FEATURED_KEY, EP_FEATURED_VALUE);
+            writePostMetaSql(node, _EP_FEATURED_KEY, _EP_FEATURED_VALUE);
 
-            // Property ID
-            String propIdString = getPropID(item);
-            if (propIdString != null) {
-                String newString = propIdString.trim();
-                wpPostmeta(item, EP_ID_KEY, newString);
-                wpPostmeta(item, _EP_ID_KEY, _EP_ID_VALUE);
-            }
+            writePostMetaSql(node, EP_VIDEO_PROVIDER_KEY, EP_VIDEO_PROVIDER_VALUE);
+            writePostMetaSql(node, _EP_VIDEO_PROVIDER_KEY, _EP_VIDEO_PROVIDER_VALUE);
+            
+            writePostMetaSql(node, EP_VIDEO_ID_KEY, EP_VIDEO_ID_VALUE);
+            writePostMetaSql(node, _EP_VIDEO_ID_KEY, _EP_VIDEO_ID_VALUE);
+            
+            writePostMetaSql(node, EP_STATUS_UPDATE_KEY, EP_STATUS_UPDATE_VALUE);
+            writePostMetaSql(node, _EP_STATUS_UPDATE_KEY, _EP_STATUS_UPDATE_VALUE);
+            
+            writePostMetaSql(node, EP_AVAILABLE_FROM_KEY, EP_AVAILABLE_FROM_VALUE);
+            writePostMetaSql(node, _EP_AVAILABLE_FROM_KEY, _EP_AVAILABLE_FROM_VALUE);
 
-            // City & state
-            Element city = getCategoryNode(item, CITY);
-            citySubst(item, city);
-            if (city != null) city.detach();
-            city = getCategoryNode(item, STATE);
-            if (city != null) city.detach();
+            writePostMetaSql(node, EP_PRICE_PREFIX_KEY, EP_PRICE_PREFIX_VALUE);
+            writePostMetaSql(node, _EP_PRICE_PREFIX_KEY, _EP_PRICE_PREFIX_VALUE);
+            
+            writePostMetaSql(node, EP_PRICE_KEY, EP_PRICE_VALUE);
+            writePostMetaSql(node, _EP_PRICE_KEY, _EP_PRICE_VALUE);
 
-            // Property type
-            Element propertyType = getCategoryNode(item, PROP_TYPE);
-            if (propertyType != null ) {
-                writePropertyType(item, propertyType);
-                domainSubst(item, CATEGORY, DOMAIN, PROP_TYPE, TYPE_OUT, false);
-            }
-            // TODO: check to see what happens if domain="property_type" doesn't change
+            writePostMetaSql(node, EP_PRICE_SUFFIX_KEY, EP_PRICE_SUFFIX_VALUE);
+            writePostMetaSql(node, _EP_PRICE_SUFFIX_KEY, _EP_PRICE_SUFFIX_VALUE);
 
-            // Property status
-            Element propertyStatus = getCategoryNode(item, PROP_STATUS);
-            if (propertyStatus != null ) writePropertyStatus(item, propertyStatus);
-            domainSubst(item, CATEGORY, DOMAIN, PROP_STATUS, STATUS_OUT, false);
+            writePostMetaSql(node, EP_LOT_SIZE_KEY, EP_LOT_SIZE_VALUE);
+            writePostMetaSql(node, _EP_LOT_SIZE_KEY, _EP_LOT_SIZE_VALUE);
+            
+            writePostMetaSql(node, EP_CONST_SIZE_KEY, EP_CONST_SIZE_VALUE);
+            writePostMetaSql(node, _EP_CONST_SIZE_KEY, _EP_CONST_SIZE_VALUE);
+            
+            writePostMetaSql(node, EP_ROOMS_KEY, EP_ROOMS_VALUE);
+            writePostMetaSql(node, _EP_ROOMS_KEY, _EP_ROOMS_VALUE);
+            
+            writePostMetaSql(node, EP_BEDROOMS_KEY, EP_BEDROOMS_VALUE);
+            writePostMetaSql(node, _EP_BEDROOMS_KEY, _EP_BEDROOMS_VALUE);
+            
+            writePostMetaSql(node, EP_BATHROOMS_KEY, EP_BATHROOMS_VALUE);
+            writePostMetaSql(node, _EP_BATHROOMS_KEY, _EP_BATHROOMS_VALUE);
+            
+            writePostMetaSql(node, EP_GARAGES_KEY, EP_GARAGES_VALUE);
+            writePostMetaSql(node, _EP_GARAGES_KEY, _EP_GARAGES_VALUE);
+            
+            writePostMetaSql(node, EP_CUSTOM_AGENT_KEY, EP_CUSTOM_AGENT_VALUE);
+            writePostMetaSql(node, _EP_CUSTOM_AGENT_KEY, _EP_CUSTOM_AGENT_VALUE);
+            
+            writePostMetaSql(node, EP_INTERNAL_NOTE_KEY, EP_INTERNAL_NOTE_VALUE);
+            writePostMetaSql(node, _EP_INTERNAL_NOTE_KEY, _EP_INTERNAL_NOTE_VALUE);
+            
+            writePostMetaSql(node, EP_BATHROOMS_KEY, EP_BATHROOMS_VALUE);
+            writePostMetaSql(node, _EP_BATHROOMS_KEY, _EP_BATHROOMS_VALUE);
+            
+            writePostMetaSql(node, EP_BATHROOMS_KEY, EP_BATHROOMS_VALUE);
+            writePostMetaSql(node, _EP_BATHROOMS_KEY, _EP_BATHROOMS_VALUE);
+            
+            /*  Not yet included
+             EP_CONTACT_INFORMATION_KEY = "estate_property_contact_information";
+             EP_CONTACT_INFORMATION_VALUE = "all";
+             _EP_CONTACT_INFORMATION_KEY = "_estate_property_contact_information";
+             _EP_CONTACT_INFORMATION_VALUE = "field_55366bb455cb9";
+                 EP_ATTACHMENTS_REPEATER_KEY = "estate_property_attachments_repeater";
+             EP_ATTACHMENTS_REPEATER_VALUE = "1";
+             _EP_ATTACHMENTS_REPEATER_KEY = "_estate_property_attachments_repeater";
+             _EP_ATTACHMENTS_REPEATER_VALUE = "field_55366c6a55cbc";
+             EP_FLOOR_PLANS_KEY = "estate_property_floor_plans";
+             EP_FLOOR_PLANS_VALUE = "1";
+             _EP_FLOOR_PLANS_KEY = "_estate_property_floor_plans";
+             _EP_FLOOR_PLANS_VALUE = "field_5537396ce3c14";
+             ADDITIONAL_PUBLIC_TRANSPORTATION_KEY = "additional_public_transportation";
+             ADDITIONAL_PUBLIC_TRANSPORTATION_VALUE = "";
+             _ADDITIONAL_PUBLIC_TRANSPORTATION_KEY = "_additional_public_transportation";
+             _ADDITIONAL_PUBLIC_TRANSPORTATION_VALUE = "field_557e6ad8f5975";
+             _ADDITIONAL_NEIGHBORHOOD_KEY = "_additional_neighborhood";
+             _ADDITIONAL_NEIGHBORHOOD_VALUE = "";
+             __ADDITIONAL_NEIGHBORHOOD_KEY = "__additional_neighborhood";
+             __ADDITIONAL_NEIGHBORHOOD_VALUE = "field_557e6b71f5977";
+             _ADDITIONAL_AIR_QUALITY_KEY = "_additional_air_quality";
+             _ADDITIONAL_AIR_QUALITY_VALUE = "";
+             __ADDITIONAL_AIR_QUALITY_KEY = "__additional_air_quality";
+             __ADDITIONAL_AIR_QUALITY_VALUE = "field_557e6b5df5976";
+             _ESTATE_PAGE_HIDE_SIDEBAR_KEY = "_estate_page_hide_sidebar";
+             _ESTATE_PAGE_HIDE_SIDEBAR_VALUE = "0";
+             _ESTATE_PAGE_HIDE_FOOTER_WIDGETS_KEY = "_estate_page_hide_footer_widgets";
+             _ESTATE_PAGE_HIDE_FOOTER_WIDGETS_VALUE = "0";
+             _ESTATE_INTRO_FULLSCREEN_BACKGROUND_VIDEO_PROVIDER_KEY = "_estate_intro_fullscreen_background_video_provider";
+             _ESTATE_INTRO_FULLSCREEN_BACKGROUND_VIDEO_PROVIDER_VALUE = "none";
+             _ESTATE_INTRO_FULLSCREEN_BACKGROUND_VIDEO_AUDIO_KEY = "_estate_intro_fullscreen_background_video_audio";
+             _ESTATE_INTRO_FULLSCREEN_BACKGROUND_VIDEO_AUDIO_VALUE = "0";
+             _EP_VIEWS_COUNT_KEY = "_estate_property_views_count";
+             _EP_VIEWS_COUNT_VALUE = "0";
+             EP_ATTACHMENTS_REPEATER_0_EP_ATTACHMENT_KEY = "estate_property_attachments_repeater_0_estate_property_attachment";
+             EP_ATTACHMENTS_REPEATER_0_EP_ATTACHMENT_VALUE = "";
+             _EP_ATTACHMENTS_REPEATER_0_EP_ATTACHMENT_KEY = "_estate_property_attachments_repeater_0_estate_property_attachment";
+             _EP_ATTACHMENTS_REPEATER_0_EP_ATTACHMENT_VALUE = "field_55366e2dd72fc";
+             EP_FLOOR_PLANS_0_ACF_ESTATE_FLOOR_PLAN_TITLE_KEY = "estate_property_floor_plans_0_acf_estate_floor_plan_title";
+             EP_FLOOR_PLANS_0_ACF_ESTATE_FLOOR_PLAN_TITLE_VALUE = "";
+             _EP_FLOOR_PLANS_0_ACF_ESTATE_FLOOR_PLAN_TITLE_KEY = "_estate_property_floor_plans_0_acf_estate_floor_plan_title";
+             _EP_FLOOR_PLANS_0_ACF_ESTATE_FLOOR_PLAN_TITLE_VALUE = "field_553739f9e3c15";
+             EP_FLOOR_PLANS_0_ACF_ESTATE_FLOOR_PLAN_BATHROOMS_KEY = "estate_property_floor_plans_0_acf_estate_floor_plan_bathrooms";
+             EP_FLOOR_PLANS_0_ACF_ESTATE_FLOOR_PLAN_BATHROOMS_VALUE = "";
+             _EP_FLOOR_PLANS_0_ACF_ESTATE_FLOOR_PLAN_BATHROOMS_KEY = "_estate_property_floor_plans_0_acf_estate_floor_plan_bathrooms";
+             _EP_FLOOR_PLANS_0_ACF_ESTATE_FLOOR_PLAN_BATHROOMS_VALUE = "field_55373a8ce3c1a";
+             EP_FLOOR_PLANS_0_ACF_ESTATE_FLOOR_PLAN_DESCRIPTION_KEY = "estate_property_floor_plans_0_acf_estate_floor_plan_description";
+             EP_FLOOR_PLANS_0_ACF_ESTATE_FLOOR_PLAN_DESCRIPTION_VALUE = "";
+             _EP_FLOOR_PLANS_0_ACF_ESTATE_FLOOR_PLAN_DESCRIPTION_KEY = "_estate_property_floor_plans_0_acf_estate_floor_plan_description";
+             _EP_FLOOR_PLANS_0_ACF_ESTATE_FLOOR_PLAN_DESCRIPTION_VALUE = "field_556c450013df8";
+             EP_FLOOR_PLANS_0_ACF_ESTATE_FLOOR_PLAN_IMAGE_KEY = "estate_property_floor_plans_0_acf_estate_floor_plan_image";
+             EP_FLOOR_PLANS_0_ACF_ESTATE_FLOOR_PLAN_IMAGE_VALUE = "";
+             _EP_FLOOR_PLANS_0_ACF_ESTATE_FLOOR_PLAN_IMAGE_KEY = "_estate_property_floor_plans_0_acf_estate_floor_plan_image";
+             _EP_FLOOR_PLANS_0_ACF_ESTATE_FLOOR_PLAN_IMAGE_VALUE = "field_55373ae8e3c1c";
+             ESTATE_PAGE_HIDE_SITE_HEADER_KEY = "estate_page_hide_site_header";
+             ESTATE_PAGE_HIDE_SITE_HEADER_VALUE = "0";
+             _EDIT_LAST_KEY = "_edit_last";
+             _EDIT_LAST_VALUE = "";
 
-            // Property features
-            // Change features attribute domain first
-            domainSubst(item, CATEGORY, DOMAIN,
-                    FEATURES_IN, FEATURES_OUT, false);
-            writePropertyFeatures(item);
-
-            // Process metadata nodes
-            // Broker
-            writeBrokerNum((Element)node);
-
-            // Property and construction size
-            Element propSize = getPostmetaElement(item, CONST_SIZE_KEY);
-            if (propSize != null) {
-                String houseArea = getPostmetaValue(item, CONST_SIZE_KEY);
-                wpPostmeta(item,  EP_CONST_SIZE_KEY, houseArea);
-                wpPostmeta(item, _EP_CONST_SIZE_KEY, _EP_CONST_SIZE_VALUE);
-                propSize.getParent().detach();
-            }
-            propSize = getPostmetaElement(item, LOT_SIZE_KEY);
-            if (propSize != null) {
-                String lotArea = getPostmetaValue(item, LOT_SIZE_KEY);
-                wpPostmeta(item,  EP_LOT_SIZE_KEY, lotArea);
-                wpPostmeta(item, _EP_LOT_SIZE_KEY, _EP_LOT_SIZE_VALUE);
-                propSize.getParent().detach();
-            }
-
-            // Latitude and Longitude
-            Element latLong = getPostmetaElement(item, LATLNG_KEY);
-            if (latLong != null) {
-                String latLongValues = getPostmetaValue(item, LATLNG_KEY);
-                writeAddress(item, latLongValues);
-                latLong.getParent().detach();
-            }
-
-            // Postal code
-            Element postCode = getCategoryNode(item, ZIPCODE_KEY);
-            if (postCode != null) {
-                String postCodeString = postCode.attributeValue(NICENAME);
-                wpPostmeta(item, EP_POSTAL_CODE_KEY, postCodeString);
-                wpPostmeta(item,_EP_POSTAL_CODE_KEY, _EP_POSTAL_CODE_VALUE);
-                postCode.detach();
-            }
-
-            // Process mediaItems to write serialized array of photos for each
-            // property
-            Node propPostId = item.selectSingleNode(POST_ID);
-            if (propPostId == null) {
-
-                Logger.error("Post ID not found for PropID {}.",
-                        getPropID(item));
-            } else {
-                // if post_id is lower than previous record, reset mediaIx
-                int postId = Integer.valueOf(propPostId.getText());
-                if (postId < prevPropPostId) {
-                    Logger.error("Resetting mediaIx at propId: {}; " +
-                            "postId: {}, prev postId: {}.", getPropID(item),
-                            postId, prevPropPostId);
-                    mediaIx = 0;
-                }
-                prevPropPostId = postId;
-                writeMediaGallery(item, propPostId.getText());
-            }
-
-            // write __thumbnail_id postmeta (field value)
-            Element thumbnail = getPostmetaElement(item, THUMBNAIL_KEY);
-            String thumbnailId = "";
-            if (thumbnail != null) {
-                thumbnailId = getPostmetaValue(item, THUMBNAIL_ID_KEY);
-                thumbnail.getParent().detach();
-            }
-            wpPostmeta(item, THUMBNAIL_ID_KEY,thumbnailId);
-            wpPostmeta(item, _THUMBNAIL_ID_KEY, _THUMBNAIL_ID_VALUE);
-
-            // convert price postmeta and add price prefix & suffix
-            String postmetaString = "";
-            Element postmeta = getPostmetaElement(item, PRICE_KEY);
-            if (postmeta != null) postmetaString = postmeta.getText();
-            wpPostmeta(item, EP_PRICE_KEY, postmetaString);
-            wpPostmeta(item, _EP_PRICE_KEY, _EP_PRICE_VALUE);
-            if (postmeta != null) postmeta.getParent().detach();
-            wpPostmeta(item, EP_PRICE_PREFIX_KEY, EP_PRICE_PREFIX_VALUE);
-            wpPostmeta(item, _EP_PRICE_PREFIX_KEY, _EP_PRICE_PREFIX_VALUE);
-            wpPostmeta(item, EP_PRICE_SUFFIX_KEY, EP_PRICE_SUFFIX_VALUE);
-            wpPostmeta(item, _EP_PRICE_SUFFIX_KEY, _EP_PRICE_SUFFIX_VALUE);
-
-            // The remaining postmeta items are written with default values
-            wpPostmeta(item, _VC_POST_SETTINGS_KEY, _VC_POST_SETTINGS_VALUE);
-
-
-            // Remove original property ID last so that it can be used for logging
-            Element propId = getPostmetaElement(item, PROPID_KEY);
-            if (propId != null) propId.getParent().detach();
+            */
         }
     }
 
     /**
-     * Process media items document, initializing MediaItem array
-     * Sort array by wp:post_parent to speed up processing
+     * Get single integer element value
      *
-     *  @param  mediaDoc   Document containing
+     *  @param  node            element to process
+     *  @param  xPath           element xPath
+     *
+     *  @return intValue               
      *
      */
-    public static void processMedia(Document mediaDoc) {
-
-        // modify channel links
-        // elementSubst(mediaDoc, CHAN_LINK, EXPORT_DOMAIN, IMPORT_DOMAIN, false);
-        // elementSubst(mediaDoc, CHAN_SITE, EXPORT_DOMAIN, IMPORT_DOMAIN, false);
-        // elementSubst(mediaDoc, CHAN_BLOG, EXPORT_DOMAIN, IMPORT_DOMAIN, false);
-
-        // select all media items
-        mediaNodes = mediaDoc.selectNodes(CHAN_ITEM);
-        if (mediaNodes == null) {
-            Logger.error("No media nodes found in {}.", mediaFile);
-            exit(1);
-        }
-        else {
-            Logger.warn("Number of nodes found for {}: {}", CHAN_ITEM, mediaNodes.size());
-            // printMediaItems(mediaNodes);
-        }
-
-        mediaItems = new MediaItem[mediaNodes.size()];
-        int i = 0;
-        for (Node node : mediaNodes) {
-             // System.out.println(">===========================================================================<");
-             mediaItemHeader(node, i);
-
-            Element pic = (Element) node;
-            if (!pic.selectSingleNode(POST_TYPE).getText().equals(ATTACHMENT)) {
-                Logger.error("Item #{} not an attachment.", i);
-                break;
-            }
-
-            // Change links
-            // elementSubst(pic, LINK, EXPORT_DOMAIN, IMPORT_DOMAIN, false);
-            // elementSubst(pic, GUID, EXPORT_DOMAIN, IMPORT_DOMAIN, false);
-            // elementSubst(pic, ATTACH_URL, EXPORT_DOMAIN, IMPORT_DOMAIN, false);
-
-            // Generate an array of MediaItem
-            String post_id = pic.selectSingleNode(POST_ID).getText();
-            String post_parent = pic.selectSingleNode(POST_PARENT).getText();
-            String post_name = pic.selectSingleNode(POST_NAME).getText();
-            String link = pic.selectSingleNode(LINK).getText();
-            mediaItems[i] = new MediaItem(Integer.parseInt(post_id),
-                    Integer.parseInt(post_parent), post_name, link);
-
-            i++;
-        }
-        // sort MediaItem array by post_parent
-        Arrays.sort(mediaItems);
-
-        Logger.warn("{} mediaNodes processed.", mediaNodes.size());
-        Logger.warn("mediaItems.length: {}", mediaItems.length);
-        dumpMediaItems(mediaItems);
-
+    public static int getIntVal(Node node, String xPath) {
+        return (int)node.numberValueOf(xPath);
     }
 
     /**
-     * Write modified DOM4J tree to disk
+     * Get single integer element value
      *
-     *  @param  doc              DOM4J document
-     *  @param  inputFileName    input XML file
+     *  @param  node            element to process
+     *  @param  xPath           element xPath
      *
-     */
-    public static void writeDOM(Document doc, String inputFileName) {
-
-        String outputFileName = (outputFile(inputFileName));
-        try {
-            XMLWriter writer =
-                    new XMLWriter(new FileWriter(new File(outputFileName)),
-                            OutputFormat.createPrettyPrint());
-            writer.write(doc);
-            writer.close();
-        } catch (IOException e) {
-            Logger.error(e, "Error writing {}", outputFileName);
-            e.printStackTrace();
-        }
-
-        // Fix &gt; and &lt; in output
-        try {
-            Runtime.getRuntime().exec("data/fixcvt.sh " + outputFileName);
-        } catch (IOException e) {
-            Logger.error("Unable to run fixcvt.sh on {}", outputFileName);
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Write a new wp:postmeta node (<item>) with specified key and value
-     *
-     *  @param  item            element to contain wp:postmeta
-     *  @param  meta_key        wp:meta_key
-     *  @param  meta_value      wp:meta_value
+     *  @return intValue
      *
      */
-    public static void wpPostmeta(Element item,
-                                   String meta_key, String meta_value) {
-
-        Element postmeta = item.addElement(POSTMETA);
-        Element postmetaKey = postmeta.addElement(METAKEY);
-        postmetaKey.setText(toCDATA(meta_key));
-        Element postmetaValue = postmeta.addElement(METAKEY);
-        postmetaValue.setText(toCDATA(meta_value));
-        Logger.info("Added wp:postmeta element with wp:meta_key \'{}\' and wp:meta_value \'{}\'",
-                postmetaKey.getText(), postmetaValue.getText());
+    public static String getStringVal(Node node, String xPath) {
+        Node n = node.selectSingleNode(xPath);
+        if (n == null) {
+            Logger.error("{} not found in propId {}", 
+                    xPath, getPropID(node));
+            return null;
+        } else 
+            return n.getText();
     }
 
     /**
      * Get specified wp:postmeta element with key metakey in specified item
      *
-     *  @param  item            element to contain wp:postmeta
+     *  @param  node            element to contain wp:postmeta
      *  @param  meta_key        wp:meta_key
 
      *  @return                 wp:postmeta element
      *
      */
 
-    public static Element getPostmetaElement(Element item, String meta_key) {
+    public static Element getPostmetaElement(Node node, String meta_key) {
 
-        List<Node> postmetas = item.selectNodes(POSTMETA);
+        List<Node> postmetas = node.selectNodes(POSTMETA);
         for (Node postmeta : postmetas) {
             Element e2 = (Element) postmeta.selectSingleNode(METAKEY);
             if (e2.getText().equals(meta_key)) {
-                return (Element)postmeta.selectSingleNode(METAVALUE);
+                Node value = postmeta.selectSingleNode(METAVALUE);
+                return (Element)value;
             }
         }
-        Logger.warn("{} with {} \'{}\' not found.", POSTMETA,
-                METAKEY, meta_key);
+        // Logger.warn("{} with {} \'{}\' not found.", POSTMETA,
+        //         METAKEY, meta_key);
         return null;
     }
 
@@ -459,448 +384,50 @@ public class Main {
             return postmeta.getText();
         }
 
+        // Logger.warn("{} with {} \'{}\' not found.", POSTMETA,
+        //         METAKEY, meta_key);
+        return null;
+    }
+
+   /**
+     * Gets meta_value associated with meta_key and writes sql statement for it
+     *
+     *  @param  node            xml node containing <wp:postmeta>
+     *  @param  meta_key        wp:meta_key
+     *
+     */
+
+    public static void writePostMetaSql(Node node, String meta_key, 
+                                        String default_meta_value) {
+
+        Element postmeta = getPostmetaElement(node, meta_key);
+        if (postmeta != null) {
+            String metaValue = getPostmetaValue((Element)node, meta_key);
+            if (metaValue == null || metaValue.length() == 0) {
+                metaValue = default_meta_value;
+            }
+            Wp_Postmeta pm = new Wp_Postmeta(0,
+                    getPropPostID(node), meta_key, metaValue);
+            sqlWrite(postmetaSQL, pm.get_Wp_Postmeta_SQL());
+            return;       
+        }
+
         Logger.warn("{} with {} \'{}\' not found.", POSTMETA,
                 METAKEY, meta_key);
-        return null;
+        return;
     }
 
     /**
-     * returns specified string encoded as CDATA
+     * Return Post ID for the specified <item> node
      *
-     *  @param   inString        string to encode
-     *
-     *  @returns  outString     encoded string
+     *  @param  propItem
      *
      */
 
-    public static String toCDATA(String inString) {
-        return CDATA_OPEN + inString + CDATA_CLOSE;
+    public static int getPropPostID(Node propItem) {
+        return Integer.valueOf(propItem.selectSingleNode(POST_ID).getText());
     }
-
-    /**
-     * Find  single category node with specified domain attribute
-     * if there are multiple category nodes with that domain, only first
-     * is returned
-     *
-     *  @param  item            element containing categories
-     *  @param  domain          category domain attribute
-     *
-     */
-    public static Element getCategoryNode(Element item, String domain) {
-
-        List<Element> categories = item.selectNodes(CATEGORY);
-        for (Element category : categories) {
-            if (category.attributeValue(DOMAIN).equals(domain)) {
-                return category;
-            }
-        }
-        Logger.warn(CATEGORY + "\'" + domain +
-                "\' not found for PropID: " + getPropID(item));
-
-        return null;
-    }
-
-    /**
-     * Find multiple category nodes with specified domain attribute
-     *
-     *  @param  item            element containing categories
-     *  @param  domain          category domain attribute
-     *
-     */
-    public static List<Element> getCategoryNodes(Element item, String domain) {
-
-        List<Element> categories = item.selectNodes(CATEGORY);
-        List<Element> domainCategories = new ArrayList<>();
-        for (Element category : categories) {
-            if (category.attributeValue(DOMAIN).equals(domain)) {
-                domainCategories.add(category);
-            }
-        }
-        if (domainCategories.size() < 1) {
-            domainCategories = null;
-            Logger.error(CATEGORY + "\'" + domain +
-                    "\' not found for PropID: " + getPropID(item));
-        }
-
-        return domainCategories;
-    }
-
-    /**
-     * Process mediaItems to write serialized array of photos for each
-     * property
-     *
-     *  @param  item            element containing categories
-     *  @param  postIdStr       string containing property ID
-     *
-     */
-
-    public static void writeMediaGallery(Element item, String postIdStr) {
-
-        if (mediaIx >= mediaItems.length) {
-            Logger.error("Reached end of mediaItems at propID: {}", getPropID(item));
-            return;
-        }
-
-        String mediaItemsTemp = "{";
-        int propId = 0;
-        // Some IDs have L appended; remove L for int comparison
-        try {
-            propId = Integer.parseInt(postIdStr);
-        } catch (NumberFormatException e) {
-            if (postIdStr.contains("L")) {
-                propId = Integer.parseInt(postIdStr.substring(0, postIdStr.length() - 1));
-            } else {
-                e.printStackTrace();
-            }
-        }
-        // get array of mediaItems that cite this property as a parent
-        // mediaIx is a global index to take advantage of the fact that
-        // mediaItems array is sorted.
-        int i = 0;  // counts number of items in gallery
-        int maxMediaItems = mediaItems.length;
-        int postParent;
-
-        Logger.error("Writing media gallery for {}, mediaIx = {}", propId, mediaIx);
-        // step through mediaItems until finding the propId
-        do {
-            postParent = mediaItems[mediaIx].getPost_parent();
-            mediaIx++;
-        } while (mediaIx < maxMediaItems-1 && postParent < propId);
-
-        if (mediaIx == maxMediaItems) {
-            Logger.error("End of media items at #: {}", mediaIx);
-            return;
-        }
-
-        // TODO: need to make this a for/while propId doesn't change
-        //for (i = mediaIx; i < mediaItems.length; mediaIx++) {
-        do {
-            // get mediaItem post_id
-            int mediaItemId = mediaItems[mediaIx].getPost_id();
-            String mediaItemIdStr = Integer.toString(mediaItemId);
-            mediaItemsTemp += "i:" + i + ";s:" + mediaItemIdStr.length() +
-                    ":\"" + mediaItemId + "\";";
-             Logger.debug("mediaItemsTemp: {}", mediaItemsTemp);
-             mediaIx++;
-             i++;
-        } while (mediaIx < maxMediaItems &&
-                mediaItems[mediaIx].getPost_parent() == postParent);
-        mediaItemsTemp += "}";
-        // prepend array length
-        String numItems = Integer.toString(i);
-        String mediaItemSer = "a:" + numItems + ":" + mediaItemsTemp;
-        Logger.info("MediaItemsSer for propID({}): {}", propId, mediaItemSer);
-
-
-        try {
-            wpPostmeta(item, EP_GALLERY_KEY, mediaItemSer);
-            wpPostmeta(item, _EP_GALLERY_KEY, _EP_GALLERY_VALUE);
-        } catch (Exception e) {
-            Logger.error("Exception writing gallery postmeta for propId {} ", postIdStr);
-            e.printStackTrace();
-        }
-
-    }
-
-    /**
-     * Write propertytype to proper wp:postmeta entry
-     *
-     *  @param  item            element containing categories
-     *  @param  propertyType    element containing property type
-     *
-     */
-
-    public static void writePropertyType(Element item, Element propertyType) {
-        String propType = null;
-        if (propertyType == null) {
-            propType = "unknown";
-            Logger.error("Property Type not found.");
-        } else {
-            propType = propertyType.attributeValue("nicename");
-            // Haciendas become country homes
-            if (propType == "haciendas") propType = "countryhomes";
-        };
-        String propTypeCode = null;
-        int found = 0;
-
-        for (int i = 0; i < propertyTypes.length; i++) {
-            if (propertyTypes[i].slug.equals(propType)) {
-                propTypeCode = propertyTypes[i].propTypeNumSerialized;
-                wpPostmeta(item, AP_TYPE_KEY, propTypeCode);
-                wpPostmeta(item, _AP_TYPE_KEY, _AP_TYPE_VALUE);
-                found++;
-                Logger.info("Set Property Type to {}", propType,
-                        propertyTypes[i].slug);
-                if (found > 1)
-                    Logger.error("Multiple property types found.");
-            }
-        }
-    }
-
-    /**
-     * Write property status to proper wp:postmeta entry
-     *
-     *  @param  item            element containing categories
-     *  @param  latLongString   latitude and longitude, comma-separated
-     *
-     */
-
-    public static void writeAddress(Element item, String latLongString) {
-        // parse latitude and longitude
-        String[] latLong = latLongString.split(",");
-        if (latLong == null || latLong.length != 2) {
-            Logger.error("Error parsing latlong string \'{}\'", latLongString);
-            return;
-        }
-
-        // Write address postmeta
-        String latLongSer =
-                "a:3:{s:3:\"lat\";s:" + latLong[0].length() + ":\"" + latLong[0] +
-                "\";s:3:\"lng\";s:" + latLong[1].length() + ":\"" + latLong[1] +
-                "\";}";
-        Logger.info("LatLong converted from {} to {}", latLongString, latLongSer);
-        wpPostmeta(item, EP_GOOGLE_MAPS_KEY, latLongSer);
-        wpPostmeta(item, _EP_GOOGLE_MAPS_KEY, _EP_GOOGLE_MAPS_VALUE);
-    }
-
-
-    /**
-     * Write broker assigment to proper wp:postmeta entry
-     *
-     *  @param  item              Node containing listing
-     *
-     */
-
-    public static void writeBrokerNum(Element item) {
-
-        // default is Lane.
-        String brokerNum = "2";
-        Element broker = getPostmetaElement(item, BROKER_KEY);
-        // TODO: this if statement may be removed if Lane is always agent
-        if (broker != null) {
-            String brokerName = getPostmetaValue(item, BROKER_KEY);
-            for (int i = 0; i < users.length; i++) {
-                if (brokerName.contains(users[i].niceName)) {
-                    Logger.warn("Broker found: {} ", brokerName);
-                    brokerNum = users[i].userNum;
-                    break;
-                }
-            }
-            broker.getParent().detach();
-        } else {
-            Logger.error("Broker not found.");
-        }
-        wpPostmeta(item, EP_CUSTOM_AGENT_KEY, brokerNum);
-        wpPostmeta(item, _EP_CUSTOM_AGENT_KEY, _EP_CUSTOM_AGENT_VALUE);
-        wpPostmeta(item, EP_CONTACT_INFORMATION_KEY, EP_CONTACT_INFORMATION_VALUE);
-        wpPostmeta(item, _EP_CONTACT_INFORMATION_KEY, _EP_CONTACT_INFORMATION_VALUE);
-    }
-
-
-    /**
-     * Write property status to proper wp:postmeta entry
-     *
-     *  @param  item              element containing categories
-     *
-     */
-
-    public static void writePropertyFeatures(Element item) {
-        List<Element> propFeatures = getCategoryNodes(item, FEATURES_OUT);
-        if (propFeatures == null) {
-            Logger.error("No property features found for propID: {}",
-                    getPropID(item));
-            return;
-        }
-        String propFeatureSer = "a:" + propFeatures.size() + ":{";
-
-        // propFeatures is the list of features found in this listing;
-        // propertyFeatures is the full list of features
-        // TODO: outer loop has to be changed to .hasNext()
-        int i = 0;
-        for (Element feature : propFeatures) {
-            propFeatureSer += "i:" + i;
-            i++;
-            for (int j = 0; j < propertyFeatures.length; j++) {
-                if (feature.attributeValue(NICENAME).
-                        equals(propertyFeatures[j].slug)) {
-                    propFeatureSer += ";i:" + propertyFeatures[j].propTypeNum +
-                    ";";
-                }
-            }
-        }
-        propFeatureSer += "}";
-        wpPostmeta(item, AP_FEATURES_KEY, propFeatureSer);
-        wpPostmeta(item, _AP_FEATURES_KEY, _AP_FEATURES_VALUE);
-        Logger.warn("Set Property Features to \'{}\' propID: {}",
-                propFeatureSer, getPropID(item));
-    }
-
-
-    /**
-     * Write property status to proper wp:postmeta entry
-     *
-     *  @param  item            element containing categories
-     *  @param  propertyStatus  element containing property status
-     *
-     */
-
-    public static void writePropertyStatus(Element item, Element propertyStatus) {
-        String propStatus = null;
-        String propStatusCode = null;
-
-        // check ct_status for featured, reduced, sold
-        propStatus = propertyStatus.attributeValue("nicename");
-        if (propStatus == null) {
-            Logger.warn("Property status not found for PropID: {}.",
-                    getPropID(item));
-            return;
-        }
-        int found = 0;
-
-        for (int i = 0; i < propertyStatuses.length; i++) {
-            if (propertyStatuses[i].slug.equals(propStatus)) {
-                propStatusCode = propertyStatuses[i].propStatusNumSerialized;
-                wpPostmeta(item, AP_STATUS_KEY, propStatusCode);
-                wpPostmeta(item, _AP_STATUS_KEY, _AP_STATUS_VALUE);
-                found++;
-                Logger.info("Set Property Status to {}", propStatus,
-                        propertyStatuses[i].slug);
-                if (found > 1)
-                    Logger.error("Multiple property statuses found for PropID: {}.",
-                            getPropID(item));
-            }
-        }
-
-        // Write featured postmeta
-        if (propStatus.equals("featured")) {
-            wpPostmeta(item, EP_FEATURED_KEY, "a:1:{i:0;s:1:\"1\";}");
-        } else {
-            wpPostmeta(item, EP_FEATURED_KEY, "");
-        }
-        wpPostmeta(item, _EP_FEATURED_KEY, _EP_FEATURED_VALUE);
-    }
-
-    /**
-     * Convert city element to proper wp:postmeta entry
-     *
-     *  @param  city        xml element needing change
-     *
-     */
-
-    public static void citySubst(Element item, Element city) {
-        String cityName;
-        if (city != null) {
-            cityName = city.attributeValue("nicename");
-        } else {
-            cityName = "";
-            Logger.error("City not found.", cityName);
-        }
-        String locationCode = null;
-        switch (cityName) {
-            case "san-miguel-de-allende":
-                locationCode = "91";
-                break;
-            case "san-jose-iturbide":
-                locationCode = "103";
-                break;
-            case "dolores-hidalgo":
-                locationCode = "97";
-                break;
-            case "biznaga":
-                locationCode = "102";
-                break;
-            case "tamazunchale":
-                locationCode = "96";
-                break;
-            default:
-                locationCode = "109";
-        }
-//        String locationString = "a:1:{i:0;s:" + locationCode.length() +
-//                ":\"" + locationCode + "\";}";
-        String locationString = "a:1:{i:0;i:" + locationCode + ";}";
-        wpPostmeta(item, AP_LOCATIONS_KEY,locationString);
-        wpPostmeta(item, _AP_LOCATIONS_KEY, _AP_LOCATIONS_VALUE);
-        Logger.info("Set city {} to {}", cityName, locationString);
-    }
-
-    /**
-     * Simple text substition in specified elements of supplied node
-     *
-     *  @param  node        xml node containing elements to change
-     *  @param  element     xml element needing change
-     *  @param  inPattern   text string to change
-     *  @param  outPattern  substitution string
-     *  @param  cdata       output string as CDATA
-     *
-     */
-
-    public static void elementSubst(Node node, String element,
-                                    String inPattern, String outPattern,
-                                    Boolean cdata) {
-
-        List<Node> elements = node.selectNodes(element);
-        if (elements.size() == 0) Logger.warn("No nodes found for \'{}\'.", element);
-
-        for (Node el : elements) {
-            String inString = el.getText();
-            String outString = inString.replace(inPattern, outPattern);
-            if (!inString.equals(outString)) {
-                if (cdata) {
-                    el.setText(CDATA_OPEN + outString +
-                            CDATA_CLOSE);
-                } else {
-                    el.setText(outString);
-                }
-                Logger.info("In {}, \'{}\' replaced with \'{}\'",
-                        element, inString,
-                        node.selectSingleNode(element).getText());
-            } else {
-                Logger.info("In {}, no replacement made for {}.",
-                        element, inString);
-            }
-        }
-    }
-
-    /**
-     * Change an element attribute in a specified node
-     *
-     *  @param  node        xml node containing element to change
-     *  @param  element     xml element needing change
-     *  @param  attribute   xml attribute to change
-     *  @param  inPattern   text string to change
-     *  @param  outPattern  substitution string
-     *  @param  cdata       output string as CDATA
-     *
-     */
-    public static void domainSubst( Node node, String element,
-                                    String attribute, String inPattern,
-                                    String outPattern, Boolean cdata) {
-        boolean found = false;
-        // get list of elements with specified name
-        List<Node> elements = node.selectNodes(element);
-        for (Node el : elements) {
-            Element elm = (Element) el;
-            // get specified attribute
-            Attribute att = elm.attribute(attribute);
-            if (att != null && att.getData().equals(inPattern)) {
-                // replace inPattern with outPattern
-                String attValue = att.getValue();
-                String newAttValue = attValue.replace(inPattern, outPattern);
-
-                if (cdata) {
-                    att.setValue(CDATA_OPEN + newAttValue + CDATA_CLOSE);
-                } else {
-                    att.setValue(newAttValue);
-                }
-                Logger.info("{} attribute {} \'{}\' replaced with \'{}\'",
-                        element, attribute, attValue, att.getValue());
-                found = true;
-            }
-        }
-        if (!found) Logger.warn("{} domain attribute \'{}\' not found for PropID {}.",
-                element, inPattern, getPropID(node));
-    }
-
+    
     /**
      * Return Property ID for the specified <item> node
      *
@@ -914,16 +441,25 @@ public class Main {
     }
 
     /**
-     * Generates output file name by inserting .cvt before .xml or at end of file
+     * Opens output file name, using input file name and replacing .xml with .sql
      *
      *  @param  inputFileName
-     *  @return outputFileName
      */
-    public static String outputFile(String inputFileName) {
+    public static FileWriter openOutputFile(String inputFileName) {
 
-        String outputFileName = inputFileName.replace(".xml", "-cvt.xml");
+        String outputFileName = inputFileName.replace(".xml", ".sql");
+        FileWriter sqlFile;
+
+        try {
+            sqlFile = new FileWriter(outputFileName);
+        } catch (IOException e) {
+            e.printStackTrace();
+            Logger.error("Error opening file {}", outputFileName);
+            return(null);
+        }
         Logger.info("Output file name: {}", outputFileName);
-        return outputFileName;
+
+        return sqlFile;
     }
 
     /**
@@ -958,84 +494,37 @@ public class Main {
     }
 
     /**
-     * Dumps out array of media items (photos) found to specified file
+     * Return an SQL-safe version of input string
+     *      Surrounded by single quotes and any internal single quotes are doubled
      *
-     *  @param  mediaItems  array of MediaItem to display
+     *  @param  inString  string to convert
      *
      */
+    public static String sqlString(String inString) {
+        String outString = "'" +
+                inString.replace("'", "''") + "'";
 
-    public static void dumpMediaItems(@NotNull MediaItem[] mediaItems) {
-
-        logConfig.formatPattern(MIN_LOG_FMT)
-                .level(Level.DEBUG)
-                .activate();
-
-        Logger.debug("MediaItem array dump for {}", mediaFile);
-        for (int i = 0; i < mediaItems.length; i++) {
-            Logger.debug("i: {}: post_id: {}, post_parent: {}, " +
-                            "post_name: {}, link: {}", i,
-                    mediaItems[i].getPost_id(),
-                    mediaItems[i].getPost_parent(),
-                    mediaItems[i].getPost_name(),
-                    mediaItems[i].getLink());
-        }
-
-        logConfig.formatPattern(DEF_LOG_FMT)
-                .level(Level.WARNING)
-                .activate();
+        return outString;
     }
 
     /**
-     * Prints out array of media items (photos) found
+     * Writes a string to the specified writer
      *
-     *  @param  mediaItems  array of MediaItem to display
+     *  @param  writer    FileWriter to write with
+     *  @param  inString  string to convert
      *
      */
+    public static void sqlWrite(FileWriter writer, String inString) {
 
-    public static void printMediaItems(MediaItem[] mediaItems) {
-
-        for (int i = 0; i < mediaItems.length; i++) {
-            System.out.printf("MediaItem %s: post_id: %s; post_parent: %s; \n" +
-                            "    file name: %s, \n    link: %s.\n", i,
-                    mediaItems[i].getPost_id(),
-                    mediaItems[i].getPost_parent(),
-                    mediaItems[i].getPost_name(),
-                    mediaItems[i].getLink());
+        try {
+            Logger.debug("{}", inString);
+            writer.write(inString + "\n");
+        } catch (IOException e) {
+            e.printStackTrace();
+            Logger.error("Exception writing {}", inString);
         }
     }
 
-
-    /**
-     * Prints out list of media items (photos) found
-     *
-     *  @param  nodes  List of xml Nodes to display
-     *
-     */
-
-    public static void printMediaItems(List<Node> nodes) {
-        int i = 0;
-
-        for (Node node : nodes) {
-            i++;
-            mediaItemHeader(node, i);
-        }
-    }
-
-    /**
-     * Prints header line for an item
-     *
-     *  @param  node  xml item node
-     *
-     */
-    public static void mediaItemHeader(Node node, int nodeNum) {
-        String mediaId = "";
-        Element e1 = (Element) node;
-        String title = e1.selectSingleNode(TITLE).getText();
-        mediaId = e1.selectSingleNode(POST_ID).getText();
-        System.out.printf("#%03d: Picture ID: %s; %s\n", nodeNum,
-                mediaId, title);
-    }
-    
     /**
      *  Parses input xml file
      *
